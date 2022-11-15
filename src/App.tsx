@@ -1,12 +1,12 @@
-import { SignIn } from './components/auth/SignIn';
+import {SignInComponent} from './components/auth/sign-in.component';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <SignIn />
-    </div>
-  );
+    return (
+        <div className="App">
+            <SignInComponent/>
+        </div>
+    );
 }
 
 export default App;
