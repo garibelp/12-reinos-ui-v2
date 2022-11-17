@@ -1,0 +1,11 @@
+.sign-in-card {
+    max-width: 400px;
+}
+
+.sign-in-card-header-icon {
+    width: 100px;
+}
+
+.sign-in-card > .ant-card-head > .ant-card-head-wrapper {
+    text-align: center;
+}

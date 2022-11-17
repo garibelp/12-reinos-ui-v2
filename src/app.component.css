@@ -1,0 +1,12 @@
+@import '~antd/dist/antd.css';
+
+.app {
+    height: 100%;
+}
+
+.app-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
