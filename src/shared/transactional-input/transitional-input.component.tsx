@@ -1,5 +1,7 @@
-import "./transitional-input.component.css";
 import { Input } from "antd";
+import { useThemeSwitcher } from "react-css-theme-switcher";
+
+import "./transitional-input.component.css";
 
 const { Password } = Input;
 
@@ -13,6 +15,12 @@ interface TransitionalInputProps {
 export function TransitionalInputComponent(props: TransitionalInputProps) {
   const { value, type, onChange, placeholder } = props;
 
+  const { currentTheme } = useThemeSwitcher();
+  const theme = currentTheme === "dark" ? "dark" : "light";
+
+  const labelClassName = theme + (value && " filled");
+  console.log(labelClassName);
+
   function retrieveInputType() {
     if (type === "password") {
       return <Password onChange={onChange} />;
@@ -23,7 +31,7 @@ export function TransitionalInputComponent(props: TransitionalInputProps) {
   return (
     <div className="input-container">
       {retrieveInputType()}
-      <label className={value && "filled"}> {placeholder} </label>
+      <label className={labelClassName}>{placeholder}</label>
     </div>
   );
 }

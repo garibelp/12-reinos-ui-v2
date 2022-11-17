@@ -1,14 +1,15 @@
 import { Button, Card, Col, Form, Row } from "antd";
 import { ReactNode, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import "./sign-in.component.css";
-
-import Logo from "../../assets/images/logo.png";
-import { TransitionalInputComponent } from "../../shared/transitional-input.component";
 import { signIn } from "../../api/requests/auth";
 import { HttpStatusEnum } from "../../enum/http-status.enum";
+import { LogoComponent } from "../../shared/logo/logo.component";
 import { messageError } from "../../shared/messages";
-import { useNavigate } from "react-router-dom";
+import { ThemeSwitcherComponent } from "../../shared/theme-switcher/theme-switcher.component";
+import { TransitionalInputComponent } from "../../shared/transactional-input/transitional-input.component";
+
+import "./sign-in.component.css";
 
 const { Item } = Form;
 
@@ -22,7 +23,7 @@ const SignInHeader = (): ReactNode => {
     <div>
       <Row>
         <Col span={24}>
-          <img className="sign-in-card-header-icon" src={Logo} alt="" />
+          <LogoComponent className="sign-in-card-header-icon" />
         </Col>
         <Col span={24}>
           <b style={{ color: "#47525E" }}>12 Reinos</b>
@@ -125,6 +126,7 @@ export function SignInComponent() {
           <TransitionalInputComponent placeholder="Senha" type="password" />
         </Item>
       </Card>
+      <ThemeSwitcherComponent />
     </Form>
   );
 }

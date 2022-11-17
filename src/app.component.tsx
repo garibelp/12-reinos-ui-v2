@@ -1,24 +1,13 @@
-import { SignInComponent } from "./components/auth/sign-in.component";
-import { Button, Layout } from "antd";
+import { Layout } from "antd";
+import { ReactElement } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import "./app.component.css";
+import { HomeComponent } from "./components/home/home.component";
+import { SignInComponent } from "./components/signin/sign-in.component";
 import { isUserAuthenticated } from "./utils/auth-utils";
-import { ReactElement } from "react";
-import { logout } from "./api/requests/auth";
 
 const { Content } = Layout;
-
-const Test = () => {
-  return (
-    <div style={{ textAlign: "center" }}>
-      <p>Logged</p>
-      <Button danger onClick={logout}>
-        Logout
-      </Button>
-    </div>
-  );
-};
 
 // @ts-ignore
 export const ProtectedRoute = ({ children }): ReactElement => {
@@ -39,7 +28,7 @@ function AppComponent() {
             path="/home"
             element={
               <ProtectedRoute>
-                <Test />
+                <HomeComponent />
               </ProtectedRoute>
             }
           />

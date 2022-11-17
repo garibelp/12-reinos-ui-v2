@@ -1,11 +1,4 @@
-import { Role } from "../interfaces/jwt-response.interface";
-
-export interface PlayerState {
-  id: string | null;
-  username: string | null;
-  email: string | null;
-  roles: Role[];
-}
+import { User } from "../interfaces/user.interface";
 
 function parseJwt(token: string) {
   const base64Url = token.split(".")[1];
@@ -47,7 +40,7 @@ export function retrieveJwtToken(): string | null {
   return localStorage.getItem("jwt");
 }
 
-export function retrieveUser(): PlayerState | null {
+export function retrieveUser(): User | null {
   const user = localStorage.getItem("user");
   if (!user) return null;
   return JSON.parse(user);

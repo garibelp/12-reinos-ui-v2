@@ -1,9 +1,5 @@
-export type Role = "ROLE_USER" | "ROLE_ADMIN";
+import { User } from "./user.interface";
 
-export interface JwtResponse {
+export interface JwtResponse extends User {
   jwt: string;
-  id: string;
-  username: string;
-  email: string;
-  roles: Role[];
 }

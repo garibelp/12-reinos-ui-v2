@@ -18,6 +18,14 @@
     transform: translate(0, 9px) scale(0.8);
 }
 
+.light {
+    background: white !important;
+}
+
+.dark {
+    background: #303030 !important;
+}
+
 .input-container label {
     z-index: 1;
     margin-top: -14px;
@@ -30,7 +38,6 @@
     font-size: 14px !important;
     line-height: 1;
     left: 12px;
-    background: white;
 }
 
 .input-container input {

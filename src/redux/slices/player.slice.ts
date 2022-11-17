@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { JwtResponse } from "../../interfaces/jwt-response.interface";
-import { PlayerState } from "../../utils/auth-utils";
+import { User } from "../../interfaces/user.interface";
 
-const initialState: PlayerState = {
+const initialState: User = {
   id: null,
   username: null,
   email: null,
