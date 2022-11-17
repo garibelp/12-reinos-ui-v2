@@ -43,6 +43,10 @@ export function isUserAuthenticated() {
   return true;
 }
 
+export function retrieveJwtToken(): string | null {
+  return localStorage.getItem("jwt");
+}
+
 export function retrieveUser(): PlayerState | null {
   const user = localStorage.getItem("user");
   if (!user) return null;

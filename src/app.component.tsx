@@ -1,16 +1,23 @@
 import { SignInComponent } from "./components/auth/sign-in.component";
-import { Layout } from "antd";
+import { Button, Layout } from "antd";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import "./app.component.css";
-import { isUserAuthenticated, retrieveUser } from "./utils/auth-utils";
+import { isUserAuthenticated } from "./utils/auth-utils";
 import { ReactElement } from "react";
+import { logout } from "./api/requests/auth";
 
 const { Content } = Layout;
 
 const Test = () => {
-  console.log(retrieveUser());
-  return <div>Logged</div>;
+  return (
+    <div style={{ textAlign: "center" }}>
+      <p>Logged</p>
+      <Button danger onClick={logout}>
+        Logout
+      </Button>
+    </div>
+  );
 };
 
 // @ts-ignore
