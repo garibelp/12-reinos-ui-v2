@@ -1,22 +1,22 @@
-import api from "../api";
-import { JwtResponse } from "../../interfaces/jwt-response.interface";
 import { AxiosResponse } from "axios";
+import { JwtResponse } from "../../interfaces/jwt-response.interface";
+import api from "../api";
 
-export const signIn = (
+export function signIn(
   username: string,
   password: string
-): Promise<AxiosResponse> => {
+): Promise<AxiosResponse<JwtResponse>> {
   return api.post<JwtResponse>(
     "/auth/signin",
     { username, password },
     { headers: { "Content-Type": "application/json" } }
   );
-};
+}
 
-export const signUp = (): void => {};
+export function signUp(): void {}
 
-export const logout = (): void => {
+export function logout(): void {
   localStorage.removeItem("jwt");
   localStorage.removeItem("user");
   document.location.href = "/signin";
-};
+}

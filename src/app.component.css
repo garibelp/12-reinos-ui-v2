@@ -6,7 +6,6 @@
 
 .app-content {
     display: flex;
-    align-items: center;
     justify-content: center;
-    height: 100%;
+    align-items: center;
 }

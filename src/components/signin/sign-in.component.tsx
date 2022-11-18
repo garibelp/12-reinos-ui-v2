@@ -6,7 +6,6 @@ import { signIn } from "../../api/requests/auth";
 import { HttpStatusEnum } from "../../enum/http-status.enum";
 import { LogoComponent } from "../../shared/logo/logo.component";
 import { messageError } from "../../shared/messages";
-import { ThemeSwitcherComponent } from "../../shared/theme-switcher/theme-switcher.component";
 import { TransitionalInputComponent } from "../../shared/transactional-input/transitional-input.component";
 
 import "./sign-in.component.css";
@@ -126,7 +125,7 @@ export function SignInComponent() {
           <TransitionalInputComponent placeholder="Senha" type="password" />
         </Item>
       </Card>
-      <ThemeSwitcherComponent />
+      {/*<ThemeSwitcherComponent />*/}
     </Form>
   );
 }

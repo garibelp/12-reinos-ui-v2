@@ -1,8 +1,33 @@
-.home-card-logo {
-    width: 100px;
+.home-wrapper {
+    margin: auto;
+    max-height: 100%;
+    overflow: auto;
 }
 
 .home-card {
+    max-width: 600px;
+    min-width: 350px;
+    margin: auto;
+}
+
+.home-card > .ant-card-head {
+    text-align: center
+}
+
+.home-card > .ant-card-body {
+    padding: 0;
+}
+
+.home-card > .ant-card-actions {
+    margin-top: auto;
+}
+
+.home-card-logo {
+    width: 100px;
+    /*align-self: center;*/
+}
+
+.home-card-table {
     text-align: center;
-    width: 400px;
+    max-width: 450px;
 }
