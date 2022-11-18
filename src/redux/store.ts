@@ -1,9 +1,11 @@
 import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
+import backgroundReducer from "./slices/background.slice";
 import playerReducer from "./slices/player.slice";
 
 export const store = configureStore({
   reducer: {
     player: playerReducer,
+    background: backgroundReducer,
   },
 });
 

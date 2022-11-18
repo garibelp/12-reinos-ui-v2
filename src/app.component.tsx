@@ -3,6 +3,7 @@ import { ReactElement } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import "./app.component.css";
+import { CreateCharacterComponent } from "./components/create-character/create-character.component";
 import { HomeComponent } from "./components/home/home.component";
 import { SignInComponent } from "./components/signin/sign-in.component";
 import { isUserAuthenticated } from "./utils/auth-utils";
@@ -29,6 +30,14 @@ function AppComponent() {
             element={
               <ProtectedRoute>
                 <HomeComponent />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/create"
+            element={
+              <ProtectedRoute>
+                <CreateCharacterComponent />
               </ProtectedRoute>
             }
           />

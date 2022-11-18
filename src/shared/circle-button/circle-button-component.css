@@ -1,0 +1,20 @@
+.circle-button {
+    width: 100px;
+    height: 100px !important;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle-button-icon {
+    width: 70px;
+}
+
+.details-modal {
+    text-align: center;
+}
+
+.hide-modal-body > .ant-modal-content > .ant-modal-body {
+    padding: 0;
+}

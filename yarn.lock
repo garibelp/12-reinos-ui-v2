@@ -11355,11 +11355,6 @@ vinyl@^2.0.0:
     remove-trailing-separator "^1.0.1"
     replace-ext "^1.0.0"
 
-virtualizedtableforantd4@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/virtualizedtableforantd4/-/virtualizedtableforantd4-1.2.1.tgz#331e8d2f203cdee6667cb5b9cbd7af823f99f65a"
-  integrity sha512-Hl21jF3WZESanz/iKIjvbjeZ5gGX2t85h2cWQFJAagOQnN7t/pvC4kXhfYNseJtaiU6QHOm5RgX3ud+oXeST1Q==
-
 w3c-hr-time@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmjs.org/w3c-hr-time/-/w3c-hr-time-1.0.2.tgz"

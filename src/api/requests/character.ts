@@ -2,7 +2,7 @@ import { AxiosResponse } from "axios";
 import { CharacterPaginated } from "../../interfaces/character-paginated.interface";
 import api from "../api";
 
-export function charactersPaginated(
+export function getCharactersPaginated(
   pageSize?: number,
   currentPage?: number
 ): Promise<AxiosResponse<CharacterPaginated>> {

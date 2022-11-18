@@ -31,3 +31,7 @@
     text-align: center;
     max-width: 450px;
 }
+
+.add-button {
+    align-self: center;
+}

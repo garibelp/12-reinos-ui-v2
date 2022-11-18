@@ -1,0 +1,28 @@
+.create-character-wrapper {
+    margin: auto;
+    max-height: 100%;
+    width: 100%;
+    max-width: 600px;
+    overflow: auto;
+}
+
+.create-character-card {
+    min-width: 350px;
+    width: 100%;
+    margin: auto;
+}
+
+.return-button {
+    color: #8190A5 !important;
+    padding: 0 !important;
+}
+
+.create-character-step {
+    color: #8190A5;
+    text-align: end;
+    align-self: center;
+}
+
+.create-character-card-header {
+}
+

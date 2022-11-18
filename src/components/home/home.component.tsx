@@ -1,10 +1,10 @@
-import { PlusOutlined } from "@ant-design/icons";
-import { Button, Card, Table } from "antd";
+import { FileAddOutlined } from "@ant-design/icons";
+import { Button, Card, Col, Row, Table, Tooltip } from "antd";
 import { useCallback, useEffect, useState } from "react";
-import { useVT } from "virtualizedtableforantd4";
+import { useNavigate } from "react-router-dom";
 
 import { logout } from "../../api/requests/auth";
-import { charactersPaginated } from "../../api/requests/character";
+import { getCharactersPaginated } from "../../api/requests/character";
 import { CharacterPaginated } from "../../interfaces/character-paginated.interface";
 import { LogoComponent } from "../../shared/logo/logo.component";
 
@@ -29,11 +29,27 @@ const columns = [
 ];
 
 function HomeHeader() {
+  const navigate = useNavigate();
+
   return (
-    <div>
-      <LogoComponent className="home-card-logo" />
-      <Button type="primary" shape="circle" icon={<PlusOutlined />} />
-    </div>
+    <Row>
+      <Col span={6} />
+      <Col span={12}>
+        <LogoComponent className="home-card-logo" />
+      </Col>
+      <Col span={6} className="add-button">
+        <Tooltip placement="bottom" title="Criar Personagem">
+          <Button
+            type="primary"
+            shape="circle"
+            onClick={() => {
+              navigate("/create");
+            }}
+            icon={<FileAddOutlined />}
+          />
+        </Tooltip>
+      </Col>
+    </Row>
   );
 }
 
@@ -42,22 +58,22 @@ export function HomeComponent() {
   const [totalElements, setTotalElements] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [list, setList] = useState<any[]>([]);
+
   const pageSize = 10;
 
   const fetchListPaginated = useCallback(
     (page: number, initialLoad = false) => {
       setLoading(true);
-      charactersPaginated(pageSize, page)
+      getCharactersPaginated(pageSize, page)
         .then((r) => {
           const { data }: { data: CharacterPaginated } = r;
           setList([...list, ...data.list]);
           setCurrentPage(data.currentPage);
           if (initialLoad) setTotalElements(data.totalElements);
+          setLoading(false);
         })
         .catch((ex) => {
           console.error(ex);
-        })
-        .finally(() => {
           setLoading(false);
         });
     },
@@ -67,23 +83,6 @@ export function HomeComponent() {
   useEffect(() => {
     fetchListPaginated(0, true);
   }, []);
-
-  const [vt] = useVT(
-    () => ({
-      onScroll: async ({ top, isEnd }) => {
-        if (isEnd) {
-          if (list && list.length < totalElements) {
-            await fetchListPaginated(currentPage + 1);
-          }
-        }
-      },
-      scroll: {
-        y: 300,
-      },
-      debug: false,
-    }),
-    [list]
-  );
 
   return (
     <div className="home-wrapper">
@@ -101,7 +100,6 @@ export function HomeComponent() {
           loading={loading}
           columns={columns}
           dataSource={list}
-          components={vt}
           rowKey="id"
           pagination={false}
           scroll={{
