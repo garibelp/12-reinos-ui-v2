@@ -46,13 +46,11 @@ export function SignInComponent() {
   // dispatch(setPlayer(data));
 
   function onFinish(values: LoginInterface) {
-    console.log(values);
     const { username, password } = values;
     isLoading(true);
     signIn(username, password)
       .then((r) => {
         const { data } = r;
-        console.log(data);
         localStorage.setItem("jwt", data.jwt);
         localStorage.setItem(
           "user",

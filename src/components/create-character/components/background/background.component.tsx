@@ -63,7 +63,7 @@ export function BackgroundComponent({ hidden }: { hidden: boolean }) {
   }
 
   function renderDetails() {
-    if (!selectedBackground) {
+    if (!selectedBackground || hidden) {
       return null;
     }
     return (
@@ -92,13 +92,11 @@ export function BackgroundComponent({ hidden }: { hidden: boolean }) {
     );
   }
 
-  if (hidden) return null;
-
   return (
     <>
-      <Row>
+      <Row hidden={hidden}>
         <Col span={24}>
-          <Item name="backgroundId">
+          <Item hidden={hidden} name="backgroundId">
             <Select
               style={{ width: "100%" }}
               loading={loading}

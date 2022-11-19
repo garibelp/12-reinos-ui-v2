@@ -79,13 +79,11 @@ export function JobComponent({ hidden }: { hidden: boolean }) {
   }
 
   function retrieveOptions() {
-    return jobList.map((job) => {
-      return <Option value={job.id}>{job.name}</Option>;
-    });
+    return jobList.map((job) => <Option value={job.id}>{job.name}</Option>);
   }
 
   function renderDetails() {
-    if (!selectedJob) return null;
+    if (!selectedJob || hidden) return null;
     // @ts-ignore
     const attributeColor = ButtonColorsEnum[selectedJob.mainAttribute];
     const { skills } = selectedJob;
@@ -184,13 +182,11 @@ export function JobComponent({ hidden }: { hidden: boolean }) {
     );
   }
 
-  if (hidden) return null;
-
   return (
     <>
-      <Row>
+      <Row hidden={hidden}>
         <Col span={24}>
-          <Item name="jobId">
+          <Item hidden={hidden} name="jobId">
             <Select
               style={{ width: "100%" }}
               loading={loading}

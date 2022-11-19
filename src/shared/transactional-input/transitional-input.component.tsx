@@ -19,7 +19,6 @@ export function TransitionalInputComponent(props: TransitionalInputProps) {
   const theme = currentTheme === "dark" ? "dark" : "light";
 
   const labelClassName = theme + (value && " filled");
-  console.log(labelClassName);
 
   function retrieveInputType() {
     if (type === "password") {

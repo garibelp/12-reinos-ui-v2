@@ -3,8 +3,10 @@ import { Button, Card, Col, Form, Row } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { messageWarning } from "../../shared/messages";
+import { AptitudesComponent } from "./components/aptitudes/aptitudes.component";
 import { BackgroundComponent } from "./components/background/background.component";
 import { JobComponent } from "./components/job/job.component";
+import { LineageComponent } from "./components/lineage/lineage.component";
 
 import "./create-character.component.css";
 
@@ -59,6 +61,7 @@ export function CreateCharacterComponent() {
   }
 
   function advanceStep() {
+    console.log("F", form.getFieldsValue());
     if (isStepFilled()) setCurrentStep(Steps[currentStep.index + 1]);
     else messageWarning("Preencher etapa atual para prosseguir");
   }
@@ -113,6 +116,8 @@ export function CreateCharacterComponent() {
       >
         <BackgroundComponent hidden={currentStep.index !== 0} />
         <JobComponent hidden={currentStep.index !== 1} />
+        <LineageComponent hidden={currentStep.index !== 2} />
+        <AptitudesComponent hidden={currentStep.index !== 3} />
       </Card>
     </Form>
   );

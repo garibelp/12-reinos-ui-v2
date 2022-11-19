@@ -8,23 +8,23 @@ const initialState: { list: IdName[]; detailedList: DetailedJob[] } = {
 };
 
 export const jobSlice = createSlice({
-    name: "background",
-    initialState,
-    reducers: {
-        setBasicJobs: (state, action: PayloadAction<IdName[]>) => {
-            state.list = action.payload;
-        },
-        addDetailedJob: (state, action: PayloadAction<DetailedJob>) => {
-            const {detailedList} = state;
-            const {payload} = action;
-
-            if (!detailedList.find((j) => j.id === payload.id)) {
-                detailedList.push(payload);
-            }
-        },
+  name: "job",
+  initialState,
+  reducers: {
+    setBasicJobs: (state, action: PayloadAction<IdName[]>) => {
+      state.list = action.payload;
     },
+    addDetailedJob: (state, action: PayloadAction<DetailedJob>) => {
+      const { detailedList } = state;
+      const { payload } = action;
+
+      if (!detailedList.find((j) => j.id === payload.id)) {
+        detailedList.push(payload);
+      }
+    },
+  },
 });
 
-export const {setBasicJobs, addDetailedJob} = jobSlice.actions;
+export const { setBasicJobs, addDetailedJob } = jobSlice.actions;
 
 export default jobSlice.reducer;

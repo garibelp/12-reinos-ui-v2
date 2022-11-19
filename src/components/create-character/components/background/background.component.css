@@ -11,3 +11,8 @@
     display: flex;
     justify-content: space-between;
 }
+
+.hidden-component {
+    width: 0 !important;
+    height: 0 !important;
+}
