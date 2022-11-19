@@ -20,6 +20,8 @@
 
 .home-card > .ant-card-actions {
     margin-top: auto;
+    position: sticky;
+    bottom: 0;
 }
 
 .home-card-logo {

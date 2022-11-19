@@ -1,4 +1,5 @@
-import { Card, Col, Row } from "antd";
+import { LeftOutlined } from "@ant-design/icons";
+import { Button, Card, Col, Row, Space } from "antd";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
@@ -63,11 +64,25 @@ export function CharacterDetailsComponent() {
   function renderHeader() {
     if (!character) return null;
     return (
-      <div className="character-details-card-header">
-        <h1>{character.name}</h1>
-        <div>{`${character.job.name}, Capítulo ${character.level}`}</div>
-        <div>{`${character.lineage.name} ${character.background.name}`}</div>
-      </div>
+      <Space direction="vertical" size="middle" style={{ width: "100%" }}>
+        <Row>
+          <Button
+            type="text"
+            icon={<LeftOutlined />}
+            style={{ color: ColorsEnum.DARK_GRAY }}
+            onClick={() => navigate("/home")}
+          >
+            Voltar
+          </Button>
+        </Row>
+        <Row>
+          <div className="character-details-card-header">
+            <h1>{character.name}</h1>
+            <div>{`${character.job.name}, Capítulo ${character.level}`}</div>
+            <div>{`${character.lineage.name} ${character.background.name}`}</div>
+          </div>
+        </Row>
+      </Space>
     );
   }
 
@@ -116,16 +131,24 @@ export function CharacterDetailsComponent() {
   }
 
   return (
-    <Card
-      className="character-details-card"
-      loading={loading}
-      title={renderHeader()}
-      headStyle={{ background: ColorsEnum.BASE_GRAY }}
-      actions={[renderFooter()]}
-    >
-      <GeneralComponent hidden={currentStep !== StepsEnum.GENERAL} />
-      <SkillsComponent hidden={currentStep !== StepsEnum.SKILLS} />
-      <ItemsComponent hidden={currentStep !== StepsEnum.ITEMS} />
-    </Card>
+    <div className="character-details-wrapper">
+      <Card
+        className="character-details-card"
+        loading={loading}
+        title={renderHeader()}
+        headStyle={{ padding: 0 }}
+        actions={[renderFooter()]}
+      >
+        <GeneralComponent hidden={currentStep !== StepsEnum.GENERAL} />
+        <SkillsComponent
+          lineage={character?.lineage}
+          background={character?.background}
+          job={character?.job}
+          aptitudes={character?.aptitudes}
+          hidden={currentStep !== StepsEnum.SKILLS}
+        />
+        <ItemsComponent hidden={currentStep !== StepsEnum.ITEMS} />
+      </Card>
+    </div>
   );
 }

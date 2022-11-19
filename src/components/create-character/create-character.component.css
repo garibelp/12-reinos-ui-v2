@@ -12,6 +12,11 @@
     margin: auto;
 }
 
+.create-character-card > .ant-card-actions {
+    position: sticky;
+    bottom: 0;
+}
+
 .return-button {
     color: #8190A5 !important;
     padding: 0 !important;
