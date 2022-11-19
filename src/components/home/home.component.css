@@ -32,6 +32,15 @@
     max-width: 450px;
 }
 
+.home-card-table >
+.ant-spin-nested-loading >
+.ant-spin-container >
+.ant-table >
+.ant-table-container >
+.ant-table-body {
+    overflow-y: auto !important;
+}
+
 .add-button {
     align-self: center;
 }

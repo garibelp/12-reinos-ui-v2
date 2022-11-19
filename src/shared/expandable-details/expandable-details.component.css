@@ -1,0 +1,12 @@
+.details-card,
+.details-card > .ant-card-body {
+    border-radius: 25px !important;
+    background: #E5E9F2 !important;
+    width: 100%;
+}
+
+.details-card > .ant-collapse-item > .ant-collapse-content,
+.details-card > .ant-card-body {
+    color: #8190A5;
+    background: #E5E9F2;
+}

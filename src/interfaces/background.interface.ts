@@ -1,17 +1,15 @@
-export interface Advantage {
-  id: string;
-  name: string;
+import { IdName } from "./id-name.interface";
+
+export interface Advantage extends IdName {
   description: string;
 }
 
-export interface Background {
-  id: string;
-  name: string;
+export interface Background extends IdName {
   physicalPoints: number;
   mentalPoints: number;
   advantage: Advantage;
 }
 
-export interface BackgrounList {
+export interface BackgroundList {
   list: Background[];
 }

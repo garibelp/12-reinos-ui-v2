@@ -1,8 +1,7 @@
+import { IdName } from "./id-name.interface";
 import { PaginatedSearch } from "./paginated-search.interface";
 
-export interface BasicCharacter {
-  id: string;
-  name: string;
+export interface BasicCharacter extends IdName {
   level: number;
   lineage: string;
   userId: string;

@@ -1,4 +1,4 @@
-import { Card, Col, Form, Row, Select } from "antd";
+import { Col, Form, Row, Select } from "antd";
 import { useEffect, useState } from "react";
 
 import { getBackgroundList } from "../../../../api/requests/background";
@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { setBackgrounds } from "../../../../redux/slices/background.slice";
 import { RootState } from "../../../../redux/store";
 import { CircleButtonComponent } from "../../../../shared/circle-button/circle-button.component";
+import { ExpandableDetailsComponent } from "../../../../shared/expandable-details/expandable-details.component";
 
 import "./background.component.css";
 
@@ -82,12 +83,10 @@ export function BackgroundComponent({ hidden }: { hidden: boolean }) {
           />
         </Row>
         <Row>
-          <Card
-            className="advantage-card"
+          <ExpandableDetailsComponent
             title={selectedBackground.advantage.name}
-          >
-            {selectedBackground.advantage.description}
-          </Card>
+            description={selectedBackground.advantage.description}
+          />
         </Row>
       </>
     );

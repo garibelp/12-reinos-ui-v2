@@ -1,0 +1,16 @@
+.job-details {
+    padding-top: 32px;
+}
+
+.job-details > .ant-col {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.job-details-skill-button {
+    width: 75%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

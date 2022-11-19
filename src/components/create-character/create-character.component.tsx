@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { messageWarning } from "../../shared/messages";
 import { BackgroundComponent } from "./components/background/background.component";
+import { JobComponent } from "./components/job/job.component";
 
 import "./create-character.component.css";
 
@@ -59,7 +60,7 @@ export function CreateCharacterComponent() {
 
   function advanceStep() {
     if (isStepFilled()) setCurrentStep(Steps[currentStep.index + 1]);
-    else messageWarning("Favor preencher etapa atual antes de prosseguir!");
+    else messageWarning("Preencher etapa atual para prosseguir");
   }
 
   function isStepFilled(): boolean {
@@ -111,6 +112,7 @@ export function CreateCharacterComponent() {
         actions={[<CreateCharacterFooter />]}
       >
         <BackgroundComponent hidden={currentStep.index !== 0} />
+        <JobComponent hidden={currentStep.index !== 1} />
       </Card>
     </Form>
   );

@@ -6,7 +6,7 @@ import "./circle-button-component.css";
 
 interface CircleButtonProps {
   icon: string;
-  value: string | number;
+  value?: string | number;
   name: string;
   description?: string;
   backgroundColor: ButtonColorsEnum;
@@ -16,21 +16,33 @@ interface CircleButtonProps {
 export function CircleButtonComponent(props: CircleButtonProps) {
   const [showDetails, setShowDetails] = useState(false);
   const { icon, value, name, backgroundColor, description } = props;
+  const extraProps = { style: { background: backgroundColor } };
 
   const bodyStyle = description ? "" : " hide-modal-body";
 
   return (
     <>
-      <Button
-        className="circle-button"
-        shape="circle"
-        type="text"
-        style={{ background: backgroundColor }}
-        icon={<img src={icon} alt="" className="circle-button-icon" />}
-        onClick={() => setShowDetails(true)}
-      >
-        {value}
-      </Button>
+      {value ? (
+        <Button
+          className="circle-button"
+          shape="circle"
+          type="text"
+          icon={<img src={icon} alt="" className="circle-button-icon" />}
+          onClick={() => setShowDetails(true)}
+          {...extraProps}
+        >
+          {value}
+        </Button>
+      ) : (
+        <Button
+          className="circle-button"
+          shape="circle"
+          type="text"
+          style={{ background: backgroundColor }}
+          icon={<img src={icon} alt="" className="circle-button-icon" />}
+          onClick={() => setShowDetails(true)}
+        />
+      )}
       <Modal
         title={name}
         open={showDetails}

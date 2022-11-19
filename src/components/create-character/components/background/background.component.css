@@ -3,15 +3,6 @@
     justify-content: space-evenly;
 }
 
-.advantage-card {
-    border-radius: 25px !important;
-    background: #E5E9F2 !important;
-}
-
-.advantage-card > .ant-card-body {
-    color: #8190A5;
-}
-
 .footer-button {
     color: #8190A5 !important;
 }
