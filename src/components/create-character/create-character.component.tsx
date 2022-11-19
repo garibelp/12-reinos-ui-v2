@@ -2,8 +2,10 @@ import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { Button, Card, Col, Form, Row } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { createCharacter } from "../../api/requests/character";
 import { AttributeEnum } from "../../enum/attribute.enum";
-import { messageWarning } from "../../shared/messages";
+import { HttpStatusEnum } from "../../enum/http-status.enum";
+import { messageError, messageWarning } from "../../shared/messages";
 import { getEnumKey } from "../../utils/enum-utils";
 import { AptitudesComponent } from "./components/aptitudes/aptitudes.component";
 import { AttributesComponent } from "./components/attributes/attributes.component";
@@ -25,11 +27,12 @@ const Steps = [
 
 interface Props {
   step: string;
+  disableCancel: boolean;
 }
 
 function CreateCharacterHeader(props: Props) {
   const navigate = useNavigate();
-  const { step } = props;
+  const { step, disableCancel } = props;
 
   return (
     <Row className="create-character-card-header">
@@ -37,6 +40,7 @@ function CreateCharacterHeader(props: Props) {
         <Button
           type="text"
           className="return-button"
+          disabled={disableCancel}
           icon={<LeftOutlined />}
           onClick={() => {
             navigate("/home");
@@ -53,11 +57,33 @@ function CreateCharacterHeader(props: Props) {
 }
 
 export function CreateCharacterComponent() {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [currentStep, setCurrentStep] = useState(Steps[0]);
   const [form] = useForm();
 
   function onFinish(values: any) {
-    console.log("FORM", values);
+    setLoading(true);
+    setTimeout(() => {
+      createCharacter(values)
+        .then(() => {
+          navigate("/home");
+        })
+        .catch((ex) => {
+          const {
+            response: { status },
+          } = ex;
+          if (status === HttpStatusEnum.UNAUTHORIZED) {
+            messageError("Sessão expirada, favor logar novamente");
+            navigate("/home");
+          } else {
+            messageError(
+              "Falha ao criar personagem. Tente novamente mais tarde"
+            );
+          }
+        })
+        .finally(() => setLoading(false));
+    }, 3000);
   }
 
   function returnStep() {
@@ -92,7 +118,12 @@ export function CreateCharacterComponent() {
   function CreateCharacterFooter() {
     const secondaryButton =
       currentStep.index === 4 ? (
-        <Button className="footer-button" type="text" htmlType="submit">
+        <Button
+          disabled={loading}
+          className="footer-button"
+          type="text"
+          htmlType="submit"
+        >
           Finalizar
         </Button>
       ) : (
@@ -106,7 +137,7 @@ export function CreateCharacterComponent() {
         <Button
           className="footer-button"
           type="text"
-          disabled={currentStep.index === 0}
+          disabled={currentStep.index === 0 || loading}
           onClick={returnStep}
           icon={<LeftOutlined />}
         >
@@ -121,8 +152,14 @@ export function CreateCharacterComponent() {
     <Form form={form} onFinish={onFinish} className="create-character-wrapper">
       <Card
         className="create-character-card"
-        title={<CreateCharacterHeader step={currentStep.name} />}
+        title={
+          <CreateCharacterHeader
+            disableCancel={loading}
+            step={currentStep.name}
+          />
+        }
         actions={[<CreateCharacterFooter />]}
+        loading={loading}
       >
         <BackgroundComponent hidden={currentStep.index !== 0} />
         <JobComponent hidden={currentStep.index !== 1} />

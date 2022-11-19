@@ -1,5 +1,6 @@
 import { AxiosResponse } from "axios";
 import { CharacterPaginated } from "../../interfaces/character-paginated.interface";
+import { CreateCharacter } from "../../interfaces/create-character.interface";
 import api from "../api";
 
 export function getCharactersPaginated(
@@ -17,6 +18,12 @@ export function getCharactersPaginated(
   });
 }
 
-export function createCharacter() {
-
+export function createCharacter(
+  payload: CreateCharacter
+): Promise<AxiosResponse<{ id: string }>> {
+  return api.post<{ id: string }>("/sheets", payload, {
+    headers: {
+      authorization: "Bearer " + localStorage.getItem("jwt"),
+    },
+  });
 }

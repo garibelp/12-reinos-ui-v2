@@ -1,6 +1,7 @@
 import { Form, Select } from "antd";
 import { useAppSelector } from "../../../../redux/hooks";
 import { RootState } from "../../../../redux/store";
+import { TransitionalInputComponent } from "../../../../shared/transactional-input/transitional-input.component";
 import "./aptitudes.component.css";
 
 const { Item } = Form;
@@ -35,8 +36,23 @@ export function AptitudesComponent({
   return (
     <>
       <Item
+        name="name"
         hidden={hidden}
-        name="aptitudes"
+        rules={[
+          {
+            required: true,
+            min: 5,
+            max: 20,
+            message: "Necessário preencher nome (Min. 5, Max. 20)!",
+            type: "string",
+          },
+        ]}
+      >
+        <TransitionalInputComponent placeholder="Nome" />
+      </Item>
+      <Item
+        hidden={hidden}
+        name="aptitudeList"
         rules={[
           {
             required: true,
