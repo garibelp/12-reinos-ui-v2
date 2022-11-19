@@ -1,0 +1,17 @@
+.circle-button {
+    width: 100px !important;
+    height: 100px !important;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle-button-icon {
+    width: 70px;
+}
+
+.dice-modal {
+    max-width: 300px !important;
+    text-align: center;
+}

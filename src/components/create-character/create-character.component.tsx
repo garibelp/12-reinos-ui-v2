@@ -2,7 +2,9 @@ import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { Button, Card, Col, Form, Row } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AttributeEnum } from "../../enum/attribute.enum";
 import { messageWarning } from "../../shared/messages";
+import { getEnumKey } from "../../utils/enum-utils";
 import { AptitudesComponent } from "./components/aptitudes/aptitudes.component";
 import { AttributesComponent } from "./components/attributes/attributes.component";
 import { BackgroundComponent } from "./components/background/background.component";
@@ -72,7 +74,19 @@ export function CreateCharacterComponent() {
     if (index === 0 && form.getFieldValue("backgroundId")) return true;
     if (index === 1 && form.getFieldValue("jobId")) return true;
     if (index === 2 && form.getFieldValue("lineageId")) return true;
-    return false;
+    const int = form.getFieldValue(
+      getEnumKey(AttributeEnum.INTELLIGENCE, AttributeEnum, true)
+    );
+    const cun = form.getFieldValue(
+      getEnumKey(AttributeEnum.CUNNING, AttributeEnum, true)
+    );
+    const cel = form.getFieldValue(
+      getEnumKey(AttributeEnum.CELERITY, AttributeEnum, true)
+    );
+    const ten = form.getFieldValue(
+      getEnumKey(AttributeEnum.TENACITY, AttributeEnum, true)
+    );
+    return !!(index === 3 && int && cun && cel && ten);
   }
 
   function CreateCharacterFooter() {
@@ -113,7 +127,7 @@ export function CreateCharacterComponent() {
         <BackgroundComponent hidden={currentStep.index !== 0} />
         <JobComponent hidden={currentStep.index !== 1} />
         <LineageComponent hidden={currentStep.index !== 2} />
-        <AttributesComponent hidden={currentStep.index !== 3} />
+        <AttributesComponent form={form} hidden={currentStep.index !== 3} />
         <AptitudesComponent
           jobId={form.getFieldValue("jobId")}
           hidden={currentStep.index !== 4}
