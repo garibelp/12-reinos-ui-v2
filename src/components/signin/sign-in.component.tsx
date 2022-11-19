@@ -40,10 +40,6 @@ const SignInHeader = (): ReactNode => {
 export function SignInComponent() {
   const [loading, isLoading] = useState(false);
   const navigate = useNavigate();
-  // TODO: Examples of redux usage
-  // const player = useAppSelector((state: RootState) => state.player);
-  // const dispatch = useAppDispatch();
-  // dispatch(setPlayer(data));
 
   function onFinish(values: LoginInterface) {
     const { username, password } = values;

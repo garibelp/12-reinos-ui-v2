@@ -5,7 +5,7 @@ import D6Icon from "../../../../assets/images/D6.png";
 import D8Icon from "../../../../assets/images/D8.png";
 
 import { AttributeEnum } from "../../../../enum/attribute.enum";
-import { ButtonColorsEnum } from "../../../../enum/button-colors.enum";
+import { ColorsEnum } from "../../../../enum/colors.enum";
 import { DiceEnum } from "../../../../enum/dice.enum";
 import { getEnumKey } from "../../../../utils/enum-utils";
 
@@ -108,7 +108,7 @@ export function AttributesComponent({
   }
 
   function renderAttributeButton(
-    background: ButtonColorsEnum,
+    background: ColorsEnum,
     attribute: AttributeEnum
   ) {
     // TODO: Improve gambi
@@ -148,20 +148,14 @@ export function AttributesComponent({
     <div hidden={hidden}>
       <Row justify="space-evenly">
         {renderAttributeButton(
-          ButtonColorsEnum.INTELLIGENCE,
+          ColorsEnum.INTELLIGENCE,
           AttributeEnum.INTELLIGENCE
         )}
-        {renderAttributeButton(ButtonColorsEnum.CUNNING, AttributeEnum.CUNNING)}
+        {renderAttributeButton(ColorsEnum.CUNNING, AttributeEnum.CUNNING)}
       </Row>
       <Row justify="space-evenly" style={{ paddingTop: "32px" }}>
-        {renderAttributeButton(
-          ButtonColorsEnum.TENACITY,
-          AttributeEnum.TENACITY
-        )}
-        {renderAttributeButton(
-          ButtonColorsEnum.CELERITY,
-          AttributeEnum.CELERITY
-        )}
+        {renderAttributeButton(ColorsEnum.TENACITY, AttributeEnum.TENACITY)}
+        {renderAttributeButton(ColorsEnum.CELERITY, AttributeEnum.CELERITY)}
       </Row>
       {renderModal()}
     </div>

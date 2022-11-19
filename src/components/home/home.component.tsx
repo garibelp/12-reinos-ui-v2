@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import { logout } from "../../api/requests/auth";
 import { getCharactersPaginated } from "../../api/requests/character";
-import { CharacterPaginated } from "../../interfaces/character-paginated.interface";
+import { CharacterPaginated } from "../../interfaces/character.interface";
 import { LogoComponent } from "../../shared/logo/logo.component";
 
 import "./home.component.css";
@@ -43,7 +43,7 @@ function HomeHeader() {
             type="primary"
             shape="circle"
             onClick={() => {
-              navigate("/create");
+              navigate("/character/create");
             }}
             icon={<FileAddOutlined />}
           />
@@ -54,9 +54,11 @@ function HomeHeader() {
 }
 
 export function HomeComponent() {
+  const navigate = useNavigate();
+  // TODO: Implement pagination loading
   const [loading, setLoading] = useState(false);
-  const [totalElements, setTotalElements] = useState(0);
-  const [currentPage, setCurrentPage] = useState(0);
+  // const [totalElements, setTotalElements] = useState(0);
+  // const [currentPage, setCurrentPage] = useState(0);
   const [list, setList] = useState<any[]>([]);
 
   const pageSize = 10;
@@ -68,8 +70,8 @@ export function HomeComponent() {
         .then((r) => {
           const { data }: { data: CharacterPaginated } = r;
           setList([...list, ...data.list]);
-          setCurrentPage(data.currentPage);
-          if (initialLoad) setTotalElements(data.totalElements);
+          // setCurrentPage(data.currentPage);
+          // if (initialLoad) setTotalElements(data.totalElements);
           setLoading(false);
         })
         .catch((ex) => {
@@ -102,6 +104,14 @@ export function HomeComponent() {
           dataSource={list}
           rowKey="id"
           pagination={false}
+          onRow={(record, rowIndex) => {
+            return {
+              onClick: () => {
+                const { id } = record;
+                navigate(`/character/${id}`);
+              },
+            };
+          }}
           scroll={{
             scrollToFirstRowOnChange: false,
             y: 300,

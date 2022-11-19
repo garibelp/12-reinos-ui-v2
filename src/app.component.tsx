@@ -3,6 +3,7 @@ import { ReactElement } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
 import "./app.component.css";
+import { CharacterDetailsComponent } from "./components/character-details/character-details.component";
 import { CreateCharacterComponent } from "./components/create-character/create-character.component";
 import { HomeComponent } from "./components/home/home.component";
 import { SignInComponent } from "./components/signin/sign-in.component";
@@ -34,10 +35,18 @@ function AppComponent() {
             }
           />
           <Route
-            path="/create"
+            path="/character/create"
             element={
               <ProtectedRoute>
                 <CreateCharacterComponent />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/character/:id"
+            element={
+              <ProtectedRoute>
+                <CharacterDetailsComponent />
               </ProtectedRoute>
             }
           />

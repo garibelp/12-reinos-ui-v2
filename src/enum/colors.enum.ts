@@ -1,4 +1,4 @@
-export enum ButtonColorsEnum {
+export enum ColorsEnum {
   BASE_GRAY = "#E5E9F2",
   WHITE = "#FFFFFF",
   INTELLIGENCE = "#00A6FF",

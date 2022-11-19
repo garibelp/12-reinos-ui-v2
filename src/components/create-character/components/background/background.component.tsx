@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { getBackgroundList } from "../../../../api/requests/background";
 import BrainIcon from "../../../../assets/images/Brain.png";
 import PersonIcon from "../../../../assets/images/Person.png";
-import { ButtonColorsEnum } from "../../../../enum/button-colors.enum";
+import { ColorsEnum } from "../../../../enum/colors.enum";
 import { Background } from "../../../../interfaces/background.interface";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { setBackgrounds } from "../../../../redux/slices/background.slice";
@@ -77,13 +77,13 @@ export function BackgroundComponent({ hidden }: { hidden: boolean }) {
             icon={BrainIcon}
             value={selectedBackground.mentalPoints}
             name="Energia Mental"
-            backgroundColor={ButtonColorsEnum.BASE_GRAY}
+            backgroundColor={ColorsEnum.BASE_GRAY}
           />
           <CircleButtonComponent
             icon={PersonIcon}
             value={selectedBackground.physicalPoints}
             name="Energia Física"
-            backgroundColor={ButtonColorsEnum.BASE_GRAY}
+            backgroundColor={ColorsEnum.BASE_GRAY}
           />
         </Row>
         <Row>

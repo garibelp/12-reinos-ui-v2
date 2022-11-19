@@ -1,5 +1,6 @@
 import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 import backgroundReducer from "./slices/background.slice";
+import characterReducer from "./slices/character.slice";
 import jobReducer from "./slices/job.slice";
 import lineageReducer from "./slices/lineage.slice";
 import playerReducer from "./slices/player.slice";
@@ -10,6 +11,7 @@ export const store = configureStore({
     background: backgroundReducer,
     job: jobReducer,
     lineage: lineageReducer,
+    character: characterReducer,
   },
 });
 

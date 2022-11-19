@@ -1,0 +1,34 @@
+.character-details-card {
+    min-width: 320px;
+    max-width: 600px;
+}
+
+.character-details-card,
+.character-details-card-footer,
+.character-details-card-header,
+.character-details-card-header h1 {
+    color: #47525E;
+}
+
+.character-details-card > .ant-card-actions {
+    background: #E5E9F2;
+    padding: 0 12px;
+}
+
+.character-details-card-footer {
+}
+
+.character-details-card-header h1 {
+    margin-bottom: 0;
+}
+
+.character-details-card-footer-icon {
+    width: 40px;
+    padding: 8px 0;
+}
+
+.character-details-card-footer > .ant-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

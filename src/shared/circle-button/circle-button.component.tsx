@@ -1,6 +1,6 @@
 import { Button, Modal } from "antd";
 import { useState } from "react";
-import { ButtonColorsEnum } from "../../enum/button-colors.enum";
+import { ColorsEnum } from "../../enum/colors.enum";
 
 import "./circle-button-component.css";
 
@@ -9,8 +9,8 @@ interface CircleButtonProps {
   value?: string | number;
   name: string;
   description?: string;
-  backgroundColor: ButtonColorsEnum;
-  textColor?: ButtonColorsEnum;
+  backgroundColor: ColorsEnum;
+  textColor?: ColorsEnum;
 }
 
 export function CircleButtonComponent(props: CircleButtonProps) {

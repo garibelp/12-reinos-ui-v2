@@ -1,0 +1,53 @@
+import { DiceEnum } from "../enum/dice.enum";
+import { Aptitude } from "./aptitude.interface";
+import { Background } from "./background.interface";
+import { IdName } from "./id-name.interface";
+import { DetailedJob } from "./job.interface";
+import { DetailedLineage } from "./lineage.interface";
+import { PaginatedSearch } from "./paginated-search.interface";
+
+export interface CreateCharacter {
+  name: string;
+  lineageId: string;
+  backgroundId: string;
+  jobId: string;
+  intelligence: DiceEnum;
+  cunning: DiceEnum;
+  tenacity: DiceEnum;
+  celerity: DiceEnum;
+  aptitudeList: string[];
+}
+
+export interface BasicCharacter extends IdName {
+  level: number;
+  lineage: string;
+  userId: string;
+  userName: string;
+  active: boolean;
+}
+
+export interface CharacterPaginated extends PaginatedSearch {
+  list: BasicCharacter[];
+}
+
+export interface DetailedCharacter extends IdName {
+  intelligence: DiceEnum;
+  cunning: DiceEnum;
+  tenacity: DiceEnum;
+  celerity: DiceEnum;
+  level: number;
+  mentalCurrent: number;
+  mentalTotal: number;
+  physicalCurrent: number;
+  physicalTotal: number;
+  heroismCurrent: number;
+  heroismTotal: number;
+  bond?: string;
+  motivation?: string;
+  notes?: string;
+  lineage: DetailedLineage;
+  background: Background;
+  job: DetailedJob;
+  aptitudes: Aptitude[];
+  active: boolean;
+}

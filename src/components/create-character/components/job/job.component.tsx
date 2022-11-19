@@ -6,7 +6,7 @@ import D8Icon from "../../../../assets/images/D8.png";
 import PersonIcon from "../../../../assets/images/Person.png";
 import SwordIcon from "../../../../assets/images/Sword.png";
 import { AttributeEnum } from "../../../../enum/attribute.enum";
-import { ButtonColorsEnum } from "../../../../enum/button-colors.enum";
+import { ColorsEnum } from "../../../../enum/colors.enum";
 import { SkillTypeEnum } from "../../../../enum/skill-type.enum";
 import { IdName } from "../../../../interfaces/id-name.interface";
 import { DetailedJob } from "../../../../interfaces/job.interface";
@@ -89,7 +89,7 @@ export function JobComponent({ hidden }: { hidden: boolean }) {
   function renderDetails() {
     if (!selectedJob || hidden) return null;
     // @ts-ignore
-    const attributeColor = ButtonColorsEnum[selectedJob.mainAttribute];
+    const attributeColor = ColorsEnum[selectedJob.mainAttribute];
     const { skills } = selectedJob;
 
     const basicAttack = skills.find((s) => s.skillType === SkillTypeEnum.BASIC);
@@ -125,13 +125,13 @@ export function JobComponent({ hidden }: { hidden: boolean }) {
             icon={BrainIcon}
             value={selectedJob.mentalPoints}
             name="Energia Mental"
-            backgroundColor={ButtonColorsEnum.BASE_GRAY}
+            backgroundColor={ColorsEnum.BASE_GRAY}
           />
           <CircleButtonComponent
             icon={PersonIcon}
             value={selectedJob.physicalPoints}
             name="Energia Física"
-            backgroundColor={ButtonColorsEnum.BASE_GRAY}
+            backgroundColor={ColorsEnum.BASE_GRAY}
           />
         </Row>
         <Row justify="space-evenly" className="job-details">
@@ -142,8 +142,8 @@ export function JobComponent({ hidden }: { hidden: boolean }) {
             }m`}
             name="Ataque Básico"
             description="Dano / Distância em metros"
-            textColor={ButtonColorsEnum.WHITE}
-            backgroundColor={ButtonColorsEnum.BASIC_ATTACK}
+            textColor={ColorsEnum.WHITE}
+            backgroundColor={ColorsEnum.BASIC_ATTACK}
           />
           <CircleButtonComponent
             icon={D8Icon}
