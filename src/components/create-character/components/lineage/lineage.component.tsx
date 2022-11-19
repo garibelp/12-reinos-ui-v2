@@ -71,7 +71,11 @@ export function LineageComponent({ hidden }: { hidden: boolean }) {
   }
 
   function retrieveOptions() {
-    return lineageList.map((l) => <Option value={l.id}>{l.name}</Option>);
+    return lineageList.map((l) => (
+      <Option key={l.id} value={l.id}>
+        {l.name}
+      </Option>
+    ));
   }
 
   function renderDetails() {

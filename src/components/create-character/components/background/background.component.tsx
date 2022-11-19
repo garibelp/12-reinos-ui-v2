@@ -54,7 +54,11 @@ export function BackgroundComponent({ hidden }: { hidden: boolean }) {
 
   function retrieveOptions() {
     return backgroundList.map((bg) => {
-      return <Option value={bg.id}>{bg.name}</Option>;
+      return (
+        <Option key={bg.id} value={bg.id}>
+          {bg.name}
+        </Option>
+      );
     });
   }
 

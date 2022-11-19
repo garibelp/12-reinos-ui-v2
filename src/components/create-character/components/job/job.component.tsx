@@ -79,7 +79,11 @@ export function JobComponent({ hidden }: { hidden: boolean }) {
   }
 
   function retrieveOptions() {
-    return jobList.map((job) => <Option value={job.id}>{job.name}</Option>);
+    return jobList.map((job) => (
+      <Option key={job.id} value={job.id}>
+        {job.name}
+      </Option>
+    ));
   }
 
   function renderDetails() {
