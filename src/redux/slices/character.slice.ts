@@ -1,5 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { DetailedCharacter } from "../../interfaces/character.interface";
+import {
+  DetailedCharacter,
+  UpdateAttributePayload,
+} from "../../interfaces/character.interface";
 
 const initialState: { list: DetailedCharacter[] } = {
   list: [],
@@ -17,9 +20,28 @@ export const characterSlice = createSlice({
         list.push(payload);
       }
     },
+    updateCurrentPoints: (
+      state,
+      action: PayloadAction<{ id: string; data: UpdateAttributePayload }>
+    ) => {
+      const { list } = state;
+      const {
+        payload: { id, data },
+      } = action;
+
+      const charIndex = list.findIndex((c) => c.id === id);
+
+      if (charIndex >= 0) {
+        list[charIndex] = {
+          ...list[charIndex],
+          ...data,
+        };
+      }
+    },
   },
 });
 
-export const { addCharacterDetails } = characterSlice.actions;
+export const { addCharacterDetails, updateCurrentPoints } =
+  characterSlice.actions;
 
 export default characterSlice.reducer;

@@ -1,6 +1,9 @@
 import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import { Button, Divider, Row, Space } from "antd";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { updateAttributes } from "../../../../api/requests/character";
 
 import BrainIcon from "../../../../assets/images/Brain.png";
 import D4Icon from "../../../../assets/images/D4.png";
@@ -13,8 +16,11 @@ import { AttributeEnum } from "../../../../enum/attribute.enum";
 import { ColorsEnum } from "../../../../enum/colors.enum";
 import { DiceEnum } from "../../../../enum/dice.enum";
 import { EnergyTypeEnum } from "../../../../enum/energy-type.enum";
+import { UpdateAttributePayload } from "../../../../interfaces/character.interface";
 import { Skill } from "../../../../interfaces/skill.interface";
+import { updateCurrentPoints } from "../../../../redux/slices/character.slice";
 import { CircleButtonComponent } from "../../../../shared/circle-button/circle-button.component";
+import { messageError } from "../../../../shared/messages";
 import { getEnumKey } from "../../../../utils/enum-utils";
 
 import "./general.component.css";
@@ -58,37 +64,81 @@ function getDice(attribute?: string) {
 }
 
 export function GeneralComponent(props: Props) {
+  const dispatch = useDispatch();
+  const { id } = useParams<{ id: string | undefined }>();
+  const [mentalCurrent, setMentalCurrent] = useState(0);
+  const [physicalCurrent, setPhysicalCurrent] = useState(0);
+  const [heroismCurrent, setHeroismCurrent] = useState(0);
+
   const {
     intelligence,
     cunning,
     tenacity,
     celerity,
-    mentalCurrent,
+    mentalCurrent: initMentalCurrent,
     mentalTotal,
-    physicalCurrent,
+    physicalCurrent: initPhysicalCurrent,
     physicalTotal,
-    heroismCurrent,
+    heroismCurrent: initHeroismCurrent,
     heroismTotal,
     basicAttack,
     hidden,
   } = props;
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    setMentalCurrent(initMentalCurrent);
+    setPhysicalCurrent(initPhysicalCurrent);
+    setHeroismCurrent(initHeroismCurrent);
+  }, []);
+
+  // Hook to autosave current attributes
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (id) {
+        console.info("Triggering auto save");
+        const data: UpdateAttributePayload = {
+          mentalCurrent,
+          physicalCurrent,
+          heroismCurrent,
+        };
+        updateAttributes(id, data)
+          .then(() => {
+            dispatch(updateCurrentPoints({ id, data }));
+          })
+          .catch((ex) => {
+            console.error(ex);
+            messageError(
+              "Ocorreu um erro durante salvamento automático. Favor atualizar a página"
+            );
+          });
+      }
+    }, 900000); // 600000 -> 10min
+    return () => clearInterval(interval);
+  }, [id, mentalCurrent, physicalCurrent, heroismCurrent]);
 
   function reduceMental() {
-    console.log("reduceMental");
+    if (mentalCurrent > 0) setMentalCurrent(mentalCurrent - 1);
   }
 
   function increaseMental() {
-    console.log("increaseMental");
+    if (mentalCurrent < mentalTotal) setMentalCurrent(mentalCurrent + 1);
   }
 
   function reducePhysical() {
-    console.log("reducePhysical");
+    if (physicalCurrent > 0) setPhysicalCurrent(physicalCurrent - 1);
   }
 
   function increasePhysical() {
-    console.log("increasePhysical");
+    if (physicalCurrent < physicalTotal)
+      setPhysicalCurrent(physicalCurrent + 1);
+  }
+
+  function reduceHeroism() {
+    if (heroismCurrent > 0) setHeroismCurrent(heroismCurrent - 1);
+  }
+
+  function increaseHeroism() {
+    if (heroismCurrent < heroismTotal) setHeroismCurrent(heroismCurrent + 1);
   }
 
   function renderAttributeChangeButton(icon: any, callback = () => {}) {
@@ -166,11 +216,11 @@ export function GeneralComponent(props: Props) {
       </Row>
       <Row justify="space-evenly">
         <Space size="large">
-          {renderAttributeChangeButton(<MinusOutlined />, reducePhysical)}
+          {renderAttributeChangeButton(<MinusOutlined />, reduceHeroism)}
           <div>
             Heroismo {heroismCurrent}/{heroismTotal}
           </div>
-          {renderAttributeChangeButton(<PlusOutlined />, increasePhysical)}
+          {renderAttributeChangeButton(<PlusOutlined />, increaseHeroism)}
         </Space>
       </Row>
     </Space>

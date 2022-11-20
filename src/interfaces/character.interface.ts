@@ -51,3 +51,9 @@ export interface DetailedCharacter extends IdName {
   aptitudes: Aptitude[];
   active: boolean;
 }
+
+export interface UpdateAttributePayload {
+  mentalCurrent: number;
+  physicalCurrent: number;
+  heroismCurrent: number;
+}

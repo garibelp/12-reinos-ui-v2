@@ -3,6 +3,7 @@ import {
   CharacterPaginated,
   CreateCharacter,
   DetailedCharacter,
+  UpdateAttributePayload,
 } from "../../interfaces/character.interface";
 import api from "../api";
 
@@ -40,4 +41,19 @@ export function getCharacterDetails(
       authorization: "Bearer " + localStorage.getItem("jwt"),
     },
   });
+}
+
+export function updateAttributes(
+  id: string,
+  payload: UpdateAttributePayload
+): Promise<AxiosResponse<{ message: string }>> {
+  return api.patch<{ message: string }>(
+    `/sheets/${id}/currentPoints`,
+    payload,
+    {
+      headers: {
+        authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
+    }
+  );
 }
