@@ -72,7 +72,6 @@ export function GeneralComponent(props: Props) {
     basicAttack,
     hidden,
   } = props;
-  console.log(basicAttack);
 
   useEffect(() => {}, []);
 

@@ -18,7 +18,6 @@ import { messageError } from "../../shared/messages";
 
 import "./character-details.component.css";
 import { GeneralComponent } from "./components/general/general.component";
-import { ItemsComponent } from "./components/items/items.component";
 import { SkillsComponent } from "./components/skills/skills.component";
 
 enum StepsEnum {
@@ -121,7 +120,7 @@ export function CharacterDetailsComponent() {
           style={{
             background: currentStep === StepsEnum.ITEMS ? "white" : "",
           }}
-          onClick={() => setCurrentStep(StepsEnum.ITEMS)}
+          // onClick={() => setCurrentStep(StepsEnum.ITEMS)}
           span={8}
         >
           {renderIcon(PotionIcon)} Itens
@@ -164,7 +163,7 @@ export function CharacterDetailsComponent() {
               aptitudes={character.aptitudes}
               hidden={currentStep !== StepsEnum.SKILLS}
             />
-            <ItemsComponent hidden={currentStep !== StepsEnum.ITEMS} />
+            {/*<ItemsComponent hidden={currentStep !== StepsEnum.ITEMS} />*/}
           </>
         )}
       </Card>
