@@ -1,4 +1,4 @@
-import { Button, Card, Col, Form, Row } from "antd";
+import { Button, Card, Col, Form, Row, Space } from "antd";
 import { ReactNode, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -80,16 +80,27 @@ export function SignInComponent() {
         className="sign-in-card"
         title={SignInHeader()}
         actions={[
-          <Item>
-            <Button
-              className="sign-in-card-button"
-              loading={loading}
-              type="primary"
-              htmlType="submit"
-            >
-              Login
-            </Button>
-          </Item>,
+          <Space
+            size="large"
+            direction="vertical"
+            style={{ alignItems: "center" }}
+          >
+            <Row>
+              <Button
+                className="sign-in-card-button"
+                loading={loading}
+                type="primary"
+                htmlType="submit"
+              >
+                Login
+              </Button>
+            </Row>
+            <Row>
+              <div onClick={() => navigate("/signup")}>
+                Não possui uma conta? Cadastre-se
+              </div>
+            </Row>
+          </Space>,
         ]}
       >
         <Item

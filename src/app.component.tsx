@@ -6,6 +6,7 @@ import "./app.component.css";
 import { CharacterDetailsComponent } from "./components/character-details/character-details.component";
 import { CreateCharacterComponent } from "./components/create-character/create-character.component";
 import { HomeComponent } from "./components/home/home.component";
+import { SignUpComponent } from "./components/sign-up/sign-up.component";
 import { SignInComponent } from "./components/signin/sign-in.component";
 import { isUserAuthenticated } from "./utils/auth-utils";
 
@@ -26,6 +27,7 @@ function AppComponent() {
       <Content className="app-content">
         <Routes>
           <Route path="/signin" element={<SignInComponent />} />
+          <Route path="/signup" element={<SignUpComponent />} />
           <Route
             path="/home"
             element={

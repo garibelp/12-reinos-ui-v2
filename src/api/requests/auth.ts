@@ -13,10 +13,22 @@ export function signIn(
   );
 }
 
-export function signUp(): void {}
+export function signUp(
+  username: string,
+  password: string,
+  email: string,
+  firstName: string,
+  lastName: string
+): Promise<AxiosResponse<{ message: string }>> {
+  return api.post<{ message: string }>(
+    "/auth/signup",
+    { username, password, email, firstName, lastName },
+    { headers: { "Content-Type": "application/json" } }
+  );
+}
 
 export function logout(): void {
   localStorage.removeItem("jwt");
   localStorage.removeItem("user");
-  document.location.href = "/signin";
+  document.location.href = "/sign-in";
 }
