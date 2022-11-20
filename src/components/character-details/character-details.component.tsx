@@ -9,6 +9,7 @@ import PersonIcon from "../../assets/images/Face.png";
 import PotionIcon from "../../assets/images/Potion.png";
 import WandIcon from "../../assets/images/Wand.png";
 import { ColorsEnum } from "../../enum/colors.enum";
+import { SkillTypeEnum } from "../../enum/skill-type.enum";
 import { DetailedCharacter } from "../../interfaces/character.interface";
 import { useAppSelector } from "../../redux/hooks";
 import { addCharacterDetails } from "../../redux/slices/character.slice";
@@ -48,7 +49,6 @@ export function CharacterDetailsComponent() {
       // @ts-ignore
       getCharacterDetails(id)
         .then((r) => {
-          console.log(r);
           const { data } = r;
           setCharacter(data);
           dispatch(addCharacterDetails(data));
@@ -139,15 +139,34 @@ export function CharacterDetailsComponent() {
         headStyle={{ padding: 0 }}
         actions={[renderFooter()]}
       >
-        <GeneralComponent hidden={currentStep !== StepsEnum.GENERAL} />
-        <SkillsComponent
-          lineage={character?.lineage}
-          background={character?.background}
-          job={character?.job}
-          aptitudes={character?.aptitudes}
-          hidden={currentStep !== StepsEnum.SKILLS}
-        />
-        <ItemsComponent hidden={currentStep !== StepsEnum.ITEMS} />
+        {character && (
+          <>
+            <GeneralComponent
+              intelligence={character.intelligence}
+              cunning={character.cunning}
+              tenacity={character.tenacity}
+              celerity={character.celerity}
+              mentalCurrent={character.mentalCurrent}
+              mentalTotal={character.mentalTotal}
+              physicalCurrent={character.physicalCurrent}
+              physicalTotal={character.physicalTotal}
+              heroismCurrent={character.heroismCurrent}
+              heroismTotal={character.heroismTotal}
+              basicAttack={character.job.skills.find(
+                (s) => s.skillType === SkillTypeEnum.BASIC
+              )}
+              hidden={currentStep !== StepsEnum.GENERAL}
+            />
+            <SkillsComponent
+              lineage={character.lineage}
+              background={character.background}
+              job={character.job}
+              aptitudes={character.aptitudes}
+              hidden={currentStep !== StepsEnum.SKILLS}
+            />
+            <ItemsComponent hidden={currentStep !== StepsEnum.ITEMS} />
+          </>
+        )}
       </Card>
     </div>
   );

@@ -1,6 +1,7 @@
 import { Button, Modal } from "antd";
 import { useState } from "react";
 import { ColorsEnum } from "../../enum/colors.enum";
+import { TextWithBreaklineComponent } from "../text-with-breakline/text-with-breakline.component";
 
 import "./circle-button-component.css";
 
@@ -11,11 +12,16 @@ interface CircleButtonProps {
   description?: string;
   backgroundColor: ColorsEnum;
   textColor?: ColorsEnum;
+  size?: "normal" | "small";
 }
+
+const defaultProps = {
+  size: "normal",
+};
 
 export function CircleButtonComponent(props: CircleButtonProps) {
   const [showDetails, setShowDetails] = useState(false);
-  const { icon, value, name, backgroundColor, description } = props;
+  const { icon, value, name, backgroundColor, description, size } = props;
   const extraProps = { style: { background: backgroundColor } };
 
   const bodyStyle = description ? "" : " hide-modal-body";
@@ -24,10 +30,12 @@ export function CircleButtonComponent(props: CircleButtonProps) {
     <>
       {value ? (
         <Button
-          className="circle-button"
+          className={`button-size-${size}`}
           shape="circle"
           type="text"
-          icon={<img src={icon} alt="" className="circle-button-icon" />}
+          icon={
+            <img src={icon} alt="" className={`circle-button-icon-${size}`} />
+          }
           onClick={() => setShowDetails(true)}
           {...extraProps}
         >
@@ -35,11 +43,13 @@ export function CircleButtonComponent(props: CircleButtonProps) {
         </Button>
       ) : (
         <Button
-          className="circle-button"
+          className={`button-size-${size}`}
           shape="circle"
           type="text"
           style={{ background: backgroundColor }}
-          icon={<img src={icon} alt="" className="circle-button-icon" />}
+          icon={
+            <img src={icon} alt="" className={`circle-button-icon-${size}`} />
+          }
           onClick={() => setShowDetails(true)}
         />
       )}
@@ -50,8 +60,11 @@ export function CircleButtonComponent(props: CircleButtonProps) {
         onCancel={() => setShowDetails(false)}
         footer={null}
       >
-        {description}
+        {/*@ts-ignore*/}
+        <TextWithBreaklineComponent text={description} />
       </Modal>
     </>
   );
 }
+
+CircleButtonComponent.defaultProps = defaultProps;

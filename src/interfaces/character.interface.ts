@@ -31,10 +31,10 @@ export interface CharacterPaginated extends PaginatedSearch {
 }
 
 export interface DetailedCharacter extends IdName {
-  intelligence: DiceEnum;
-  cunning: DiceEnum;
-  tenacity: DiceEnum;
-  celerity: DiceEnum;
+  intelligence: string;
+  cunning: string;
+  tenacity: string;
+  celerity: string;
   level: number;
   mentalCurrent: number;
   mentalTotal: number;
