@@ -17,7 +17,13 @@ import { ExpandableDetailsComponent } from "../../../../shared/expandable-detail
 const { Item } = Form;
 const { Option } = Select;
 
-export function LineageComponent({ hidden }: { hidden: boolean }) {
+export function LineageComponent({
+  hidden,
+  setDisableNext,
+}: {
+  hidden: boolean;
+  setDisableNext: Function;
+}) {
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
   const [lineageList, setLineageList] = useState<IdName[]>([]);
@@ -28,9 +34,11 @@ export function LineageComponent({ hidden }: { hidden: boolean }) {
 
   useEffect(() => {
     setLoading(true);
+    setDisableNext(true);
     if (lineageRedux.list.length > 0) {
       setLineageList(lineageRedux.list);
       setLoading(false);
+      setDisableNext(false);
     } else {
       getLineageList()
         .then((r) => {
@@ -45,17 +53,20 @@ export function LineageComponent({ hidden }: { hidden: boolean }) {
         })
         .finally(() => {
           setLoading(false);
+          setDisableNext(false);
         });
     }
   }, []);
 
   function handleSelect(id: string) {
     setLoading(true);
+    setDisableNext(true);
     const { detailedList } = lineageRedux;
     const lineage = detailedList.find((l) => l.id === id);
     if (lineage) {
       setSelectedLineage(lineage);
       setLoading(false);
+      setDisableNext(false);
     } else {
       getDetailedLineage(id)
         .then((r) => {
@@ -66,7 +77,10 @@ export function LineageComponent({ hidden }: { hidden: boolean }) {
         .catch((ex) => {
           console.error(ex);
         })
-        .finally(() => setLoading(false));
+        .finally(() => {
+          setLoading(false);
+          setDisableNext(false);
+        });
     }
   }
 

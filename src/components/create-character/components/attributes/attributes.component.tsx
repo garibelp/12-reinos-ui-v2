@@ -1,5 +1,5 @@
 import { Button, Form, FormInstance, Modal, Row } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import D4Icon from "../../../../assets/images/D4.png";
 import D6Icon from "../../../../assets/images/D6.png";
 import D8Icon from "../../../../assets/images/D8.png";
@@ -7,6 +7,8 @@ import D8Icon from "../../../../assets/images/D8.png";
 import { AttributeEnum } from "../../../../enum/attribute.enum";
 import { ColorsEnum } from "../../../../enum/colors.enum";
 import { DiceEnum } from "../../../../enum/dice.enum";
+import { useAppSelector } from "../../../../redux/hooks";
+import { RootState } from "../../../../redux/store";
 import { getEnumKey } from "../../../../utils/enum-utils";
 
 import "./attribute.component.css";
@@ -19,6 +21,13 @@ interface AttributeDice {
   diceValue: DiceEnum | null;
 }
 
+const initialAttributesState = [
+  { attribute: AttributeEnum.INTELLIGENCE, diceIndex: null, diceValue: null },
+  { attribute: AttributeEnum.CUNNING, diceIndex: null, diceValue: null },
+  { attribute: AttributeEnum.TENACITY, diceIndex: null, diceValue: null },
+  { attribute: AttributeEnum.CELERITY, diceIndex: null, diceValue: null },
+];
+
 export function AttributesComponent({
   hidden,
   form,
@@ -29,12 +38,32 @@ export function AttributesComponent({
   const [currentAttribute, setCurrentAttribute] =
     useState<AttributeEnum | null>(null);
   const [showModal, setShowModal] = useState(false);
-  const [attributes, setAttributes] = useState<AttributeDice[]>([
-    { attribute: AttributeEnum.INTELLIGENCE, diceIndex: null, diceValue: null },
-    { attribute: AttributeEnum.CUNNING, diceIndex: null, diceValue: null },
-    { attribute: AttributeEnum.TENACITY, diceIndex: null, diceValue: null },
-    { attribute: AttributeEnum.CELERITY, diceIndex: null, diceValue: null },
-  ]);
+  const { detailedList } = useAppSelector((state: RootState) => state.job);
+  const [attributes, setAttributes] = useState<AttributeDice[]>(
+    initialAttributesState
+  );
+
+  const jobId = form.getFieldValue("jobId");
+
+  useEffect(() => {
+    const selectedJob = detailedList.find((j) => j.id === jobId);
+    if (selectedJob) {
+      attributes.forEach((a) => {
+        a.diceIndex = null;
+        a.diceValue = null;
+      });
+      const { mainAttribute } = selectedJob;
+      const mainAttributeIndex = attributes.findIndex(
+        // @ts-ignore
+        (v) => v.attribute === AttributeEnum[mainAttribute.toString()]
+      );
+      if (mainAttributeIndex >= 0) {
+        attributes[mainAttributeIndex].diceIndex = 3;
+        attributes[mainAttributeIndex].diceValue = DiceEnum.D8;
+        setAttributes(attributes);
+      }
+    }
+  }, [detailedList, jobId]);
 
   function isCurrentAttribute(index: number) {
     return !!attributes.find(

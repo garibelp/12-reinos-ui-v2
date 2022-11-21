@@ -17,7 +17,13 @@ import "./background.component.css";
 const { Item } = Form;
 const { Option } = Select;
 
-export function BackgroundComponent({ hidden }: { hidden: boolean }) {
+export function BackgroundComponent({
+  hidden,
+  setDisableNext,
+}: {
+  hidden: boolean;
+  setDisableNext: Function;
+}) {
   const [loading, setLoading] = useState(false);
   const [selectedBackground, setSelectedBackground] = useState<
     Background | undefined
@@ -34,6 +40,7 @@ export function BackgroundComponent({ hidden }: { hidden: boolean }) {
     if (backgroundRedux.list.length > 0) {
       setBackgroundList(backgroundRedux.list);
       setLoading(false);
+      setDisableNext(true);
     } else {
       getBackgroundList()
         .then((r) => {
@@ -48,6 +55,7 @@ export function BackgroundComponent({ hidden }: { hidden: boolean }) {
         })
         .finally(() => {
           setLoading(false);
+          setDisableNext(false);
         });
     }
   }, []);

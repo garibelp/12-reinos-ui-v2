@@ -25,7 +25,13 @@ import "./job.component.css";
 const { Item } = Form;
 const { Option } = Select;
 
-export function JobComponent({ hidden }: { hidden: boolean }) {
+export function JobComponent({
+  hidden,
+  setDisableNext,
+}: {
+  hidden: boolean;
+  setDisableNext: Function;
+}) {
   const dispatch = useAppDispatch();
   const [showCombatSkill, setShowCombatSkill] = useState(false);
   const [showInterpretationSkill, setShowInterpretationSkill] = useState(false);
@@ -36,9 +42,11 @@ export function JobComponent({ hidden }: { hidden: boolean }) {
 
   useEffect(() => {
     setLoading(true);
+    setDisableNext(true);
     if (jobRedux.list.length > 0) {
       setJobList(jobRedux.list);
       setLoading(false);
+      setDisableNext(false);
     } else {
       getJobList()
         .then((r) => {
@@ -53,17 +61,20 @@ export function JobComponent({ hidden }: { hidden: boolean }) {
         })
         .finally(() => {
           setLoading(false);
+          setDisableNext(false);
         });
     }
   }, []);
 
   function handleSelect(id: string) {
     setLoading(true);
+    setDisableNext(true);
     const { detailedList } = jobRedux;
     const job = detailedList.find((j) => j.id === id);
     if (job) {
       setSelectedJob(job);
       setLoading(false);
+      setDisableNext(false);
     } else {
       getDetailedJob(id)
         .then((r) => {
@@ -74,7 +85,10 @@ export function JobComponent({ hidden }: { hidden: boolean }) {
         .catch((ex) => {
           console.error(ex);
         })
-        .finally(() => setLoading(false));
+        .finally(() => {
+          setLoading(false);
+          setDisableNext(false);
+        });
     }
   }
 
