@@ -60,30 +60,27 @@ export function CreateCharacterComponent() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [currentStep, setCurrentStep] = useState(Steps[0]);
+  const [disableNext, setDisableNext] = useState(false);
   const [form] = useForm();
 
   function onFinish(values: any) {
     setLoading(true);
-    setTimeout(() => {
-      createCharacter(values)
-        .then(() => {
+    createCharacter(values)
+      .then(() => {
+        navigate("/home");
+      })
+      .catch((ex) => {
+        const {
+          response: { status },
+        } = ex;
+        if (status === HttpStatusEnum.UNAUTHORIZED) {
+          messageError("Sessão expirada, favor logar novamente");
           navigate("/home");
-        })
-        .catch((ex) => {
-          const {
-            response: { status },
-          } = ex;
-          if (status === HttpStatusEnum.UNAUTHORIZED) {
-            messageError("Sessão expirada, favor logar novamente");
-            navigate("/home");
-          } else {
-            messageError(
-              "Falha ao criar personagem. Tente novamente mais tarde"
-            );
-          }
-        })
-        .finally(() => setLoading(false));
-    }, 3000);
+        } else {
+          messageError("Falha ao criar personagem. Tente novamente mais tarde");
+        }
+      })
+      .finally(() => setLoading(false));
   }
 
   function returnStep() {
@@ -127,7 +124,12 @@ export function CreateCharacterComponent() {
           Finalizar
         </Button>
       ) : (
-        <Button onClick={advanceStep} className="footer-button" type="text">
+        <Button
+          disabled={disableNext}
+          onClick={advanceStep}
+          className="footer-button"
+          type="text"
+        >
           Avançar <RightOutlined />
         </Button>
       );
@@ -161,9 +163,18 @@ export function CreateCharacterComponent() {
         actions={[<CreateCharacterFooter />]}
         loading={loading}
       >
-        <BackgroundComponent hidden={currentStep.index !== 0} />
-        <JobComponent hidden={currentStep.index !== 1} />
-        <LineageComponent hidden={currentStep.index !== 2} />
+        <BackgroundComponent
+          setDisableNext={setDisableNext}
+          hidden={currentStep.index !== 0}
+        />
+        <JobComponent
+          setDisableNext={setDisableNext}
+          hidden={currentStep.index !== 1}
+        />
+        <LineageComponent
+          setDisableNext={setDisableNext}
+          hidden={currentStep.index !== 2}
+        />
         <AttributesComponent form={form} hidden={currentStep.index !== 3} />
         <AptitudesComponent
           jobId={form.getFieldValue("jobId")}
