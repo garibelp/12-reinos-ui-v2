@@ -57,3 +57,13 @@ export function updateAttributes(
     }
   );
 }
+
+export function deleteCharacter(
+  id: string
+): Promise<AxiosResponse<{ message: string }>> {
+  return api.delete<{ message: string }>(`/sheets/${id}`, {
+    headers: {
+      authorization: "Bearer " + localStorage.getItem("jwt"),
+    },
+  });
+}

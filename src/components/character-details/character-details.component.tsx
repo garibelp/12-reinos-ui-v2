@@ -1,10 +1,13 @@
 import { LeftOutlined } from "@ant-design/icons";
-import { Button, Card, Col, Row, Space } from "antd";
+import { Button, Card, Col, Modal, Row, Space } from "antd";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { getCharacterDetails } from "../../api/requests/character";
+import {
+  deleteCharacter,
+  getCharacterDetails,
+} from "../../api/requests/character";
 import PersonIcon from "../../assets/images/Face.png";
 import PotionIcon from "../../assets/images/Potion.png";
 import WandIcon from "../../assets/images/Wand.png";
@@ -14,7 +17,7 @@ import { DetailedCharacter } from "../../interfaces/character.interface";
 import { useAppSelector } from "../../redux/hooks";
 import { addCharacterDetails } from "../../redux/slices/character.slice";
 import { RootState } from "../../redux/store";
-import { messageError } from "../../shared/messages";
+import { messageError, messageSuccess } from "../../shared/messages";
 
 import "./character-details.component.css";
 import { GeneralComponent } from "./components/general/general.component";
@@ -30,6 +33,7 @@ export function CharacterDetailsComponent() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [currentStep, setCurrentStep] = useState<StepsEnum>(StepsEnum.GENERAL);
   const [character, setCharacter] = useState<DetailedCharacter | null>(null);
   const { list } = useAppSelector((state: RootState) => state.character);
@@ -60,11 +64,27 @@ export function CharacterDetailsComponent() {
     }
   }, []);
 
+  function handleDelete() {
+    if (id) {
+      setLoading(true);
+      deleteCharacter(id)
+        .then(() => {
+          messageSuccess("Personagem deletado com sucesso!");
+          navigate("/home");
+        })
+        .catch((ex) => {
+          console.error(ex);
+          messageError("Erro ao tentar deletar personagem.");
+        })
+        .finally(() => setLoading(false));
+    }
+  }
+
   function renderHeader() {
     if (!character) return null;
     return (
       <Space direction="vertical" size="middle" style={{ width: "100%" }}>
-        <Row>
+        <Row justify="space-between">
           <Button
             type="text"
             icon={<LeftOutlined />}
@@ -72,6 +92,14 @@ export function CharacterDetailsComponent() {
             onClick={() => navigate("/home")}
           >
             Voltar
+          </Button>
+          <Button
+            danger
+            type="text"
+            style={{ paddingRight: "18px" }}
+            onClick={() => setShowDeleteConfirm(true)}
+          >
+            Deletar
           </Button>
         </Row>
         <Row>
@@ -129,6 +157,19 @@ export function CharacterDetailsComponent() {
     );
   }
 
+  function renderDeleteConfirmation() {
+    return (
+      <Modal
+        title="Deletar Personagem?"
+        open={showDeleteConfirm}
+        style={{ textAlignLast: "center" }}
+        bodyStyle={{ margin: 0, padding: 0 }}
+        onCancel={() => setShowDeleteConfirm(false)}
+        onOk={() => handleDelete()}
+      />
+    );
+  }
+
   return (
     <div className="character-details-wrapper">
       <Card
@@ -167,6 +208,7 @@ export function CharacterDetailsComponent() {
           </>
         )}
       </Card>
+      {renderDeleteConfirmation()}
     </div>
   );
 }
