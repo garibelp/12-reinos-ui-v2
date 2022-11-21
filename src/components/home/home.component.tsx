@@ -1,4 +1,4 @@
-import { FileAddOutlined } from "@ant-design/icons";
+import { FileAddOutlined, SettingOutlined } from "@ant-design/icons";
 import { Button, Card, Col, Row, Table, Tooltip } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -10,6 +10,7 @@ import {
   CharacterPaginated,
 } from "../../interfaces/character.interface";
 import { LogoComponent } from "../../shared/logo/logo.component";
+import { SettingsComponent } from "./components/settings/settings.component";
 
 import "./home.component.css";
 
@@ -31,12 +32,19 @@ const columns = [
   },
 ];
 
-function HomeHeader() {
+function HomeHeader({ showSettings }: { showSettings: () => void }) {
   const navigate = useNavigate();
 
   return (
     <Row>
-      <Col span={6} />
+      <Col span={6} className="add-button">
+        <Button
+          type="primary"
+          shape="circle"
+          onClick={showSettings}
+          icon={<SettingOutlined />}
+        />
+      </Col>
       <Col span={12}>
         <LogoComponent className="home-card-logo" />
       </Col>
@@ -59,6 +67,7 @@ function HomeHeader() {
 export function HomeComponent() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
   const [totalElements, setTotalElements] = useState(0);
   const [list, setList] = useState<BasicCharacter[]>([]);
   const [retrievedPages, setRetrievedPages] = useState<any>({});
@@ -98,7 +107,7 @@ export function HomeComponent() {
     <div className="home-wrapper">
       <Card
         className="home-card"
-        title={<HomeHeader />}
+        title={<HomeHeader showSettings={() => setShowSettings(true)} />}
         actions={[
           <Button type="primary" onClick={logout}>
             Logout
@@ -133,6 +142,10 @@ export function HomeComponent() {
             scrollToFirstRowOnChange: false,
             y: 300,
           }}
+        />
+        <SettingsComponent
+          hidden={!showSettings}
+          callback={() => setShowSettings(false)}
         />
       </Card>
     </div>

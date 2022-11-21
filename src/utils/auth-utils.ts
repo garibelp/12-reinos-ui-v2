@@ -45,3 +45,14 @@ export function retrieveUser(): User | null {
   if (!user) return null;
   return JSON.parse(user);
 }
+
+export function retrieveExpire() {
+  const token = localStorage.getItem("jwt");
+  if (!token) return 0;
+  try {
+    const { exp } = parseJwt(token);
+    return exp * 1000 - Date.now();
+  } catch (e) {
+    return 0;
+  }
+}
