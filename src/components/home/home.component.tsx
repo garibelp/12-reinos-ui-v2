@@ -1,11 +1,14 @@
 import { FileAddOutlined } from "@ant-design/icons";
 import { Button, Card, Col, Row, Table, Tooltip } from "antd";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { logout } from "../../api/requests/auth";
 import { getCharactersPaginated } from "../../api/requests/character";
-import { CharacterPaginated } from "../../interfaces/character.interface";
+import {
+  BasicCharacter,
+  CharacterPaginated,
+} from "../../interfaces/character.interface";
 import { LogoComponent } from "../../shared/logo/logo.component";
 
 import "./home.component.css";
@@ -55,35 +58,40 @@ function HomeHeader() {
 
 export function HomeComponent() {
   const navigate = useNavigate();
-  // TODO: Implement pagination loading
   const [loading, setLoading] = useState(false);
-  // const [totalElements, setTotalElements] = useState(0);
-  // const [currentPage, setCurrentPage] = useState(0);
-  const [list, setList] = useState<any[]>([]);
+  const [totalElements, setTotalElements] = useState(0);
+  const [list, setList] = useState<BasicCharacter[]>([]);
+  const [retrievedPages, setRetrievedPages] = useState<any>({});
 
   const pageSize = 10;
 
-  const fetchListPaginated = useCallback(
-    (page: number, initialLoad = false) => {
-      setLoading(true);
+  function fetchListPaginated(page: number) {
+    setLoading(true);
+    if (retrievedPages[page] && retrievedPages[page].length > 0) {
+      setList(retrievedPages[page]);
+      setLoading(false);
+    } else {
       getCharactersPaginated(pageSize, page)
         .then((r) => {
-          const { data }: { data: CharacterPaginated } = r;
-          setList([...list, ...data.list]);
-          // setCurrentPage(data.currentPage);
-          // if (initialLoad) setTotalElements(data.totalElements);
-          setLoading(false);
+          const {
+            data: { list: dataList, totalElements },
+          }: { data: CharacterPaginated } = r;
+          setTotalElements(totalElements);
+          setList(dataList);
+          setRetrievedPages({
+            ...retrievedPages,
+            [page]: dataList,
+          });
         })
         .catch((ex) => {
           console.error(ex);
-          setLoading(false);
-        });
-    },
-    [setList, list]
-  );
+        })
+        .finally(() => setLoading(false));
+    }
+  }
 
   useEffect(() => {
-    fetchListPaginated(0, true);
+    fetchListPaginated(0);
   }, []);
 
   return (
@@ -103,7 +111,16 @@ export function HomeComponent() {
           columns={columns}
           dataSource={list}
           rowKey="id"
-          pagination={false}
+          pagination={{
+            hideOnSinglePage: true,
+            position: ["bottomCenter"],
+            size: "small",
+            total: totalElements,
+            pageSize,
+            onChange: (page) => {
+              fetchListPaginated(page - 1);
+            },
+          }}
           onRow={(record, rowIndex) => {
             return {
               onClick: () => {
