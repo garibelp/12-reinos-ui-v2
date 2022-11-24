@@ -1,19 +1,32 @@
-# Getting Started with Create React AppComponent
+## Getting started
 
-This project was bootstrapped with [Create React AppComponent](https://github.com/facebook/create-react-app), using
-the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+In the project's directory, install the dependencies with `yarn`
 
-## Available Scripts
+```shell
+$ yarn install
+```
 
-In the project directory, you can run:
+Then, run the project in development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### `yarn start`
+```shell
+$ yarn start
+```
+The page will reload if you make edits. You will also see any lint errors in the console.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+When running locally, it's necessary to specify the local backend's URL.\
+First, create a `.env` file at the root directory:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```shell
+$ touch .env
+```
+
+Inside the `.env` file, set the variable with the local backend's endpoint:
+
+```
+REACT_APP_BACKEND_URL=http://localhost:8080/
+```
+
+## Other relevant scripts:
 
 ### `yarn test`
 
@@ -45,10 +58,3 @@ point to the copied scripts so you can tweak them. At this point you’re on you
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you
 shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t
 customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in
-the [Create React AppComponent documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
