@@ -6,6 +6,7 @@ import { signIn } from "../../api/requests/auth";
 import { HttpStatusEnum } from "../../enum/http-status.enum";
 import { LogoComponent } from "../../shared/logo/logo.component";
 import { messageError } from "../../shared/messages";
+import { PasswordInputComponent } from "../../shared/password-input/password-input.component";
 import { TransitionalInputComponent } from "../../shared/transactional-input/transitional-input.component";
 
 import "./sign-in.component.css";
@@ -115,20 +116,7 @@ export function SignInComponent() {
         >
           <TransitionalInputComponent placeholder="Usuário" />
         </Item>
-        <Item
-          name="password"
-          rules={[
-            {
-              required: true,
-              pattern: new RegExp(
-                "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,20})"
-              ),
-              message: "Senha inválida!",
-            },
-          ]}
-        >
-          <TransitionalInputComponent placeholder="Senha" type="password" />
-        </Item>
+        <PasswordInputComponent name="password" placeholder="Senha" />
       </Card>
       {/*<ThemeSwitcherComponent />*/}
     </Form>

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { signUp } from "../../api/requests/auth";
 import { LogoComponent } from "../../shared/logo/logo.component";
 import { messageError, messageSuccess } from "../../shared/messages";
+import { PasswordInputComponent } from "../../shared/password-input/password-input.component";
 import { TransitionalInputComponent } from "../../shared/transactional-input/transitional-input.component";
 
 import "./sign-up.component.css";
@@ -86,59 +87,36 @@ export function SignUpComponent() {
             {
               required: true,
               min: 5,
-              message: "Usuário inválido!",
+              max: 20,
+              message: "Tamanho deve ser entre 5 e 20 caracteres",
             },
           ]}
         >
           <TransitionalInputComponent placeholder="Usuário" />
         </Item>
-        <Item
-          name="password"
-          rules={[
-            {
-              required: true,
-              pattern: new RegExp(
-                "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,20})"
-              ),
-              message: "Senha inválida!",
-            },
-          ]}
-        >
-          <TransitionalInputComponent placeholder="Senha" type="password" />
-        </Item>
-        <Item
+        <PasswordInputComponent name="password" placeholder="Senha" />
+        <PasswordInputComponent
           name="confirm"
+          placeholder="Confirmar senha"
           dependencies={["password"]}
-          rules={[
-            {
-              required: true,
-              pattern: new RegExp(
-                "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,20})"
-              ),
-              message: "Senha inválida!",
-            },
-            ({ getFieldValue }) => ({
-              validator(_, value) {
+          extraRules={[
+            ({ getFieldValue }: any) => ({
+              validator(_: any, value: any) {
                 if (!value || getFieldValue("password") === value) {
                   return Promise.resolve();
                 }
-                return Promise.reject(new Error("Senhas devem ser iguais!"));
+                return Promise.reject(new Error("Senhas devem ser iguais"));
               },
             }),
           ]}
-        >
-          <TransitionalInputComponent
-            placeholder="Confirmar senha"
-            type="password"
-          />
-        </Item>
+        />
         <Item
           name="email"
           rules={[
             {
               required: true,
               type: "email",
-              message: "Email inválido!",
+              message: "Formato de email inválido",
             },
           ]}
         >
@@ -148,10 +126,9 @@ export function SignUpComponent() {
           name="firstName"
           rules={[
             {
-              required: true,
               min: 3,
               max: 20,
-              message: "Nome inválido (min = 3, max = 20)!",
+              message: "Tamanho deve ser entre 3 e 20 caracteres",
             },
           ]}
         >
@@ -161,10 +138,9 @@ export function SignUpComponent() {
           name="lastName"
           rules={[
             {
-              required: true,
               min: 3,
               max: 30,
-              message: "Nome inválido (min = 3, max = 30)!",
+              message: "Tamanho deve ser entre 3 e 30 caracteres",
             },
           ]}
         >
