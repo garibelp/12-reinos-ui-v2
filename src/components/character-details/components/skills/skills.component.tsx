@@ -4,7 +4,7 @@ import { Aptitude } from "../../../../interfaces/aptitude.interface";
 import { Background } from "../../../../interfaces/background.interface";
 import { DetailedJob } from "../../../../interfaces/job.interface";
 import { DetailedLineage } from "../../../../interfaces/lineage.interface";
-import { ExpandableDetailsComponent } from "../../../../shared/expandable-details/expandable-details.component";
+import { ExpandableDetailsComponent } from "../../../../shared/components/expandable-details/expandable-details.component";
 
 interface Props {
   lineage?: DetailedLineage;

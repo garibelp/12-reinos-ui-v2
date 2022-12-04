@@ -2,10 +2,10 @@ import { Button, Card, Col, Form, Row } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signUp } from "../../api/requests/auth";
-import { LogoComponent } from "../../shared/logo/logo.component";
+import { LogoComponent } from "../../shared/components/logo/logo.component";
 import { messageError, messageSuccess } from "../../shared/messages";
-import { PasswordInputComponent } from "../../shared/password-input/password-input.component";
-import { TransitionalInputComponent } from "../../shared/transactional-input/transitional-input.component";
+import { PasswordInputComponent } from "../../shared/components/password-input/password-input.component";
+import { TransitionalInputComponent } from "../../shared/components/transactional-input/transitional-input.component";
 
 import "./sign-up.component.css";
 

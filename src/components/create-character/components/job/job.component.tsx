@@ -17,9 +17,9 @@ import {
   setBasicJobs,
 } from "../../../../redux/slices/job.slice";
 import { RootState } from "../../../../redux/store";
-import { CircleButtonComponent } from "../../../../shared/circle-button/circle-button.component";
-import { ExpandableDetailsComponent } from "../../../../shared/expandable-details/expandable-details.component";
-import { TextWithBreaklineComponent } from "../../../../shared/text-with-breakline/text-with-breakline.component";
+import { CircleButtonComponent } from "../../../../shared/components/circle-button/circle-button.component";
+import { ExpandableDetailsComponent } from "../../../../shared/components/expandable-details/expandable-details.component";
+import { TextWithBreaklineComponent } from "../../../../shared/components/text-with-breakline/text-with-breakline.component";
 import "./job.component.css";
 
 const { Item } = Form;

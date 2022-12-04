@@ -9,7 +9,7 @@ import {
   BasicCharacter,
   CharacterPaginated,
 } from "../../interfaces/character.interface";
-import { LogoComponent } from "../../shared/logo/logo.component";
+import { LogoComponent } from "../../shared/components/logo/logo.component";
 import { SettingsComponent } from "./components/settings/settings.component";
 
 import "./home.component.css";
@@ -130,7 +130,7 @@ export function HomeComponent() {
               fetchListPaginated(page - 1);
             },
           }}
-          onRow={(record, rowIndex) => {
+          onRow={(record) => {
             return {
               onClick: () => {
                 const { id } = record;

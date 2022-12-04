@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 
 import { signIn } from "../../api/requests/auth";
 import { HttpStatusEnum } from "../../enum/http-status.enum";
-import { LogoComponent } from "../../shared/logo/logo.component";
+import { LogoComponent } from "../../shared/components/logo/logo.component";
 import { messageError } from "../../shared/messages";
-import { PasswordInputComponent } from "../../shared/password-input/password-input.component";
-import { TransitionalInputComponent } from "../../shared/transactional-input/transitional-input.component";
+import { PasswordInputComponent } from "../../shared/components/password-input/password-input.component";
+import { TransitionalInputComponent } from "../../shared/components/transactional-input/transitional-input.component";
 
 import "./sign-in.component.css";
 

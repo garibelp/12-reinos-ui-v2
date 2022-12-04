@@ -19,7 +19,7 @@ import { EnergyTypeEnum } from "../../../../enum/energy-type.enum";
 import { UpdateAttributePayload } from "../../../../interfaces/character.interface";
 import { Skill } from "../../../../interfaces/skill.interface";
 import { updateCurrentPoints } from "../../../../redux/slices/character.slice";
-import { CircleButtonComponent } from "../../../../shared/circle-button/circle-button.component";
+import { CircleButtonComponent } from "../../../../shared/components/circle-button/circle-button.component";
 import { messageError } from "../../../../shared/messages";
 import { getEnumKey } from "../../../../utils/enum-utils";
 

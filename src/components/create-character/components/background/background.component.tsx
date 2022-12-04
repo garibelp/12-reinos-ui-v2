@@ -9,8 +9,8 @@ import { Background } from "../../../../interfaces/background.interface";
 import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { setBackgrounds } from "../../../../redux/slices/background.slice";
 import { RootState } from "../../../../redux/store";
-import { CircleButtonComponent } from "../../../../shared/circle-button/circle-button.component";
-import { ExpandableDetailsComponent } from "../../../../shared/expandable-details/expandable-details.component";
+import { CircleButtonComponent } from "../../../../shared/components/circle-button/circle-button.component";
+import { ExpandableDetailsComponent } from "../../../../shared/components/expandable-details/expandable-details.component";
 
 import "./background.component.css";
 

@@ -1,6 +1,6 @@
 import { Button, Modal } from "antd";
 import { useState } from "react";
-import { ColorsEnum } from "../../enum/colors.enum";
+import { ColorsEnum } from "../../../enum/colors.enum";
 import { TextWithBreaklineComponent } from "../text-with-breakline/text-with-breakline.component";
 
 import "./circle-button-component.css";

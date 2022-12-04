@@ -1,7 +1,7 @@
 import { Form, Select } from "antd";
 import { useAppSelector } from "../../../../redux/hooks";
 import { RootState } from "../../../../redux/store";
-import { TransitionalInputComponent } from "../../../../shared/transactional-input/transitional-input.component";
+import { TransitionalInputComponent } from "../../../../shared/components/transactional-input/transitional-input.component";
 import "./aptitudes.component.css";
 
 const { Item } = Form;

@@ -12,7 +12,7 @@ import {
   setBasicLineages,
 } from "../../../../redux/slices/lineage.slice";
 import { RootState } from "../../../../redux/store";
-import { ExpandableDetailsComponent } from "../../../../shared/expandable-details/expandable-details.component";
+import { ExpandableDetailsComponent } from "../../../../shared/components/expandable-details/expandable-details.component";
 
 const { Item } = Form;
 const { Option } = Select;
