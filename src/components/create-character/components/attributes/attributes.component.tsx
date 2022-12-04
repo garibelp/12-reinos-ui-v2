@@ -1,9 +1,9 @@
 import { Button, Form, FormInstance, Modal, Row } from "antd";
 import { useEffect, useState } from "react";
+
 import D4Icon from "../../../../assets/images/D4.png";
 import D6Icon from "../../../../assets/images/D6.png";
 import D8Icon from "../../../../assets/images/D8.png";
-
 import { AttributeEnum } from "../../../../enum/attribute.enum";
 import { ColorsEnum } from "../../../../enum/colors.enum";
 import { DiceEnum } from "../../../../enum/dice.enum";
@@ -16,16 +16,15 @@ import "./attribute.component.css";
 const { Item } = Form;
 
 interface AttributeDice {
-  attribute: AttributeEnum;
-  diceIndex: number | null;
-  diceValue: DiceEnum | null;
+  attribute: AttributeEnum | null;
+  diceValue: DiceEnum;
 }
 
 const initialAttributesState = [
-  { attribute: AttributeEnum.INTELLIGENCE, diceIndex: null, diceValue: null },
-  { attribute: AttributeEnum.CUNNING, diceIndex: null, diceValue: null },
-  { attribute: AttributeEnum.TENACITY, diceIndex: null, diceValue: null },
-  { attribute: AttributeEnum.CELERITY, diceIndex: null, diceValue: null },
+  { diceValue: DiceEnum.D4, attribute: null },
+  { diceValue: DiceEnum.D4, attribute: null },
+  { diceValue: DiceEnum.D6, attribute: null },
+  { diceValue: DiceEnum.D8, attribute: null },
 ];
 
 export function AttributesComponent({
@@ -35,10 +34,9 @@ export function AttributesComponent({
   hidden: boolean;
   form: FormInstance;
 }) {
-  const [currentAttribute, setCurrentAttribute] =
-    useState<AttributeEnum | null>(null);
   const [showModal, setShowModal] = useState(false);
   const { detailedList } = useAppSelector((state: RootState) => state.job);
+  const [currAttr, setCurrAttr] = useState<AttributeEnum | null>(null);
   const [attributes, setAttributes] = useState<AttributeDice[]>(
     initialAttributesState
   );
@@ -48,59 +46,48 @@ export function AttributesComponent({
   useEffect(() => {
     const selectedJob = detailedList.find((j) => j.id === jobId);
     if (selectedJob) {
-      attributes.forEach((a) => {
-        a.diceIndex = null;
-        a.diceValue = null;
-      });
       const { mainAttribute } = selectedJob;
-      const mainAttributeIndex = attributes.findIndex(
-        // @ts-ignore
-        (v) => v.attribute === AttributeEnum[mainAttribute.toString()]
+      // @ts-ignore
+      const attribute = AttributeEnum[mainAttribute];
+      setAttributes(
+        attributes.map((a, i) => {
+          a.attribute = i !== 3 ? null : attribute;
+          return a;
+        })
       );
-      if (mainAttributeIndex >= 0) {
-        attributes[mainAttributeIndex].diceIndex = 3;
-        attributes[mainAttributeIndex].diceValue = DiceEnum.D8;
-        setAttributes(attributes);
-      }
+      updateForm(3, attribute);
     }
   }, [detailedList, jobId]);
 
-  function isCurrentAttribute(index: number) {
-    return !!attributes.find(
-      (a) => a.attribute === currentAttribute && a.diceIndex === index
-    );
+  function updateForm(diceIndex: number, attribute: AttributeEnum | null) {
+    const attrKey = getEnumKey(attribute, AttributeEnum, true);
+    const diceKey = getEnumKey(attributes[diceIndex].diceValue, DiceEnum);
+    form.setFieldValue(attrKey, diceKey);
   }
 
-  function handleDiceSelection(diceIndex: number, value: DiceEnum) {
-    setAttributes((prevState) => {
-      const currentAttributeIndex = attributes.findIndex(
-        (a) => a.attribute === currentAttribute
-      );
-      const attributeKey = getEnumKey(currentAttribute, AttributeEnum, true);
-      if (isCurrentAttribute(diceIndex)) {
-        prevState[currentAttributeIndex].diceIndex = null;
-        prevState[currentAttributeIndex].diceValue = null;
-        form.setFieldsValue({ [attributeKey]: null });
-      } else {
-        prevState[currentAttributeIndex].diceIndex = diceIndex;
-        prevState[currentAttributeIndex].diceValue = value;
-        form.setFieldsValue({
-          [attributeKey]: getEnumKey(value, DiceEnum),
-        });
-      }
-      return prevState;
-    });
+  function handleDiceSelection(diceIndex: number) {
+    setAttributes(
+      attributes.map((a, i) => {
+        if (i === diceIndex) {
+          a.attribute = !a.attribute ? currAttr : null;
+        } else if (a.attribute === currAttr) {
+          a.attribute = null;
+        }
+        return a;
+      })
+    );
+    updateForm(diceIndex, currAttr);
     setShowModal(false);
   }
 
-  function renderDiceButton(icon: any, index: number, value: DiceEnum) {
-    const isAlreadySelected = !!attributes.find(
-      (a) => a.attribute !== currentAttribute && a.diceIndex === index
-    );
-
+  function renderDiceButton(icon: any, index: number) {
     let background = "green";
+
+    const isAlreadySelected = !!attributes[index].attribute;
+    const isCurrentAttribute = attributes[index].attribute === currAttr;
+
     if (isAlreadySelected) background = "red";
-    if (isCurrentAttribute(index)) background = "gray";
+    if (isCurrentAttribute) background = "gray";
 
     return (
       <Button
@@ -108,8 +95,8 @@ export function AttributesComponent({
         style={{ background }}
         shape="circle"
         type="text"
-        disabled={isAlreadySelected && !isCurrentAttribute(index)}
-        onClick={() => handleDiceSelection(index, value)}
+        disabled={isAlreadySelected && !isCurrentAttribute}
+        onClick={() => handleDiceSelection(index)}
         icon={<img src={icon} alt="" className="circle-button-icon" />}
       />
     );
@@ -121,40 +108,42 @@ export function AttributesComponent({
         className="dice-modal"
         footer={null}
         open={showModal}
-        title={`Dado de ${currentAttribute}`}
+        title={`Dado de ${currAttr}`}
         onCancel={() => setShowModal(false)}
       >
         <Row justify="space-evenly">
-          {renderDiceButton(D4Icon, 0, DiceEnum.D4)}
-          {renderDiceButton(D4Icon, 1, DiceEnum.D4)}
+          {renderDiceButton(D4Icon, 0)}
+          {renderDiceButton(D4Icon, 1)}
         </Row>
         <Row justify="space-evenly" style={{ paddingTop: "15px" }}>
-          {renderDiceButton(D6Icon, 2, DiceEnum.D6)}
-          {renderDiceButton(D8Icon, 3, DiceEnum.D8)}
+          {renderDiceButton(D6Icon, 2)}
+          {renderDiceButton(D8Icon, 3)}
         </Row>
       </Modal>
     );
   }
 
-  function renderAttributeButton(
-    background: ColorsEnum,
-    attribute: AttributeEnum
-  ) {
-    // TODO: Improve gambi
-    const selected = attributes.find((a) => a.attribute === attribute);
+  function renderAttrButton(background: ColorsEnum, attribute: AttributeEnum) {
     const displayValue = () => {
+      const selected = attributes.find((a) => a.attribute === attribute);
+
       if (selected) {
         const { diceValue } = selected;
-        let icon: any = "Selecionar";
+        let icon: any;
         if (diceValue !== null) {
           if (diceValue === DiceEnum.D4) icon = D4Icon;
           if (diceValue === DiceEnum.D6) icon = D6Icon;
           if (diceValue === DiceEnum.D8) icon = D8Icon;
           return <img src={icon} alt="" className="circle-button-icon" />;
         }
-        return icon;
       }
+      return (
+        <>
+          Selecionar <br /> {attribute}
+        </>
+      );
     };
+
     return (
       <Item name={getEnumKey(attribute, AttributeEnum, true)}>
         <Button
@@ -163,7 +152,7 @@ export function AttributesComponent({
           shape="circle"
           type="text"
           onClick={() => {
-            setCurrentAttribute(attribute);
+            setCurrAttr(attribute);
             setShowModal(true);
           }}
         >
@@ -176,15 +165,12 @@ export function AttributesComponent({
   return (
     <div hidden={hidden}>
       <Row justify="space-evenly">
-        {renderAttributeButton(
-          ColorsEnum.INTELLIGENCE,
-          AttributeEnum.INTELLIGENCE
-        )}
-        {renderAttributeButton(ColorsEnum.CUNNING, AttributeEnum.CUNNING)}
+        {renderAttrButton(ColorsEnum.INTELLIGENCE, AttributeEnum.INTELLIGENCE)}
+        {renderAttrButton(ColorsEnum.CUNNING, AttributeEnum.CUNNING)}
       </Row>
       <Row justify="space-evenly" style={{ paddingTop: "32px" }}>
-        {renderAttributeButton(ColorsEnum.TENACITY, AttributeEnum.TENACITY)}
-        {renderAttributeButton(ColorsEnum.CELERITY, AttributeEnum.CELERITY)}
+        {renderAttrButton(ColorsEnum.TENACITY, AttributeEnum.TENACITY)}
+        {renderAttrButton(ColorsEnum.CELERITY, AttributeEnum.CELERITY)}
       </Row>
       {renderModal()}
     </div>
