@@ -1,5 +1,4 @@
 import { Input } from "antd";
-import { useThemeSwitcher } from "react-css-theme-switcher";
 
 import "./transitional-input.component.css";
 
@@ -15,9 +14,7 @@ interface TransitionalInputProps {
 export function TransitionalInputComponent(props: TransitionalInputProps) {
   const { value, type, onChange, placeholder } = props;
 
-  const { currentTheme } = useThemeSwitcher();
-  const theme = currentTheme === "dark" ? "dark" : "light";
-
+  const theme = "light";
   const labelClassName = theme + (value && " filled");
 
   function retrieveInputType() {
