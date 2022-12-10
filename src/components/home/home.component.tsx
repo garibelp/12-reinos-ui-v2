@@ -9,7 +9,6 @@ import {
   CharacterPaginated,
 } from "../../interfaces/character.interface";
 import { LogoComponent } from "../../shared/components/logo/logo.component";
-import { SettingsComponent } from "./components/settings/settings.component";
 
 import "./home.component.css";
 
@@ -31,13 +30,7 @@ const columns = [
   },
 ];
 
-function HomeHeader({
-  showSettings,
-  disabled,
-}: {
-  showSettings: () => void;
-  disabled: boolean;
-}) {
+function HomeHeader({ disabled }: { disabled: boolean }) {
   const navigate = useNavigate();
 
   return (
@@ -46,7 +39,6 @@ function HomeHeader({
         <Button
           type="primary"
           shape="circle"
-          onClick={showSettings}
           disabled
           icon={<SettingOutlined />}
         />
@@ -74,7 +66,6 @@ function HomeHeader({
 export function HomeComponent() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [showSettings, setShowSettings] = useState(false);
   const [totalElements, setTotalElements] = useState(0);
   const [list, setList] = useState<BasicCharacter[]>([]);
   const [retrievedPages, setRetrievedPages] = useState<any>({});
@@ -114,12 +105,7 @@ export function HomeComponent() {
     <div className="home-wrapper">
       <Card
         className="home-card"
-        title={
-          <HomeHeader
-            disabled={totalElements > 4}
-            showSettings={() => setShowSettings(true)}
-          />
-        }
+        title={<HomeHeader disabled={totalElements > 4} />}
         actions={[]}
       >
         <Table
@@ -150,10 +136,6 @@ export function HomeComponent() {
             scrollToFirstRowOnChange: false,
             y: 300,
           }}
-        />
-        <SettingsComponent
-          hidden={!showSettings}
-          callback={() => setShowSettings(false)}
         />
       </Card>
     </div>
