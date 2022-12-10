@@ -1,25 +1,30 @@
-import { AxiosResponse } from "axios";
-import {
-  DetailedLineage,
-  LineageList,
-} from "../../interfaces/lineage.interface";
-import api from "../api";
+import { IdName } from "../../interfaces/id-name.interface";
+import { DetailedLineage } from "../../interfaces/lineage.interface";
+import lineageList from "../../mock/lineages.json";
 
-export function getLineageList(): Promise<AxiosResponse<LineageList>> {
-  return api.get<LineageList>("/lineages/list", {
-    headers: {
-      authorization: "Bearer " + localStorage.getItem("jwt"),
-    },
-  });
+export function getLineageList(): Promise<{ data: { list: IdName[] } }> {
+  return new Promise((res) =>
+    setTimeout(
+      () =>
+        res({
+          data: {
+            list: lineageList.list.map((l) => {
+              return { id: l.id, name: l.name };
+            }),
+          },
+        }),
+      100
+    )
+  );
 }
 
 export function getDetailedLineage(
   id: string
-): Promise<AxiosResponse<DetailedLineage>> {
-  return api.get<DetailedLineage>("/lineages", {
-    params: { id },
-    headers: {
-      authorization: "Bearer " + localStorage.getItem("jwt"),
-    },
-  });
+): Promise<{ data: DetailedLineage | undefined }> {
+  return new Promise((res) =>
+    setTimeout(
+      () => res({ data: lineageList.list.find((l) => l.id === id) }),
+      100
+    )
+  );
 }

@@ -1,0 +1,136 @@
+{
+    "list": [
+        {
+            "id": "9cee85c6-d548-414b-bf3c-a5e9eb57a3eb",
+            "name": "Acadêmico",
+            "physicalPoints": -1,
+            "mentalPoints": 4,
+            "advantage": {
+                "id": "a8315ecb-0d2a-4e23-b9c3-81ebfd3cfcd3",
+                "name": "Fama",
+                "description": "Você é famoso por algum motivo entre a comunidade relativa ao seu Antecedente. Gaste 1 Ponto de Heroísmo para alterar o rumo de uma cena e dar uma carteirada ao interagir com um NPC. Caso esteja entre a comunidade de seu Antecedente (por ex. você tem o Antecedente Comerciante e está em uma loja), você consegue o que quer. Caso não esteja, você consegue o que quer, mas há um custo."
+            }
+        },
+        {
+            "id": "d7ffebea-6906-4469-bb22-bbe8bae63ccd",
+            "name": "Comerciante",
+            "physicalPoints": 1,
+            "mentalPoints": 2,
+            "advantage": {
+                "id": "4d5b3422-43bd-4cf3-9a17-f0399a122915",
+                "name": "Recurso",
+                "description": "Gaste 1 Ponto de Heroísmo para influir na história e dizer que você possui, ou sabe onde encontrar, os recursos necessários para a realização de uma tarefa específica. Recursos não são itens específicos como um item mágico, ou um mapa de uma região: são peças, ingredientes, ferramentas ou consumíveis. Por exemplo, se seu grupo precisa conseguir comida, você pode simplesmente ter algum estoque com você. Descreva como você conseguiu o recurso e, pronto, o Mestre deve acatar. Isso não funciona com recursos de Preço 3 ou maior."
+            }
+        },
+        {
+            "id": "8f268d74-366f-44bd-a381-ad563e58988f",
+            "name": "Fazendeiro",
+            "physicalPoints": 4,
+            "mentalPoints": -1,
+            "advantage": {
+                "id": "fb11f0d9-a2e0-4e88-a539-ae9fea165912",
+                "name": "Riqueza",
+                "description": "Você recebe 2d12 Peças de Olivina por dia. Gaste 1 Ponto de Heroísmo para rolar o dado novamente nessa sessão, se precisar fazer uma compra cara, por exemplo. Você deve ter uma fonte clara de renda - que, obviamente, sempre pode ser sabotada por alguém…"
+            }
+        },
+        {
+            "id": "e97bf4d3-c9ae-4cf3-af94-6dca32031bae",
+            "name": "Herdeiro",
+            "physicalPoints": 2,
+            "mentalPoints": 1,
+            "advantage": {
+                "id": "fb11f0d9-a2e0-4e88-a539-ae9fea165912",
+                "name": "Riqueza",
+                "description": "Você recebe 2d12 Peças de Olivina por dia. Gaste 1 Ponto de Heroísmo para rolar o dado novamente nessa sessão, se precisar fazer uma compra cara, por exemplo. Você deve ter uma fonte clara de renda - que, obviamente, sempre pode ser sabotada por alguém…"
+            }
+        },
+        {
+            "id": "78e29e3f-0d1a-4880-b445-14c903cddacd",
+            "name": "Investigador",
+            "physicalPoints": -1,
+            "mentalPoints": 4,
+            "advantage": {
+                "id": "8b5a7a72-7fc6-4b37-83ca-822ed0410879",
+                "name": "Contato",
+                "description": "Gaste 1 Ponto de Heroísmo para influir na história e dizer que você possui um contato útil que pode estar presente no local da cena atual, ou que pode encontrá-lo em um local específico na próxima cena. Cabe a você descrever quem é esse contato, como se conheceram e como você acredita que ele pode te ajudar. O Mestre deve aceitar, e a forma exata que seu contato lhe será útil será definida por ele. Você apenas acredita que ele pode ser útil, mas não sabe exatamente como. Mas o Mestre deverá sim torná-lo de alguma forma útil. Contatos normalmente são úteis com informações e com a venda de itens raros, mas dificilmente irão distribuir souvenires por aí..."
+            }
+        },
+        {
+            "id": "729f6416-7133-428d-b480-96a1ac93c881",
+            "name": "Operário",
+            "physicalPoints": 3,
+            "mentalPoints": 0,
+            "advantage": {
+                "id": "8b5a7a72-7fc6-4b37-83ca-822ed0410879",
+                "name": "Contato",
+                "description": "Gaste 1 Ponto de Heroísmo para influir na história e dizer que você possui um contato útil que pode estar presente no local da cena atual, ou que pode encontrá-lo em um local específico na próxima cena. Cabe a você descrever quem é esse contato, como se conheceram e como você acredita que ele pode te ajudar. O Mestre deve aceitar, e a forma exata que seu contato lhe será útil será definida por ele. Você apenas acredita que ele pode ser útil, mas não sabe exatamente como. Mas o Mestre deverá sim torná-lo de alguma forma útil. Contatos normalmente são úteis com informações e com a venda de itens raros, mas dificilmente irão distribuir souvenires por aí..."
+            }
+        },
+        {
+            "id": "6a0e46ef-a26c-4d37-8105-e69faba4f8dc",
+            "name": "Piloto",
+            "physicalPoints": 2,
+            "mentalPoints": 1,
+            "advantage": {
+                "id": "47fe0f9c-cc35-49bb-a513-360314533d93",
+                "name": "Auto",
+                "description": "Você começa o jogo com um Automóvel Leve que transporta até duas pessoas. Não há necessidade de usar Pontos de Heroísmo nessa Vantagem."
+            }
+        },
+        {
+            "id": "8b305a34-1fcf-45a4-9ec5-aa129329a8ca",
+            "name": "Radialista",
+            "physicalPoints": 0,
+            "mentalPoints": 3,
+            "advantage": {
+                "id": "a8315ecb-0d2a-4e23-b9c3-81ebfd3cfcd3",
+                "name": "Fama",
+                "description": "Você é famoso por algum motivo entre a comunidade relativa ao seu Antecedente. Gaste 1 Ponto de Heroísmo para alterar o rumo de uma cena e dar uma carteirada ao interagir com um NPC. Caso esteja entre a comunidade de seu Antecedente (por ex. você tem o Antecedente Comerciante e está em uma loja), você consegue o que quer. Caso não esteja, você consegue o que quer, mas há um custo."
+            }
+        },
+        {
+            "id": "0eab7c1d-934e-44b2-a90a-92d1176cc1a4",
+            "name": "Religioso",
+            "physicalPoints": 0,
+            "mentalPoints": 3,
+            "advantage": {
+                "id": "4cc5a30a-3928-44ab-b8e4-a55f5e8a1008",
+                "name": "Refúgio",
+                "description": "Gaste 1 Ponto de Heroísmo para alterar o rumo da história e dizer que você possui um refúgio por perto, com os suprimentos necessários para que o grupo descanse nele por um dia ou uma noite. Descreva como é o refúgio, onde fica e por que você o tem. Criaturas que Repousam em um Refúgio conseguem fazê-lo em apenas 3 dias."
+            }
+        },
+        {
+            "id": "97dc5f51-e8f1-4137-bd86-b5d1ebfe75d4",
+            "name": "Soldado",
+            "physicalPoints": 4,
+            "mentalPoints": -1,
+            "advantage": {
+                "id": "4cc5a30a-3928-44ab-b8e4-a55f5e8a1008",
+                "name": "Refúgio",
+                "description": "Gaste 1 Ponto de Heroísmo para alterar o rumo da história e dizer que você possui um refúgio por perto, com os suprimentos necessários para que o grupo descanse nele por um dia ou uma noite. Descreva como é o refúgio, onde fica e por que você o tem. Criaturas que Repousam em um Refúgio conseguem fazê-lo em apenas 3 dias."
+            }
+        },
+        {
+            "id": "4a4e7b7c-ea33-46bc-9030-5f1042616bf5",
+            "name": "Técnico",
+            "physicalPoints": 1,
+            "mentalPoints": 2,
+            "advantage": {
+                "id": "47fe0f9c-cc35-49bb-a513-360314533d93",
+                "name": "Auto",
+                "description": "Você começa o jogo com um Automóvel Leve que transporta até duas pessoas. Não há necessidade de usar Pontos de Heroísmo nessa Vantagem."
+            }
+        },
+        {
+            "id": "8d4f5995-4d05-403a-9d41-eb206f325294",
+            "name": "Viajante",
+            "physicalPoints": 3,
+            "mentalPoints": 0,
+            "advantage": {
+                "id": "4d5b3422-43bd-4cf3-9a17-f0399a122915",
+                "name": "Recurso",
+                "description": "Gaste 1 Ponto de Heroísmo para influir na história e dizer que você possui, ou sabe onde encontrar, os recursos necessários para a realização de uma tarefa específica. Recursos não são itens específicos como um item mágico, ou um mapa de uma região: são peças, ingredientes, ferramentas ou consumíveis. Por exemplo, se seu grupo precisa conseguir comida, você pode simplesmente ter algum estoque com você. Descreva como você conseguiu o recurso e, pronto, o Mestre deve acatar. Isso não funciona com recursos de Preço 3 ou maior."
+            }
+        }
+    ]
+}

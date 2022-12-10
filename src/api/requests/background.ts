@@ -1,11 +1,8 @@
-import { AxiosResponse } from "axios";
 import { BackgroundList } from "../../interfaces/background.interface";
-import api from "../api";
+import backgroundList from "../../mock/backgrounds.json";
 
-export function getBackgroundList(): Promise<AxiosResponse<BackgroundList>> {
-  return api.get<BackgroundList>("/backgrounds/list", {
-    headers: {
-      authorization: "Bearer " + localStorage.getItem("jwt"),
-    },
-  });
+export function getBackgroundList(): Promise<{ data: BackgroundList }> {
+  return new Promise((res) =>
+    setTimeout(() => res({ data: backgroundList }), 100)
+  );
 }

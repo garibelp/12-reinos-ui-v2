@@ -3,7 +3,6 @@ import { Button, Card, Col, Row, Table, Tooltip } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { logout } from "../../api/requests/auth";
 import { getCharactersPaginated } from "../../api/requests/character";
 import {
   BasicCharacter,
@@ -32,7 +31,13 @@ const columns = [
   },
 ];
 
-function HomeHeader({ showSettings }: { showSettings: () => void }) {
+function HomeHeader({
+  showSettings,
+  disabled,
+}: {
+  showSettings: () => void;
+  disabled: boolean;
+}) {
   const navigate = useNavigate();
 
   return (
@@ -42,6 +47,7 @@ function HomeHeader({ showSettings }: { showSettings: () => void }) {
           type="primary"
           shape="circle"
           onClick={showSettings}
+          disabled
           icon={<SettingOutlined />}
         />
       </Col>
@@ -53,6 +59,7 @@ function HomeHeader({ showSettings }: { showSettings: () => void }) {
           <Button
             type="primary"
             shape="circle"
+            disabled={disabled}
             onClick={() => {
               navigate("/character/create");
             }}
@@ -107,12 +114,13 @@ export function HomeComponent() {
     <div className="home-wrapper">
       <Card
         className="home-card"
-        title={<HomeHeader showSettings={() => setShowSettings(true)} />}
-        actions={[
-          <Button type="primary" onClick={logout}>
-            Logout
-          </Button>,
-        ]}
+        title={
+          <HomeHeader
+            disabled={totalElements > 4}
+            showSettings={() => setShowSettings(true)}
+          />
+        }
+        actions={[]}
       >
         <Table
           className="home-card-table"

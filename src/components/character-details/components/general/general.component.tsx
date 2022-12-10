@@ -112,7 +112,7 @@ export function GeneralComponent(props: Props) {
             );
           });
       }
-    }, 900000); // 600000 -> 10min
+    }, 60000); // 600000 -> 10min
     return () => clearInterval(interval);
   }, [id, mentalCurrent, physicalCurrent, heroismCurrent]);
 

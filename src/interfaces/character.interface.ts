@@ -57,3 +57,14 @@ export interface UpdateAttributePayload {
   physicalCurrent: number;
   heroismCurrent: number;
 }
+
+export interface StoreCharacter extends CreateCharacter {
+  id: string;
+  level: number;
+  mentalCurrent: number;
+  mentalTotal: number;
+  physicalCurrent: number;
+  physicalTotal: number;
+  heroismCurrent: number;
+  heroismTotal: number;
+}

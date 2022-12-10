@@ -71,8 +71,10 @@ export function LineageComponent({
       getDetailedLineage(id)
         .then((r) => {
           const { data } = r;
-          dispatch(addDetailedLineage(data));
-          setSelectedLineage(data);
+          if (data) {
+            dispatch(addDetailedLineage(data));
+            setSelectedLineage(data);
+          }
         })
         .catch((ex) => {
           console.error(ex);

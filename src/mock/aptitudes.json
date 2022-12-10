@@ -1,0 +1,94 @@
+{
+  "list": [
+    {
+      "id": "fc7f6815-53c6-4b17-b780-391735a1475a",
+      "description": "Essa aptidão representa a capacidade de ocultar ações ou objetos e, quando necessário, desviar a atenção de terceiros para alcançar esse objetivo.\\nUso em interpretação: Desviar a atenção do padeiro para que ele não perceba seu amigo roubando aquele pão-doce; procurar a melhor janela para invadir aquele apartamento sem ser visto.\\nUso em combate: Se aproximar furtivamente de um inimigo desavisado; ter o máximo de proteção contra disparos inimigos atrás de um anteparo; distrair um inimigo para atacá-lo num golpe de surpresa.",
+      "name": "Acobertamento"
+    },
+    {
+      "id": "3f855b9b-d352-4c23-9cf2-e5e4d8657916",
+      "description": "Denota a habilidade questionar, argumentar e pesquisar opiniões ou conhecimentos.\\nUso em interpretação: Acessar seus contatos do submundo do crime para descobrir onde vai ser o próximo embate do Clube da Luta; fornecer argumentos para que o policial deixe você ir dessa vez - a placa com o limite de velocidade estava quase invisível, com a grama crescendo ao redor...\\nUso em combate: Interrogar um inimigo com perguntas rápidas e incisivas, fazendo ele dar com a língua nos dentes por não ter tempo de pensar nas respostas; encerrar um combate provando para o inimigo que não há necessidade de lutar.",
+      "name": "Arguição"
+    },
+    {
+      "id": "c8f5b55a-c2fa-4b32-95c1-d44ee9236bea",
+      "description": "Representa o talento para lidar com criaturas estranhas, selvagens ou alienígenas, o que pode incluir domesticá-las ou se comunicar com elas.\\nUso em interpretação: Comunicar para o gorilefante, por meio de gestos, que você e seu grupo vieram em paz; pilotar duas carroças, com três cavalos cada, ao mesmo tempo, fazendo uma abertura de pernas entre elas, a 50km/h.\\nUso em combate: Desviar o curso da manada de gorilefantes, quando eles se irritam com seus companheiros e decidem pisoteá-lo; convencer o familiar do mago maligno de que o opressor, na verdade, é o mago.",
+      "name": "Amestração"
+    },
+    {
+      "id": "48c00298-5e21-4e56-b5c2-5db4d4d37d6e",
+      "description": "Expressa um estado de constante vigilância do mundo ao seu redor, bem como a capacidade de se concentrar em um objeto/tópico específico\\nUso em interpretação: Fechar os olhos para escutar qual engrenagem daquela buginganga está causando seu mal funcionamento; encontrar uma pista na cena do crime.\\nUso em combate: Procurar as falhas na armadura de um oponente, enquanto ele dispara contra você; ouvir seu companheiro sendo nocauteado no andar de baixo, enquanto você luta contra os seus oponentes.",
+      "name": "Atenção"
+    },
+    {
+      "id": "86d9c9b0-e698-477d-8b94-aa2a2f43e876",
+      "description": "Percorrer um trajeto entre um ponto A e um ponto B, ganhar território rapidamente entre as ruas de uma cidade, ou até mesmo escalar uma montanha, são atividades facilitadas pela Aptidão Avanço.\\nUso em interpretação: Correr em uma perseguição; nadar para fugir de um jacaré dos esgotos; escalar um prédio para salvar um gatinho.\\nUso em combate: Desferir um golpe com uma investida após uma corrida para ganhar impulso e força. Realizar um ataque furtivo se já estiver escondido e quiser chegar no alvo rapidamente, sem ser percebido.",
+      "name": "Avanço"
+    },
+    {
+      "id": "2ba3a1fd-aad1-4e3a-93fd-ff4b3749d616",
+      "description": "Aptidão em Ciências não é o mesmo que conhecimento científico. Embora uma pessoa com essa aptidão tenha facilidade, curiosidade e até mesmo um pouco de pensamento crítico científico nato, ela não necessariamente teve um estudo formal para tanto. É, de fato, uma Aptidão, uma familiaridade natural e um olhar detalhista para com o funcionamento das coisas.\\nUso em interpretação: Testar plantas diversas em composições químicas que podem ou não gerar poções;  Inferir o funcionamento de um mecanismo desconhecido; Tentar se encontrar pela posição das estrelas.\\nUso em combate: Atacar um autômato em partes que lhe atrapalharão o funcionamento; desvendar pontos fortes e fracos de uma criatura; calcular potências diferentes de tipo de danos diferentes.",
+      "name": "Ciências"
+    },
+    {
+      "id": "4fdb404b-f1dc-4ce3-a5fd-6be7eb56df15",
+      "description": "Tem gente que só quer ver o mundo queimar... Talvez você seja uma dessas pessoas! A Aptidão Demolição envolve a capacidade de destruir objetos ou identificar fraquezas neles com uma maior desenvoltura.\\nUso em Interpretação: Derrubar uma porta com um chute; calcular o local ideal para armar um explosivo, de forma que ele derrube apenas um prédio, sem machucar os inocentes ao redor.\\nUso em Combate: Disparar no pneu de um automóvel para, talvez, fazer com que ele capote; descobrir uma forma de superar a armadura quase indestrutível de um modelo novo de autômato.",
+      "name": "Demolição"
+    },
+    {
+      "id": "30a19cf8-bb64-4dd2-b3f7-29b9364eb0e9",
+      "description": "Olhos que enxergam as emoções além da superfície... Esses são os olhos de alguém com Empatia. Perceber intenções, detectar mentiras, compreender o propósito de obras de arte, julgar motivações - todas essas competências são capacidades da Aptidão Empatia.\\nUso em Interpretação: Olhar para uma plateia de aristocratas e saber que tipo de discurso eles estão esperando ouvir; perceber se esse guarda em específico é propenso ou não a aceitar propina.\\nUso em Combate: Ter certeza de para que lado o criminoso parece querer fugir; descobrir, pelos urros no combate, quem é o inimigo por trás daquela maldita máscara!",
+      "name": "Empatia"
+    },
+    {
+      "id": "0c6e1449-d218-4ffc-b0bc-0fcfea87d891",
+      "description": "Se Avanço é sobre velocidade, Fôlego é sobre capacidade! Correr uma maratona, mergulhar por mais de um minuto, falar por horas a fio... Fôlego envolve não só a capacidade dos seus pulmões, mas a fibra de se manter em esforço!\\nUso em Interpretação: Pregar um grande sermão para uma plateia de 100, sem microfone; fingir-se de morto por 3 horas, até o legista ir embora.\\nUso em Combate: Observar os gângsters dos telhados, pulando de prédio em prédio, por horas a fio; Degladiar-se com o polvo, debaixo da água, por 3 minutos inteiros!",
+      "name": "Fôlego"
+    },
+    {
+      "id": "eaf00e61-c5f2-46e3-b3e9-cfd91b5ae582",
+      "description": "FORÇA INCOMPARÁVEL! PEITO DE AÇO! HEAVY METAL! Fortitude é sobre isso! Se você pretende arremessar postes de luz, barris ou Iuventis indefesos, Fortitude é pra você! Essa Aptidão representa a capacidade de concentrar todo o seu esforço de uma vez só, realizando feitos de grande força física ou mental!\\nUso em Interpretação: Suportar horríveis dores enquanto os vilões torturam você, buscando informações; carregar seus três amigos bêbados nos ombros, enquanto os donos do bar jogam garrafas em vocês.\\nUso em Combate: Agarrar o bugurso adversário, impedindo-o de sair do lugar; evitar que o teto da sala-armadilha esmague seus amigos, segurando-o com as mãos enquanto eles pensam no que fazer.",
+      "name": "Fortitude"
+    },
+    {
+      "id": "da13f789-64f8-4728-8366-e8725c16a590",
+      "description": "Se Fortitude é sobre peito de aço... Impavidez é sobre nervos de aço! Essa Aptidão envolve ações que representem um personagem que não pestaneja, responde prontamente a perigos e ameaças sem pensar duas vezes, com frieza e calculismo - ou, talvez, só muito pouco amor à vida! Isso vai de dar respostas rápidas e incisivas até sacar suas armas antes de todos os outros caubóis.\\nUso em Interpretação: Mentir com calma e tranquilidade diante do juiz, em rede nacional; sempre sair por cima em uma discussão ou debate.\\nUso em Combate: Iniciar o combate com uma vantagem, dando um chute na mesa para surpreender seus oponentes; disparar contra seus inimigos enquanto dirige um automóvel à beira de um penhasco.",
+      "name": "Impavidez"
+    },
+    {
+      "id": "24f5e67e-ca4a-4fef-8325-85c6f8f81e55",
+      "description": "Interpretação é a capacidade de conjugar diferentes informações, conhecimentos ou operações, criando novos conhecimentos a partir disso. É o que arqueólogos, poetas, detetives e inventores têm em comum!\\nUso em Interpretação: Entender a relação entre os hieroglifos antigos e misteriosos na parede do templo; captar o significado oculto na mensagem criptografada do espião.\\nUso em Combate: Perceber o padrão sequencial de ataques que aquele autômato repete o tempo todo; observar o terreno de uma batalha e definir a melhor posição estratégica para o seu grupo.",
+      "name": "Interpretação"
+    },
+    {
+      "id": "4d7aec1a-b884-4d6f-adfa-85283c1d1df7",
+      "description": "Essa aptidão relaciona-se não ao conhecimento do oculto, mas também a uma certa disposição a compreender ou manipular objetos e criaturas místicas; você não precisa ser um grande estudioso para isso, entretanto - nunca ouviu falar daquele bárbaro médium na Rua 3?\\nUso em Interpretação: Avaliar a força de um feitiço, ou a melhor maneira de desfazê-lo; deduzir o efeito de uma poção mágica provando apenas uma gota dela.\\nUso em Combate: Adaptar as palavras mágicas de um feitiço, para conjurá-lo mesmo amordaçado; utilizar com sucesso o cajado que você acabou de roubar do necromante.",
+      "name": "Misticismo"
+    },
+    {
+      "id": "f4bfa384-93d4-415e-bd49-52d027e30335",
+      "description": "Algumas pessoas simplesmente nascem com o dom de pilotar, não é? Sejam automóveis, navios mercantes ou a bicicleta enferrujada do seu tio, você sempre consegue deduzir pra que serve essa alavanca ou aquele botão.\\nUso em Interpretação: Pousar um zepelin no meio de uma tempestade de raios cósmicos; encontrar o furo por onde o óleo do automóvel está vazando.\\nUso em Combate: Fugir dos bandidos no automóvel usando a bicicleta enferrujada do seu tio; acertar um ponto fraco no robô que o artífice maligno está pilotando.",
+      "name": "Pilotagem"
+    },
+    {
+      "id": "a51dbfc2-02a7-471f-8f80-29ace8158e91",
+      "description": "A famosa \"mão leve\". Prestidigitação envolve habilidades manuais ágeis e precisas, bem como a capacidade acompanhar as \"mãos leves\" de outros espertinhos...\\nUso em Interpretação: Intimidar os mineiros com um malabarismo de dinamites; subtrair o relógio de bolso daquele cavalheiro distraído...\\nUso em Combate: Arremessar uma poção para o seu companheiro por entre as pernas do adversário; confundir um adversário com movimentos rápidos de sua alabarda.",
+      "name": "Prestidigitação"
+    },
+    {
+      "id": "217b74f9-c95f-4185-a17c-8f9b546c41e7",
+      "description": "Essa aptidão envolve a capacidade de aguentar ofensas externas ao seu corpo, intempéries e grandes quantidades de dano. São os famosos peitos de aço!\\nUso em Interpretação: Tomar o vinho envenenado e pedir \"mais um copo, por favor\"; agarrar a caldeira do barco a vapor e não deixá-la se desmantelar - nem tá tão quente assim!\\nUso em Combate: Pular na frente do disparo, para impedir que ele atinja seu amigo; ignorar a doença que o vilão tentou inocular em você.",
+      "name": "Resistência"
+    },
+    {
+      "id": "ca749272-1570-4136-955e-aa8d22d8870c",
+      "description": "Identificar os becos mais perigosos da cidade, conhecer as partes mais inóspitas do pântano... Sobrevivência é a aptidão daqueles que já tiveram muitas adversidades nessa vida e sabem exatamente em que calo cada sapato dói. É a habilidade de reconher e contornar perigos relacionados ao ambiente, seja ele qual for.\\nUso em Interpretação: Dar uma olhada na cidade nova e já identificar o símbolo da principal gangue local; observar as pegadas na lama e associá-las ao urso-coruja que as fez.\\nUso em Combate: Saber quanto tempo seu grupo tem antes que o prédio desabe pelo incêndio; reconhecer uma erva nas redondezas para salvar seu amigo envenenado.",
+      "name": "Sobrevivência"
+    },
+    {
+      "id": "bdf2a8ec-5018-4307-9ed7-923b663074f5",
+      "description": "Essa aptidão se parece com Resistência, mas se relaciona a ofensas internas ao seu corpo. Sangramentos volumosos, sono, fome e sede - a vida dentro de você supera tudo isso! Essa é a única aptidão que pode ser utilizada em Testes Contra a Morte.\\nUso em Interpretação: Ignorar o sono durante os 3 dias de pesquisa constante na biblioteca local; suportar a colocação de um implante mecânico experimental em seu corpo.\\nUso em Combate: Sobreviver aos Testes da Morte.",
+      "name": "Vitalidade"
+    }
+  ]
+}

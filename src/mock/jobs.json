@@ -1,0 +1,832 @@
+{
+    "list": [
+        {
+            "id": "eb98fa25-634a-4e93-8898-0c9dc7f01c01",
+            "name": "Artífice",
+            "description": "Quem precisa de magia quando se tem a tecnologia a seu dispor? Os Artífices são entusiastas, amantes das bugigangas, sonhadores e criativos. Podem ter algum tipo de rivalidade com conjuradores, talvez por inveja, talvez por desprezo.",
+            "mainAttribute": "INTELLIGENCE",
+            "physicalPoints": 5,
+            "mentalPoints": 8,
+            "skills": [
+                {
+                    "id": "796d27d5-0a97-487a-b96e-654275f51d96",
+                    "name": "Gambiarra",
+                    "description": "Um Artífice pode apanhar objetos mundanos, aprimorá-los e lançá-los contra seus inimigos. A habilidade usada é Intelecto, causa dano em Energia Física e custa 1 de Energia Mental, independente do acerto. Caso acerte, o Artífice pode escolher um dos efeitos a seguir: \\n\\tEstilhaços: causa 1 ponto de Energia Física adicional. \\n\\tGosmenta: impõe penalidade de 1 de Energia Física adicional na próxima ação do alvo. \\n\\tOfuscante: impõe penalidade de 1 de Energia Mental adicional na próxima ação do alvo.",
+                    "cost": 1,
+                    "energyType": "MENTAL",
+                    "skillType": "COMBAT",
+                    "range": null
+                },
+                {
+                    "id": "2995f1d5-ab5d-475d-9089-7cf9b3b35d74",
+                    "name": "Ataque Básico",
+                    "description": null,
+                    "cost": 2,
+                    "energyType": "PHYSICAL",
+                    "skillType": "BASIC",
+                    "range": 5
+                },
+                {
+                    "id": "f4a888da-e658-465c-80d3-1febe35f7075",
+                    "name": "Entendimento Mecânico",
+                    "description": "Concentrando-se brevemente, um Artífice entende os detalhes dos mais complexos mecanismos. Com uma Ação Complexa, ele pode enxergar através de paredes e objetos não-metálicos, observando engrenagens e detalhes de mecanismos em uma distância de até 5m. Gasta 1 ponto de Energia Mental e faz um teste de Intelecto. Caso um outro Artífice ou Ladino tenha fabricado o mecanismo, 1 ponto de Energia adicional será gasto, ou ou a análise falhará.",
+                    "cost": 1,
+                    "energyType": "MENTAL",
+                    "skillType": "INTERPRETATION",
+                    "range": null
+                }
+            ],
+            "aptitudes": [
+                {
+                    "id": "2ba3a1fd-aad1-4e3a-93fd-ff4b3749d616",
+                    "name": "Ciências",
+                    "description": "Aptidão em Ciências não é o mesmo que conhecimento científico. Embora uma pessoa com essa aptidão tenha facilidade, curiosidade e até mesmo um pouco de pensamento crítico científico nato, ela não necessariamente teve um estudo formal para tanto. É, de fato, uma Aptidão, uma familiaridade natural e um olhar detalhista para com o funcionamento das coisas.\\nUso em interpretação: Testar plantas diversas em composições químicas que podem ou não gerar poções;  Inferir o funcionamento de um mecanismo desconhecido; Tentar se encontrar pela posição das estrelas.\\nUso em combate: Atacar um autômato em partes que lhe atrapalharão o funcionamento; desvendar pontos fortes e fracos de uma criatura; calcular potências diferentes de tipo de danos diferentes."
+                },
+                {
+                    "id": "4fdb404b-f1dc-4ce3-a5fd-6be7eb56df15",
+                    "name": "Demolição",
+                    "description": "Tem gente que só quer ver o mundo queimar... Talvez você seja uma dessas pessoas! A Aptidão Demolição envolve a capacidade de destruir objetos ou identificar fraquezas neles com uma maior desenvoltura.\\nUso em Interpretação: Derrubar uma porta com um chute; calcular o local ideal para armar um explosivo, de forma que ele derrube apenas um prédio, sem machucar os inocentes ao redor.\\nUso em Combate: Disparar no pneu de um automóvel para, talvez, fazer com que ele capote; descobrir uma forma de superar a armadura quase indestrutível de um modelo novo de autômato."
+                },
+                {
+                    "id": "24f5e67e-ca4a-4fef-8325-85c6f8f81e55",
+                    "name": "Interpretação",
+                    "description": "Interpretação é a capacidade de conjugar diferentes informações, conhecimentos ou operações, criando novos conhecimentos a partir disso. É o que arqueólogos, poetas, detetives e inventores têm em comum!\\nUso em Interpretação: Entender a relação entre os hieroglifos antigos e misteriosos na parede do templo; captar o significado oculto na mensagem criptografada do espião.\\nUso em Combate: Perceber o padrão sequencial de ataques que aquele autômato repete o tempo todo; observar o terreno de uma batalha e definir a melhor posição estratégica para o seu grupo."
+                },
+                {
+                    "id": "f4bfa384-93d4-415e-bd49-52d027e30335",
+                    "name": "Pilotagem",
+                    "description": "Algumas pessoas simplesmente nascem com o dom de pilotar, não é? Sejam automóveis, navios mercantes ou a bicicleta enferrujada do seu tio, você sempre consegue deduzir pra que serve essa alavanca ou aquele botão.\\nUso em Interpretação: Pousar um zepelin no meio de uma tempestade de raios cósmicos; encontrar o furo por onde o óleo do automóvel está vazando.\\nUso em Combate: Fugir dos bandidos no automóvel usando a bicicleta enferrujada do seu tio; acertar um ponto fraco no robô que o artífice maligno está pilotando."
+                },
+                {
+                    "id": "48c00298-5e21-4e56-b5c2-5db4d4d37d6e",
+                    "name": "Atenção",
+                    "description": "Expressa um estado de constante vigilância do mundo ao seu redor, bem como a capacidade de se concentrar em um objeto/tópico específico\\nUso em interpretação: Fechar os olhos para escutar qual engrenagem daquela buginganga está causando seu mal funcionamento; encontrar uma pista na cena do crime.\\nUso em combate: Procurar as falhas na armadura de um oponente, enquanto ele dispara contra você; ouvir seu companheiro sendo nocauteado no andar de baixo, enquanto você luta contra os seus oponentes."
+                },
+                {
+                    "id": "a51dbfc2-02a7-471f-8f80-29ace8158e91",
+                    "name": "Prestidigitação",
+                    "description": "A famosa \"mão leve\". Prestidigitação envolve habilidades manuais ágeis e precisas, bem como a capacidade acompanhar as \"mãos leves\" de outros espertinhos...\\nUso em Interpretação: Intimidar os mineiros com um malabarismo de dinamites; subtrair o relógio de bolso daquele cavalheiro distraído...\\nUso em Combate: Arremessar uma poção para o seu companheiro por entre as pernas do adversário; confundir um adversário com movimentos rápidos de sua alabarda."
+                }
+            ]
+        },
+        {
+            "id": "c0169b57-d4d2-49f2-8abe-b0f87c5e9fae",
+            "name": "Artista",
+            "description": "A energia de um surto criativo pode ser tão avassaladora quanto uma Bola de Fogo bem dada. Pelo menos é nisso que os Artistas acreditam. Não importa a forma, suas obras sempre causam um impacto maior do que o esperado, imbuídas não apenas de sentimentos, como de magia. Não costumam ter rivalidade com uma classe específica, mas com aqueles que não apreciam arte.",
+            "mainAttribute": "CUNNING",
+            "physicalPoints": 4,
+            "mentalPoints": 9,
+            "skills": [
+                {
+                    "id": "91014dc0-a454-435a-8cf6-9eb01615dd1d",
+                    "name": "Ataque Básico",
+                    "description": null,
+                    "cost": 2,
+                    "energyType": "PHYSICAL",
+                    "skillType": "BASIC",
+                    "range": 10
+                },
+                {
+                    "id": "b120ecb8-ee19-483e-9333-03c91f6787f5",
+                    "name": "Charme",
+                    "description": "Ao gastar 1 ponto de Energia Mental adicional, independente do acerto, o Artista realiza um teste de Astúcia apenas fora de combate. Em um sucesso, seu charme influencia a atmosfera ao seu redor e caso não houvesse nenhuma briga já acontecendo, nenhum ato violento pode ser iniciado enquanto não houver distrações que tirem o foco do Artista.",
+                    "cost": 1,
+                    "energyType": "MENTAL",
+                    "skillType": "INTERPRETATION",
+                    "range": null
+                },
+                {
+                    "id": "c83ea26d-d63a-4377-a748-c0d3b1c78317",
+                    "name": "Presença",
+                    "description": "A simples presença de um Artista é suficiente para inspirar aliados e abalar inimigos. Apenas em combate, ao gastar 1 Ponto de Energia Mental adicional, independente do acerto, o Artista faz um teste de Astúcia e, caso passe, escolhe um aliado e um inimigo para receber o efeito de sua Presença. Ambos deverão rolar dois dados em sua próxima rolagem e o aliado deve utilizar o melhor resultado, enquanto o inimigo, o pior. Em um aliado, este efeito se acumula com o bônus de Aptidão.",
+                    "cost": 1,
+                    "energyType": "MENTAL",
+                    "skillType": "COMBAT",
+                    "range": null
+                }
+            ],
+            "aptitudes": [
+                {
+                    "id": "3f855b9b-d352-4c23-9cf2-e5e4d8657916",
+                    "name": "Arguição",
+                    "description": "Denota a habilidade questionar, argumentar e pesquisar opiniões ou conhecimentos.\\nUso em interpretação: Acessar seus contatos do submundo do crime para descobrir onde vai ser o próximo embate do Clube da Luta; fornecer argumentos para que o policial deixe você ir dessa vez - a placa com o limite de velocidade estava quase invisível, com a grama crescendo ao redor...\\nUso em combate: Interrogar um inimigo com perguntas rápidas e incisivas, fazendo ele dar com a língua nos dentes por não ter tempo de pensar nas respostas; encerrar um combate provando para o inimigo que não há necessidade de lutar."
+                },
+                {
+                    "id": "24f5e67e-ca4a-4fef-8325-85c6f8f81e55",
+                    "name": "Interpretação",
+                    "description": "Interpretação é a capacidade de conjugar diferentes informações, conhecimentos ou operações, criando novos conhecimentos a partir disso. É o que arqueólogos, poetas, detetives e inventores têm em comum!\\nUso em Interpretação: Entender a relação entre os hieroglifos antigos e misteriosos na parede do templo; captar o significado oculto na mensagem criptografada do espião.\\nUso em Combate: Perceber o padrão sequencial de ataques que aquele autômato repete o tempo todo; observar o terreno de uma batalha e definir a melhor posição estratégica para o seu grupo."
+                },
+                {
+                    "id": "a51dbfc2-02a7-471f-8f80-29ace8158e91",
+                    "name": "Prestidigitação",
+                    "description": "A famosa \"mão leve\". Prestidigitação envolve habilidades manuais ágeis e precisas, bem como a capacidade acompanhar as \"mãos leves\" de outros espertinhos...\\nUso em Interpretação: Intimidar os mineiros com um malabarismo de dinamites; subtrair o relógio de bolso daquele cavalheiro distraído...\\nUso em Combate: Arremessar uma poção para o seu companheiro por entre as pernas do adversário; confundir um adversário com movimentos rápidos de sua alabarda."
+                },
+                {
+                    "id": "30a19cf8-bb64-4dd2-b3f7-29b9364eb0e9",
+                    "name": "Empatia",
+                    "description": "Olhos que enxergam as emoções além da superfície... Esses são os olhos de alguém com Empatia. Perceber intenções, detectar mentiras, compreender o propósito de obras de arte, julgar motivações - todas essas competências são capacidades da Aptidão Empatia.\\nUso em Interpretação: Olhar para uma plateia de aristocratas e saber que tipo de discurso eles estão esperando ouvir; perceber se esse guarda em específico é propenso ou não a aceitar propina.\\nUso em Combate: Ter certeza de para que lado o criminoso parece querer fugir; descobrir, pelos urros no combate, quem é o inimigo por trás daquela maldita máscara!"
+                },
+                {
+                    "id": "da13f789-64f8-4728-8366-e8725c16a590",
+                    "name": "Impavidez",
+                    "description": "Se Fortitude é sobre peito de aço... Impavidez é sobre nervos de aço! Essa Aptidão envolve ações que representem um personagem que não pestaneja, responde prontamente a perigos e ameaças sem pensar duas vezes, com frieza e calculismo - ou, talvez, só muito pouco amor à vida! Isso vai de dar respostas rápidas e incisivas até sacar suas armas antes de todos os outros caubóis.\\nUso em Interpretação: Mentir com calma e tranquilidade diante do juiz, em rede nacional; sempre sair por cima em uma discussão ou debate.\\nUso em Combate: Iniciar o combate com uma vantagem, dando um chute na mesa para surpreender seus oponentes; disparar contra seus inimigos enquanto dirige um automóvel à beira de um penhasco."
+                },
+                {
+                    "id": "4d7aec1a-b884-4d6f-adfa-85283c1d1df7",
+                    "name": "Misticismo",
+                    "description": "Essa aptidão relaciona-se não ao conhecimento do oculto, mas também a uma certa disposição a compreender ou manipular objetos e criaturas místicas; você não precisa ser um grande estudioso para isso, entretanto - nunca ouviu falar daquele bárbaro médium na Rua 3?\\nUso em Interpretação: Avaliar a força de um feitiço, ou a melhor maneira de desfazê-lo; deduzir o efeito de uma poção mágica provando apenas uma gota dela.\\nUso em Combate: Adaptar as palavras mágicas de um feitiço, para conjurá-lo mesmo amordaçado; utilizar com sucesso o cajado que você acabou de roubar do necromante."
+                }
+            ]
+        },
+        {
+            "id": "9132517e-f3da-4321-905d-63a743d9344a",
+            "name": "Atirador",
+            "description": "Lâminas e magias nunca serão tão rápidas quanto um dedo em um gatilho. Atiradores contam com armas de fogo para resolver seus problemas e podem ter uma leve rivalidade com Guerreiros e Bárbaros. Ao contrário do que se pensaria, são as armas de fogo que são consideradas brutas e menos elegantes.",
+            "mainAttribute": "CELERITY",
+            "physicalPoints": 8,
+            "mentalPoints": 5,
+            "skills": [
+                {
+                    "id": "50be3121-114f-462d-a5d1-061313c288fe",
+                    "name": "Ataque Básico",
+                    "description": null,
+                    "cost": 3,
+                    "energyType": "PHYSICAL",
+                    "skillType": "BASIC",
+                    "range": 10
+                },
+                {
+                    "id": "8cc61538-a9c0-418e-a8e8-82e96518fda1",
+                    "name": "Cobertura",
+                    "description": "Perito no combate à distância, encontrar cobertura para se proteger enquanto desfere seus ataques é uma habilidade nata de um Atirador. Ao realizar um teste de Celeridade com um custo adicional de 1 energia Física, independente do acerto, o Atirador consegue encontrar e se deslocar até uma cobertura que o protege até sua próxima ação, tornando-o invulnerável a ataques à distância.",
+                    "cost": 1,
+                    "energyType": "PHYSICAL",
+                    "skillType": "COMBAT",
+                    "range": null
+                },
+                {
+                    "id": "78c3d6ef-eab5-4237-8559-90027f1ae721",
+                    "name": "Reconhecimento",
+                    "description": "Ao gastar 1 ponto de Energia Física, independente do acerto, e realizar um Teste de Celeridade, o Atirador se concentra no território ao seu redor até onde sua vista alcança. Em áreas abertas, o alcance é de 1km. Em áreas fechadas, desde que não haja nada bloqueando sua visão, o reconhecimento é total. Em caso de sucesso, pode conseguir identificar e localizar uma das seguintes opções:\\n\\tUm alvo específico, desde que já o tenha visto ou tenha uma descrição aproximada.\\n\\tSeres vivos, podendo dizer número, sem distinguir entre hostis, aliados ou neutros.\\n\\tTerreno, bloqueios, atalhos e áreas perigosas.",
+                    "cost": 1,
+                    "energyType": "PHYSICAL",
+                    "skillType": "INTERPRETATION",
+                    "range": null
+                }
+            ],
+            "aptitudes": [
+                {
+                    "id": "86d9c9b0-e698-477d-8b94-aa2a2f43e876",
+                    "name": "Avanço",
+                    "description": "Percorrer um trajeto entre um ponto A e um ponto B, ganhar território rapidamente entre as ruas de uma cidade, ou até mesmo escalar uma montanha, são atividades facilitadas pela Aptidão Avanço.\\nUso em interpretação: Correr em uma perseguição; nadar para fugir de um jacaré dos esgotos; escalar um prédio para salvar um gatinho.\\nUso em combate: Desferir um golpe com uma investida após uma corrida para ganhar impulso e força. Realizar um ataque furtivo se já estiver escondido e quiser chegar no alvo rapidamente, sem ser percebido."
+                },
+                {
+                    "id": "fc7f6815-53c6-4b17-b780-391735a1475a",
+                    "name": "Acobertamento",
+                    "description": "Essa aptidão representa a capacidade de ocultar ações ou objetos e, quando necessário, desviar a atenção de terceiros para alcançar esse objetivo.\\nUso em interpretação: Desviar a atenção do padeiro para que ele não perceba seu amigo roubando aquele pão-doce; procurar a melhor janela para invadir aquele apartamento sem ser visto.\\nUso em combate: Se aproximar furtivamente de um inimigo desavisado; ter o máximo de proteção contra disparos inimigos atrás de um anteparo; distrair um inimigo para atacá-lo num golpe de surpresa."
+                },
+                {
+                    "id": "ca749272-1570-4136-955e-aa8d22d8870c",
+                    "name": "Sobrevivência",
+                    "description": "Identificar os becos mais perigosos da cidade, conhecer as partes mais inóspitas do pântano... Sobrevivência é a aptidão daqueles que já tiveram muitas adversidades nessa vida e sabem exatamente em que calo cada sapato dói. É a habilidade de reconher e contornar perigos relacionados ao ambiente, seja ele qual for.\\nUso em Interpretação: Dar uma olhada na cidade nova e já identificar o símbolo da principal gangue local; observar as pegadas na lama e associá-las ao urso-coruja que as fez.\\nUso em Combate: Saber quanto tempo seu grupo tem antes que o prédio desabe pelo incêndio; reconhecer uma erva nas redondezas para salvar seu amigo envenenado."
+                },
+                {
+                    "id": "f4bfa384-93d4-415e-bd49-52d027e30335",
+                    "name": "Pilotagem",
+                    "description": "Algumas pessoas simplesmente nascem com o dom de pilotar, não é? Sejam automóveis, navios mercantes ou a bicicleta enferrujada do seu tio, você sempre consegue deduzir pra que serve essa alavanca ou aquele botão.\\nUso em Interpretação: Pousar um zepelin no meio de uma tempestade de raios cósmicos; encontrar o furo por onde o óleo do automóvel está vazando.\\nUso em Combate: Fugir dos bandidos no automóvel usando a bicicleta enferrujada do seu tio; acertar um ponto fraco no robô que o artífice maligno está pilotando."
+                },
+                {
+                    "id": "a51dbfc2-02a7-471f-8f80-29ace8158e91",
+                    "name": "Prestidigitação",
+                    "description": "A famosa \"mão leve\". Prestidigitação envolve habilidades manuais ágeis e precisas, bem como a capacidade acompanhar as \"mãos leves\" de outros espertinhos...\\nUso em Interpretação: Intimidar os mineiros com um malabarismo de dinamites; subtrair o relógio de bolso daquele cavalheiro distraído...\\nUso em Combate: Arremessar uma poção para o seu companheiro por entre as pernas do adversário; confundir um adversário com movimentos rápidos de sua alabarda."
+                },
+                {
+                    "id": "48c00298-5e21-4e56-b5c2-5db4d4d37d6e",
+                    "name": "Atenção",
+                    "description": "Expressa um estado de constante vigilância do mundo ao seu redor, bem como a capacidade de se concentrar em um objeto/tópico específico\\nUso em interpretação: Fechar os olhos para escutar qual engrenagem daquela buginganga está causando seu mal funcionamento; encontrar uma pista na cena do crime.\\nUso em combate: Procurar as falhas na armadura de um oponente, enquanto ele dispara contra você; ouvir seu companheiro sendo nocauteado no andar de baixo, enquanto você luta contra os seus oponentes."
+                }
+            ]
+        },
+        {
+            "id": "fd505408-014e-4ee7-96fb-ed577c0f3e93",
+            "name": "Bárbaro",
+            "description": "A melhor defesa é um ataque destruidor. Sem ferimentos e risco de vida, não há combate. Bárbaros são a linha de frente de grupos de aventureiros por sua capacidade de resistir a dano e punir seus oponentes. Podem ter rivalidade com Ladinos e Atiradores por não se arriscarem em batalha, mas entendem os conjuradores que querem se proteger.",
+            "mainAttribute": "TENACITY",
+            "physicalPoints": 9,
+            "mentalPoints": 4,
+            "skills": [
+                {
+                    "id": "2984acb5-8bf3-4a14-a74e-3fa33ad9c2c7",
+                    "name": "Imorrível",
+                    "description": "Manter-se de pé até que todas as suas forças sejam exauridas é o maior mecanismo de defesa de um Bárbaro. Sempre que receber um dano que reduziria sua Energia Física a 0, o Bárbaro pode converter Energia Mental para manter-se de pé.",
+                    "cost": 0,
+                    "energyType": "MENTAL",
+                    "skillType": "COMBAT",
+                    "range": null
+                },
+                {
+                    "id": "9e8e73e6-327d-4501-9463-357559487908",
+                    "name": "Ataque Básico",
+                    "description": null,
+                    "cost": 3,
+                    "energyType": "PHYSICAL",
+                    "skillType": "BASIC",
+                    "range": 1
+                },
+                {
+                    "id": "48aa9a82-1669-47ff-9713-8a06f19bb250",
+                    "name": "Algo de Errado Não Está Certo",
+                    "description": "Embora seja eficiente em se jogar, furioso, para o perigo, o Bárbaro é também capaz de perceber o perigo, quase como um sexto sentido. Com uma Ação, o Bárbaro realiza um teste de Tenacidade com custo adicional de 1 ponto de Energia Física, independente do acerto, para sentir todas as criaturas, humanoides ou não, que têm intenções imediatamente hostis contra si ou contra seu grupo num raio de 30m.",
+                    "cost": 1,
+                    "energyType": "PHYSICAL",
+                    "skillType": "INTERPRETATION",
+                    "range": null
+                }
+            ],
+            "aptitudes": [
+                {
+                    "id": "0c6e1449-d218-4ffc-b0bc-0fcfea87d891",
+                    "name": "Fôlego",
+                    "description": "Se Avanço é sobre velocidade, Fôlego é sobre capacidade! Correr uma maratona, mergulhar por mais de um minuto, falar por horas a fio... Fôlego envolve não só a capacidade dos seus pulmões, mas a fibra de se manter em esforço!\\nUso em Interpretação: Pregar um grande sermão para uma plateia de 100, sem microfone; fingir-se de morto por 3 horas, até o legista ir embora.\\nUso em Combate: Observar os gângsters dos telhados, pulando de prédio em prédio, por horas a fio; Degladiar-se com o polvo, debaixo da água, por 3 minutos inteiros!"
+                },
+                {
+                    "id": "da13f789-64f8-4728-8366-e8725c16a590",
+                    "name": "Impavidez",
+                    "description": "Se Fortitude é sobre peito de aço... Impavidez é sobre nervos de aço! Essa Aptidão envolve ações que representem um personagem que não pestaneja, responde prontamente a perigos e ameaças sem pensar duas vezes, com frieza e calculismo - ou, talvez, só muito pouco amor à vida! Isso vai de dar respostas rápidas e incisivas até sacar suas armas antes de todos os outros caubóis.\\nUso em Interpretação: Mentir com calma e tranquilidade diante do juiz, em rede nacional; sempre sair por cima em uma discussão ou debate.\\nUso em Combate: Iniciar o combate com uma vantagem, dando um chute na mesa para surpreender seus oponentes; disparar contra seus inimigos enquanto dirige um automóvel à beira de um penhasco."
+                },
+                {
+                    "id": "86d9c9b0-e698-477d-8b94-aa2a2f43e876",
+                    "name": "Avanço",
+                    "description": "Percorrer um trajeto entre um ponto A e um ponto B, ganhar território rapidamente entre as ruas de uma cidade, ou até mesmo escalar uma montanha, são atividades facilitadas pela Aptidão Avanço.\\nUso em interpretação: Correr em uma perseguição; nadar para fugir de um jacaré dos esgotos; escalar um prédio para salvar um gatinho.\\nUso em combate: Desferir um golpe com uma investida após uma corrida para ganhar impulso e força. Realizar um ataque furtivo se já estiver escondido e quiser chegar no alvo rapidamente, sem ser percebido."
+                },
+                {
+                    "id": "eaf00e61-c5f2-46e3-b3e9-cfd91b5ae582",
+                    "name": "Fortitude",
+                    "description": "FORÇA INCOMPARÁVEL! PEITO DE AÇO! HEAVY METAL! Fortitude é sobre isso! Se você pretende arremessar postes de luz, barris ou Iuventis indefesos, Fortitude é pra você! Essa Aptidão representa a capacidade de concentrar todo o seu esforço de uma vez só, realizando feitos de grande força física ou mental!\\nUso em Interpretação: Suportar horríveis dores enquanto os vilões torturam você, buscando informações; carregar seus três amigos bêbados nos ombros, enquanto os donos do bar jogam garrafas em vocês.\\nUso em Combate: Agarrar o bugurso adversário, impedindo-o de sair do lugar; evitar que o teto da sala-armadilha esmague seus amigos, segurando-o com as mãos enquanto eles pensam no que fazer."
+                },
+                {
+                    "id": "4fdb404b-f1dc-4ce3-a5fd-6be7eb56df15",
+                    "name": "Demolição",
+                    "description": "Tem gente que só quer ver o mundo queimar... Talvez você seja uma dessas pessoas! A Aptidão Demolição envolve a capacidade de destruir objetos ou identificar fraquezas neles com uma maior desenvoltura.\\nUso em Interpretação: Derrubar uma porta com um chute; calcular o local ideal para armar um explosivo, de forma que ele derrube apenas um prédio, sem machucar os inocentes ao redor.\\nUso em Combate: Disparar no pneu de um automóvel para, talvez, fazer com que ele capote; descobrir uma forma de superar a armadura quase indestrutível de um modelo novo de autômato."
+                },
+                {
+                    "id": "217b74f9-c95f-4185-a17c-8f9b546c41e7",
+                    "name": "Resistência",
+                    "description": "Essa aptidão envolve a capacidade de aguentar ofensas externas ao seu corpo, intempéries e grandes quantidades de dano. São os famosos peitos de aço!\\nUso em Interpretação: Tomar o vinho envenenado e pedir \"mais um copo, por favor\"; agarrar a caldeira do barco a vapor e não deixá-la se desmantelar - nem tá tão quente assim!\\nUso em Combate: Pular na frente do disparo, para impedir que ele atinja seu amigo; ignorar a doença que o vilão tentou inocular em você."
+                }
+            ]
+        },
+        {
+            "id": "787c91b7-ab88-4e50-bf5d-30c09204e74d",
+            "name": "Diplomata",
+            "description": "Ao fim da Grande Guerra Bartoloriana, os 12 Reinos viam-se pela primeira vez separados, rancorosos uns com os outros e na iminência de criarem novas alianças para travarem novos embates. Felizmente, os líderes do continente ouviram à razão através da palavra de políticos ascendidos do povo. Desde então, a diplomacia é vista como uma das maiores virtudes que uma pessoa pode ter, e a política dada como uma carreira de prestígio e honra. Diplomatas são treinados na arte da palavra. Costumam ter rivalidade com Bárbaros e Guerreiros, treinados na arte da guerra.",
+            "mainAttribute": "CUNNING",
+            "physicalPoints": 5,
+            "mentalPoints": 8,
+            "skills": [
+                {
+                    "id": "3d555ba0-d9e8-4d17-b2de-4af0fe5fd30b",
+                    "name": "Provocar",
+                    "description": "Um Diplomata sabe tomar as atenções para si, mesmo que de forma negativa. Ao fazer um teste de Astúcia com custo adicional de 1 ponto de Energia Mental, independente do acerto, e passar, o Diplomata pode forçar de um a três inimigos a o atacarem em seus próximos turnos.",
+                    "cost": 1,
+                    "energyType": "MENTAL",
+                    "skillType": "COMBAT",
+                    "range": null
+                },
+                {
+                    "id": "42b491de-757a-46d7-a9ac-6c2e75a42744",
+                    "name": "Ataque Básico",
+                    "description": null,
+                    "cost": 2,
+                    "energyType": "PHYSICAL",
+                    "skillType": "BASIC",
+                    "range": 5
+                },
+                {
+                    "id": "c74acd60-1b76-4967-9229-0217b208382a",
+                    "name": "Ludibriar",
+                    "description": "Enquanto estiver argumentando, um Diplomata pode realizar um teste de Intelecto com um custo adicional de 1 Energia Mental, independente do acerto, para ganhar um argumento, convencer alguém a aceitar uma oferta que não coloque a pessoa em risco ou extrair alguma informação sem parecer invasivo.",
+                    "cost": 1,
+                    "energyType": "MENTAL",
+                    "skillType": "INTERPRETATION",
+                    "range": null
+                }
+            ],
+            "aptitudes": [
+                {
+                    "id": "3f855b9b-d352-4c23-9cf2-e5e4d8657916",
+                    "name": "Arguição",
+                    "description": "Denota a habilidade questionar, argumentar e pesquisar opiniões ou conhecimentos.\\nUso em interpretação: Acessar seus contatos do submundo do crime para descobrir onde vai ser o próximo embate do Clube da Luta; fornecer argumentos para que o policial deixe você ir dessa vez - a placa com o limite de velocidade estava quase invisível, com a grama crescendo ao redor...\\nUso em combate: Interrogar um inimigo com perguntas rápidas e incisivas, fazendo ele dar com a língua nos dentes por não ter tempo de pensar nas respostas; encerrar um combate provando para o inimigo que não há necessidade de lutar."
+                },
+                {
+                    "id": "c8f5b55a-c2fa-4b32-95c1-d44ee9236bea",
+                    "name": "Amestração",
+                    "description": "Representa o talento para lidar com criaturas estranhas, selvagens ou alienígenas, o que pode incluir domesticá-las ou se comunicar com elas.\\nUso em interpretação: Comunicar para o gorilefante, por meio de gestos, que você e seu grupo vieram em paz; pilotar duas carroças, com três cavalos cada, ao mesmo tempo, fazendo uma abertura de pernas entre elas, a 50km/h.\\nUso em combate: Desviar o curso da manada de gorilefantes, quando eles se irritam com seus companheiros e decidem pisoteá-lo; convencer o familiar do mago maligno de que o opressor, na verdade, é o mago."
+                },
+                {
+                    "id": "48c00298-5e21-4e56-b5c2-5db4d4d37d6e",
+                    "name": "Atenção",
+                    "description": "Expressa um estado de constante vigilância do mundo ao seu redor, bem como a capacidade de se concentrar em um objeto/tópico específico\\nUso em interpretação: Fechar os olhos para escutar qual engrenagem daquela buginganga está causando seu mal funcionamento; encontrar uma pista na cena do crime.\\nUso em combate: Procurar as falhas na armadura de um oponente, enquanto ele dispara contra você; ouvir seu companheiro sendo nocauteado no andar de baixo, enquanto você luta contra os seus oponentes."
+                },
+                {
+                    "id": "30a19cf8-bb64-4dd2-b3f7-29b9364eb0e9",
+                    "name": "Empatia",
+                    "description": "Olhos que enxergam as emoções além da superfície... Esses são os olhos de alguém com Empatia. Perceber intenções, detectar mentiras, compreender o propósito de obras de arte, julgar motivações - todas essas competências são capacidades da Aptidão Empatia.\\nUso em Interpretação: Olhar para uma plateia de aristocratas e saber que tipo de discurso eles estão esperando ouvir; perceber se esse guarda em específico é propenso ou não a aceitar propina.\\nUso em Combate: Ter certeza de para que lado o criminoso parece querer fugir; descobrir, pelos urros no combate, quem é o inimigo por trás daquela maldita máscara!"
+                },
+                {
+                    "id": "2ba3a1fd-aad1-4e3a-93fd-ff4b3749d616",
+                    "name": "Ciências",
+                    "description": "Aptidão em Ciências não é o mesmo que conhecimento científico. Embora uma pessoa com essa aptidão tenha facilidade, curiosidade e até mesmo um pouco de pensamento crítico científico nato, ela não necessariamente teve um estudo formal para tanto. É, de fato, uma Aptidão, uma familiaridade natural e um olhar detalhista para com o funcionamento das coisas.\\nUso em interpretação: Testar plantas diversas em composições químicas que podem ou não gerar poções;  Inferir o funcionamento de um mecanismo desconhecido; Tentar se encontrar pela posição das estrelas.\\nUso em combate: Atacar um autômato em partes que lhe atrapalharão o funcionamento; desvendar pontos fortes e fracos de uma criatura; calcular potências diferentes de tipo de danos diferentes."
+                },
+                {
+                    "id": "24f5e67e-ca4a-4fef-8325-85c6f8f81e55",
+                    "name": "Interpretação",
+                    "description": "Interpretação é a capacidade de conjugar diferentes informações, conhecimentos ou operações, criando novos conhecimentos a partir disso. É o que arqueólogos, poetas, detetives e inventores têm em comum!\\nUso em Interpretação: Entender a relação entre os hieroglifos antigos e misteriosos na parede do templo; captar o significado oculto na mensagem criptografada do espião.\\nUso em Combate: Perceber o padrão sequencial de ataques que aquele autômato repete o tempo todo; observar o terreno de uma batalha e definir a melhor posição estratégica para o seu grupo."
+                }
+            ]
+        },
+        {
+            "id": "4c5e9d82-d2f9-452e-bbf1-585788816098",
+            "name": "Druida",
+            "description": "Aos que têm a paciência e a sensibilidade para escutar, a mãe natureza tem muito a dizer. Os Druidas juram poder ouvir sua voz, não como um som, mas expressa em diferentes formas. No vento, na terra, na água. O fato é que, indiscutivelmente, algo na natureza os tocou e abençoou com habilidades extraordinárias. Druidas podem ter rivalidades com Artífices, por vê-los como símbolo da expansão da tecnologia sobre a natureza.",
+            "mainAttribute": "TENACITY",
+            "physicalPoints": 7,
+            "mentalPoints": 6,
+            "skills": [
+                {
+                    "id": "2afe89c7-3185-43d1-8eef-6e2b68050a3f",
+                    "name": "Invocação Etérea",
+                    "description": "Usando de sua própria energia vital, o Druida pode criar invocações etéreas para auxiliá-lo no combate. O Druida pode chamar quantas invocações desejar, mas elas funcionam como uma extensão de seu corpo, ou seja, seus ataques contam como apenas um Ataque Básico. Elas não podem ser desfeitas a não ser que o Druida receba dano.",
+                    "cost": 0,
+                    "energyType": "PHYSICAL",
+                    "skillType": "COMBAT",
+                    "range": null
+                },
+                {
+                    "id": "34db8277-efa8-4231-9e1d-5b6ae513cc42",
+                    "name": "Ataque Básico",
+                    "description": null,
+                    "cost": 3,
+                    "energyType": "PHYSICAL",
+                    "skillType": "BASIC",
+                    "range": 9
+                },
+                {
+                    "id": "a933bae4-0d12-4d86-a06c-3416eed76798",
+                    "name": "Druidismo",
+                    "description": "Enquanto estiver na natureza, um Druida pode fazer um teste de Tenacidade com custo adicional de 1 ponto de Energia Física, independente de acerto, Druidismo para aprender sobre plantas e animais típicos da região e conseguir comida e água para descansar. Também pode falar com animais.",
+                    "cost": 1,
+                    "energyType": "PHYSICAL",
+                    "skillType": "INTERPRETATION",
+                    "range": null
+                }
+            ],
+            "aptitudes": [
+                {
+                    "id": "217b74f9-c95f-4185-a17c-8f9b546c41e7",
+                    "name": "Resistência",
+                    "description": "Essa aptidão envolve a capacidade de aguentar ofensas externas ao seu corpo, intempéries e grandes quantidades de dano. São os famosos peitos de aço!\\nUso em Interpretação: Tomar o vinho envenenado e pedir \"mais um copo, por favor\"; agarrar a caldeira do barco a vapor e não deixá-la se desmantelar - nem tá tão quente assim!\\nUso em Combate: Pular na frente do disparo, para impedir que ele atinja seu amigo; ignorar a doença que o vilão tentou inocular em você."
+                },
+                {
+                    "id": "c8f5b55a-c2fa-4b32-95c1-d44ee9236bea",
+                    "name": "Amestração",
+                    "description": "Representa o talento para lidar com criaturas estranhas, selvagens ou alienígenas, o que pode incluir domesticá-las ou se comunicar com elas.\\nUso em interpretação: Comunicar para o gorilefante, por meio de gestos, que você e seu grupo vieram em paz; pilotar duas carroças, com três cavalos cada, ao mesmo tempo, fazendo uma abertura de pernas entre elas, a 50km/h.\\nUso em combate: Desviar o curso da manada de gorilefantes, quando eles se irritam com seus companheiros e decidem pisoteá-lo; convencer o familiar do mago maligno de que o opressor, na verdade, é o mago."
+                },
+                {
+                    "id": "0c6e1449-d218-4ffc-b0bc-0fcfea87d891",
+                    "name": "Fôlego",
+                    "description": "Se Avanço é sobre velocidade, Fôlego é sobre capacidade! Correr uma maratona, mergulhar por mais de um minuto, falar por horas a fio... Fôlego envolve não só a capacidade dos seus pulmões, mas a fibra de se manter em esforço!\\nUso em Interpretação: Pregar um grande sermão para uma plateia de 100, sem microfone; fingir-se de morto por 3 horas, até o legista ir embora.\\nUso em Combate: Observar os gângsters dos telhados, pulando de prédio em prédio, por horas a fio; Degladiar-se com o polvo, debaixo da água, por 3 minutos inteiros!"
+                },
+                {
+                    "id": "86d9c9b0-e698-477d-8b94-aa2a2f43e876",
+                    "name": "Avanço",
+                    "description": "Percorrer um trajeto entre um ponto A e um ponto B, ganhar território rapidamente entre as ruas de uma cidade, ou até mesmo escalar uma montanha, são atividades facilitadas pela Aptidão Avanço.\\nUso em interpretação: Correr em uma perseguição; nadar para fugir de um jacaré dos esgotos; escalar um prédio para salvar um gatinho.\\nUso em combate: Desferir um golpe com uma investida após uma corrida para ganhar impulso e força. Realizar um ataque furtivo se já estiver escondido e quiser chegar no alvo rapidamente, sem ser percebido."
+                },
+                {
+                    "id": "ca749272-1570-4136-955e-aa8d22d8870c",
+                    "name": "Sobrevivência",
+                    "description": "Identificar os becos mais perigosos da cidade, conhecer as partes mais inóspitas do pântano... Sobrevivência é a aptidão daqueles que já tiveram muitas adversidades nessa vida e sabem exatamente em que calo cada sapato dói. É a habilidade de reconher e contornar perigos relacionados ao ambiente, seja ele qual for.\\nUso em Interpretação: Dar uma olhada na cidade nova e já identificar o símbolo da principal gangue local; observar as pegadas na lama e associá-las ao urso-coruja que as fez.\\nUso em Combate: Saber quanto tempo seu grupo tem antes que o prédio desabe pelo incêndio; reconhecer uma erva nas redondezas para salvar seu amigo envenenado."
+                },
+                {
+                    "id": "4d7aec1a-b884-4d6f-adfa-85283c1d1df7",
+                    "name": "Misticismo",
+                    "description": "Essa aptidão relaciona-se não ao conhecimento do oculto, mas também a uma certa disposição a compreender ou manipular objetos e criaturas místicas; você não precisa ser um grande estudioso para isso, entretanto - nunca ouviu falar daquele bárbaro médium na Rua 3?\\nUso em Interpretação: Avaliar a força de um feitiço, ou a melhor maneira de desfazê-lo; deduzir o efeito de uma poção mágica provando apenas uma gota dela.\\nUso em Combate: Adaptar as palavras mágicas de um feitiço, para conjurá-lo mesmo amordaçado; utilizar com sucesso o cajado que você acabou de roubar do necromante."
+                }
+            ]
+        },
+        {
+            "id": "a719d6dd-ef3d-4438-b834-3c7a399df384",
+            "name": "Guerreiro",
+            "description": "Treino e confiança em suas próprias habilidades são as duas principais características dos Guerreiros. Sem poderes, truques, bugigangas ou resistência extraordinária, eles contam apenas com sua própria garra e sua Arma Favorita. Não têm rivalidade com nenhuma outra classe, mas por pessoas que não prezam pelo trabalho em equipe.",
+            "mainAttribute": "TENACITY",
+            "physicalPoints": 9,
+            "mentalPoints": 4,
+            "skills": [
+                {
+                    "id": "9c934970-eb08-4426-a8d9-77d6f7936faf",
+                    "name": "Liderança",
+                    "description": "Ao tomar a frente em um combate, o Guerreiro pode escolher gastar 1 Ponto adicional de Energia Física ao tomar qualquer ação. Se o fizer, cada aliado que agir de acordo com a liderança do Guerreiro, ganhará um bônus de 1 Ponto de Energia adicional de dano ou redução de dano em seu turno.",
+                    "cost": 1,
+                    "energyType": "PHYSICAL",
+                    "skillType": "COMBAT",
+                    "range": null
+                },
+                {
+                    "id": "b57cc278-8292-477d-b93d-43b0774e1188",
+                    "name": "Competitivo",
+                    "description": "O Guerreiro é uma máquina de vencer, não só dentro das batalhas! Em situações de competição - uma partida de poker, uma corrida ou até uma queda de braço - em que uma aposta estiver em jogo, o Guerreiro pode gastar uma Ação para fazer um teste de Tenacidade gastando 1 ponto de Energia Física adicional, independente do acerto, e ganhar um bônus a ser combinado com o mestre.",
+                    "cost": 1,
+                    "energyType": "PHYSICAL",
+                    "skillType": "INTERPRETATION",
+                    "range": null
+                },
+                {
+                    "id": "f29f20e8-87c2-455f-a0cf-eba604a262a7",
+                    "name": "Ataque Básico",
+                    "description": null,
+                    "cost": 3,
+                    "energyType": "PHYSICAL",
+                    "skillType": "BASIC",
+                    "range": 1
+                }
+            ],
+            "aptitudes": [
+                {
+                    "id": "48c00298-5e21-4e56-b5c2-5db4d4d37d6e",
+                    "name": "Atenção",
+                    "description": "Expressa um estado de constante vigilância do mundo ao seu redor, bem como a capacidade de se concentrar em um objeto/tópico específico\\nUso em interpretação: Fechar os olhos para escutar qual engrenagem daquela buginganga está causando seu mal funcionamento; encontrar uma pista na cena do crime.\\nUso em combate: Procurar as falhas na armadura de um oponente, enquanto ele dispara contra você; ouvir seu companheiro sendo nocauteado no andar de baixo, enquanto você luta contra os seus oponentes."
+                },
+                {
+                    "id": "eaf00e61-c5f2-46e3-b3e9-cfd91b5ae582",
+                    "name": "Fortitude",
+                    "description": "FORÇA INCOMPARÁVEL! PEITO DE AÇO! HEAVY METAL! Fortitude é sobre isso! Se você pretende arremessar postes de luz, barris ou Iuventis indefesos, Fortitude é pra você! Essa Aptidão representa a capacidade de concentrar todo o seu esforço de uma vez só, realizando feitos de grande força física ou mental!\\nUso em Interpretação: Suportar horríveis dores enquanto os vilões torturam você, buscando informações; carregar seus três amigos bêbados nos ombros, enquanto os donos do bar jogam garrafas em vocês.\\nUso em Combate: Agarrar o bugurso adversário, impedindo-o de sair do lugar; evitar que o teto da sala-armadilha esmague seus amigos, segurando-o com as mãos enquanto eles pensam no que fazer."
+                },
+                {
+                    "id": "ca749272-1570-4136-955e-aa8d22d8870c",
+                    "name": "Sobrevivência",
+                    "description": "Identificar os becos mais perigosos da cidade, conhecer as partes mais inóspitas do pântano... Sobrevivência é a aptidão daqueles que já tiveram muitas adversidades nessa vida e sabem exatamente em que calo cada sapato dói. É a habilidade de reconher e contornar perigos relacionados ao ambiente, seja ele qual for.\\nUso em Interpretação: Dar uma olhada na cidade nova e já identificar o símbolo da principal gangue local; observar as pegadas na lama e associá-las ao urso-coruja que as fez.\\nUso em Combate: Saber quanto tempo seu grupo tem antes que o prédio desabe pelo incêndio; reconhecer uma erva nas redondezas para salvar seu amigo envenenado."
+                },
+                {
+                    "id": "0c6e1449-d218-4ffc-b0bc-0fcfea87d891",
+                    "name": "Fôlego",
+                    "description": "Se Avanço é sobre velocidade, Fôlego é sobre capacidade! Correr uma maratona, mergulhar por mais de um minuto, falar por horas a fio... Fôlego envolve não só a capacidade dos seus pulmões, mas a fibra de se manter em esforço!\\nUso em Interpretação: Pregar um grande sermão para uma plateia de 100, sem microfone; fingir-se de morto por 3 horas, até o legista ir embora.\\nUso em Combate: Observar os gângsters dos telhados, pulando de prédio em prédio, por horas a fio; Degladiar-se com o polvo, debaixo da água, por 3 minutos inteiros!"
+                },
+                {
+                    "id": "86d9c9b0-e698-477d-8b94-aa2a2f43e876",
+                    "name": "Avanço",
+                    "description": "Percorrer um trajeto entre um ponto A e um ponto B, ganhar território rapidamente entre as ruas de uma cidade, ou até mesmo escalar uma montanha, são atividades facilitadas pela Aptidão Avanço.\\nUso em interpretação: Correr em uma perseguição; nadar para fugir de um jacaré dos esgotos; escalar um prédio para salvar um gatinho.\\nUso em combate: Desferir um golpe com uma investida após uma corrida para ganhar impulso e força. Realizar um ataque furtivo se já estiver escondido e quiser chegar no alvo rapidamente, sem ser percebido."
+                },
+                {
+                    "id": "217b74f9-c95f-4185-a17c-8f9b546c41e7",
+                    "name": "Resistência",
+                    "description": "Essa aptidão envolve a capacidade de aguentar ofensas externas ao seu corpo, intempéries e grandes quantidades de dano. São os famosos peitos de aço!\\nUso em Interpretação: Tomar o vinho envenenado e pedir \"mais um copo, por favor\"; agarrar a caldeira do barco a vapor e não deixá-la se desmantelar - nem tá tão quente assim!\\nUso em Combate: Pular na frente do disparo, para impedir que ele atinja seu amigo; ignorar a doença que o vilão tentou inocular em você."
+                }
+            ]
+        },
+        {
+            "id": "339c9479-06c9-42d5-9920-535b34ace847",
+            "name": "Ladino",
+            "description": "Astutos combatentes que contam com sua sorte em batalha, os Ladinos são sorrateiros e perspicazes, embora não sejam necessariamente maus ou quebradores de regras. São supersticiosos, amantes e protegidos do acaso. Podem ter rivalidade com Sacerdotes por seguirem um código moral.",
+            "mainAttribute": "CELERITY",
+            "physicalPoints": 8,
+            "mentalPoints": 5,
+            "skills": [
+                {
+                    "id": "cdcfbc22-6165-4165-8fa8-a8629b7377a3",
+                    "name": "Ataque Básico",
+                    "description": null,
+                    "cost": 3,
+                    "energyType": "PHYSICAL",
+                    "skillType": "BASIC",
+                    "range": 5
+                },
+                {
+                    "id": "1f49c878-8e5d-45ac-afc8-5537b28936fc",
+                    "name": "Furtividade",
+                    "description": "O Ladino pode gastar 1 Ponto adicional de Energia Física e realizar um teste de Celeridade para tornar-se praticamente invisível no campo de batalha antes ou após realizar seu ataque. Até se mover ou atacar novamente, o Ladino não pode ser alvo de ataques ou habilidades direcionados.",
+                    "cost": 1,
+                    "energyType": "PHYSICAL",
+                    "skillType": "COMBAT",
+                    "range": null
+                },
+                {
+                    "id": "2df6ae6e-f1ac-4c60-958f-25802b034bc4",
+                    "name": "Zé Ninguém",
+                    "description": "O Ladino tem um talento especial para ir e vir despercebido. Desde que tome um pouco mais de cuidado, o Ladino é capaz de gastar uma Ação para fazer um teste de Celeridade com 1 Ponto de Energia Física, independente do acerto, e adicional e tornar seu rosto quase completamente imemorável. Em um lugar relacionado a seu Antecedente, ele é capaz de estender esse efeito a até 4 pessoas. Caso cause algum tipo de alarde, o Ladino perde esse efeito imediatamente, atraindo a atenção de todos ao redor. Apenas tome cuidado: Bárbaros ainda podem perceber que Algo de Errado Não Está Certo!",
+                    "cost": 1,
+                    "energyType": "PHYSICAL",
+                    "skillType": "INTERPRETATION",
+                    "range": null
+                }
+            ],
+            "aptitudes": [
+                {
+                    "id": "a51dbfc2-02a7-471f-8f80-29ace8158e91",
+                    "name": "Prestidigitação",
+                    "description": "A famosa \"mão leve\". Prestidigitação envolve habilidades manuais ágeis e precisas, bem como a capacidade acompanhar as \"mãos leves\" de outros espertinhos...\\nUso em Interpretação: Intimidar os mineiros com um malabarismo de dinamites; subtrair o relógio de bolso daquele cavalheiro distraído...\\nUso em Combate: Arremessar uma poção para o seu companheiro por entre as pernas do adversário; confundir um adversário com movimentos rápidos de sua alabarda."
+                },
+                {
+                    "id": "da13f789-64f8-4728-8366-e8725c16a590",
+                    "name": "Impavidez",
+                    "description": "Se Fortitude é sobre peito de aço... Impavidez é sobre nervos de aço! Essa Aptidão envolve ações que representem um personagem que não pestaneja, responde prontamente a perigos e ameaças sem pensar duas vezes, com frieza e calculismo - ou, talvez, só muito pouco amor à vida! Isso vai de dar respostas rápidas e incisivas até sacar suas armas antes de todos os outros caubóis.\\nUso em Interpretação: Mentir com calma e tranquilidade diante do juiz, em rede nacional; sempre sair por cima em uma discussão ou debate.\\nUso em Combate: Iniciar o combate com uma vantagem, dando um chute na mesa para surpreender seus oponentes; disparar contra seus inimigos enquanto dirige um automóvel à beira de um penhasco."
+                },
+                {
+                    "id": "fc7f6815-53c6-4b17-b780-391735a1475a",
+                    "name": "Acobertamento",
+                    "description": "Essa aptidão representa a capacidade de ocultar ações ou objetos e, quando necessário, desviar a atenção de terceiros para alcançar esse objetivo.\\nUso em interpretação: Desviar a atenção do padeiro para que ele não perceba seu amigo roubando aquele pão-doce; procurar a melhor janela para invadir aquele apartamento sem ser visto.\\nUso em combate: Se aproximar furtivamente de um inimigo desavisado; ter o máximo de proteção contra disparos inimigos atrás de um anteparo; distrair um inimigo para atacá-lo num golpe de surpresa."
+                },
+                {
+                    "id": "30a19cf8-bb64-4dd2-b3f7-29b9364eb0e9",
+                    "name": "Empatia",
+                    "description": "Olhos que enxergam as emoções além da superfície... Esses são os olhos de alguém com Empatia. Perceber intenções, detectar mentiras, compreender o propósito de obras de arte, julgar motivações - todas essas competências são capacidades da Aptidão Empatia.\\nUso em Interpretação: Olhar para uma plateia de aristocratas e saber que tipo de discurso eles estão esperando ouvir; perceber se esse guarda em específico é propenso ou não a aceitar propina.\\nUso em Combate: Ter certeza de para que lado o criminoso parece querer fugir; descobrir, pelos urros no combate, quem é o inimigo por trás daquela maldita máscara!"
+                },
+                {
+                    "id": "3f855b9b-d352-4c23-9cf2-e5e4d8657916",
+                    "name": "Arguição",
+                    "description": "Denota a habilidade questionar, argumentar e pesquisar opiniões ou conhecimentos.\\nUso em interpretação: Acessar seus contatos do submundo do crime para descobrir onde vai ser o próximo embate do Clube da Luta; fornecer argumentos para que o policial deixe você ir dessa vez - a placa com o limite de velocidade estava quase invisível, com a grama crescendo ao redor...\\nUso em combate: Interrogar um inimigo com perguntas rápidas e incisivas, fazendo ele dar com a língua nos dentes por não ter tempo de pensar nas respostas; encerrar um combate provando para o inimigo que não há necessidade de lutar."
+                },
+                {
+                    "id": "c8f5b55a-c2fa-4b32-95c1-d44ee9236bea",
+                    "name": "Amestração",
+                    "description": "Representa o talento para lidar com criaturas estranhas, selvagens ou alienígenas, o que pode incluir domesticá-las ou se comunicar com elas.\\nUso em interpretação: Comunicar para o gorilefante, por meio de gestos, que você e seu grupo vieram em paz; pilotar duas carroças, com três cavalos cada, ao mesmo tempo, fazendo uma abertura de pernas entre elas, a 50km/h.\\nUso em combate: Desviar o curso da manada de gorilefantes, quando eles se irritam com seus companheiros e decidem pisoteá-lo; convencer o familiar do mago maligno de que o opressor, na verdade, é o mago."
+                }
+            ]
+        },
+        {
+            "id": "4a48caa2-7f79-435f-ad42-92359248093c",
+            "name": "Mago",
+            "description": "Magos eram mais comuns no passado. Houve um tempo em que Bartol tinha duas Academias de magia. Hoje, o Arcano é mantido vivo com o esforço de poucos, passado apenas de Mestre para Discípulo através de grimórios e métodos árduos de estudo incessante. Os que ascendem o posto de aprendizes têm em mãos poderes tão fortes quanto a responsabilidade que ganham de passá-los adiante. Os Magos podem ter rivalidade com Nexus por não terem adquirido suas habilidades através de estudo e esforço.",
+            "mainAttribute": "INTELLIGENCE",
+            "physicalPoints": 4,
+            "mentalPoints": 9,
+            "skills": [
+                {
+                    "id": "b46fc204-127c-45e1-9449-48cff75694c4",
+                    "name": "Ataque Básico",
+                    "description": null,
+                    "cost": 2,
+                    "energyType": "PHYSICAL",
+                    "skillType": "BASIC",
+                    "range": 10
+                },
+                {
+                    "id": "f7c83af3-206a-4ea2-80f1-5835ad543634",
+                    "name": "Familiar",
+                    "description": "Um familiar pode servir como canalizador de magias e se comunicar telepaticamente com você. Ele pode transmitir mensagens telepáticas para outras pessoas de até 10 palavras desde que você possa vê-lo, ele possa ver o alvo, e você gaste 1 ponto de Energia Mental.",
+                    "cost": 1,
+                    "energyType": "MENTAL",
+                    "skillType": "INTERPRETATION",
+                    "range": null
+                },
+                {
+                    "id": "1b803a9b-1e22-4ee3-99e8-2ea7dffa145f",
+                    "name": "Magia Elemental",
+                    "description": "A manipulação dos quatro elementos é o início do aprendizado de um Mago. Ao gastar 1 Ponto adicional de Energia Mental, independente do acerto, o Mago faz um teste de Intelecto para conjurar uma magia com o efeito de um elemento à sua escolha. O dano é de 3 Pontos de Energia Física e o elemento causará um efeito adicional a ser combinado com o mestre.",
+                    "cost": 1,
+                    "energyType": "MENTAL",
+                    "skillType": "COMBAT",
+                    "range": null
+                }
+            ],
+            "aptitudes": [
+                {
+                    "id": "4d7aec1a-b884-4d6f-adfa-85283c1d1df7",
+                    "name": "Misticismo",
+                    "description": "Essa aptidão relaciona-se não ao conhecimento do oculto, mas também a uma certa disposição a compreender ou manipular objetos e criaturas místicas; você não precisa ser um grande estudioso para isso, entretanto - nunca ouviu falar daquele bárbaro médium na Rua 3?\\nUso em Interpretação: Avaliar a força de um feitiço, ou a melhor maneira de desfazê-lo; deduzir o efeito de uma poção mágica provando apenas uma gota dela.\\nUso em Combate: Adaptar as palavras mágicas de um feitiço, para conjurá-lo mesmo amordaçado; utilizar com sucesso o cajado que você acabou de roubar do necromante."
+                },
+                {
+                    "id": "2ba3a1fd-aad1-4e3a-93fd-ff4b3749d616",
+                    "name": "Ciências",
+                    "description": "Aptidão em Ciências não é o mesmo que conhecimento científico. Embora uma pessoa com essa aptidão tenha facilidade, curiosidade e até mesmo um pouco de pensamento crítico científico nato, ela não necessariamente teve um estudo formal para tanto. É, de fato, uma Aptidão, uma familiaridade natural e um olhar detalhista para com o funcionamento das coisas.\\nUso em interpretação: Testar plantas diversas em composições químicas que podem ou não gerar poções;  Inferir o funcionamento de um mecanismo desconhecido; Tentar se encontrar pela posição das estrelas.\\nUso em combate: Atacar um autômato em partes que lhe atrapalharão o funcionamento; desvendar pontos fortes e fracos de uma criatura; calcular potências diferentes de tipo de danos diferentes."
+                },
+                {
+                    "id": "a51dbfc2-02a7-471f-8f80-29ace8158e91",
+                    "name": "Prestidigitação",
+                    "description": "A famosa \"mão leve\". Prestidigitação envolve habilidades manuais ágeis e precisas, bem como a capacidade acompanhar as \"mãos leves\" de outros espertinhos...\\nUso em Interpretação: Intimidar os mineiros com um malabarismo de dinamites; subtrair o relógio de bolso daquele cavalheiro distraído...\\nUso em Combate: Arremessar uma poção para o seu companheiro por entre as pernas do adversário; confundir um adversário com movimentos rápidos de sua alabarda."
+                },
+                {
+                    "id": "24f5e67e-ca4a-4fef-8325-85c6f8f81e55",
+                    "name": "Interpretação",
+                    "description": "Interpretação é a capacidade de conjugar diferentes informações, conhecimentos ou operações, criando novos conhecimentos a partir disso. É o que arqueólogos, poetas, detetives e inventores têm em comum!\\nUso em Interpretação: Entender a relação entre os hieroglifos antigos e misteriosos na parede do templo; captar o significado oculto na mensagem criptografada do espião.\\nUso em Combate: Perceber o padrão sequencial de ataques que aquele autômato repete o tempo todo; observar o terreno de uma batalha e definir a melhor posição estratégica para o seu grupo."
+                },
+                {
+                    "id": "c8f5b55a-c2fa-4b32-95c1-d44ee9236bea",
+                    "name": "Amestração",
+                    "description": "Representa o talento para lidar com criaturas estranhas, selvagens ou alienígenas, o que pode incluir domesticá-las ou se comunicar com elas.\\nUso em interpretação: Comunicar para o gorilefante, por meio de gestos, que você e seu grupo vieram em paz; pilotar duas carroças, com três cavalos cada, ao mesmo tempo, fazendo uma abertura de pernas entre elas, a 50km/h.\\nUso em combate: Desviar o curso da manada de gorilefantes, quando eles se irritam com seus companheiros e decidem pisoteá-lo; convencer o familiar do mago maligno de que o opressor, na verdade, é o mago."
+                },
+                {
+                    "id": "48c00298-5e21-4e56-b5c2-5db4d4d37d6e",
+                    "name": "Atenção",
+                    "description": "Expressa um estado de constante vigilância do mundo ao seu redor, bem como a capacidade de se concentrar em um objeto/tópico específico\\nUso em interpretação: Fechar os olhos para escutar qual engrenagem daquela buginganga está causando seu mal funcionamento; encontrar uma pista na cena do crime.\\nUso em combate: Procurar as falhas na armadura de um oponente, enquanto ele dispara contra você; ouvir seu companheiro sendo nocauteado no andar de baixo, enquanto você luta contra os seus oponentes."
+                }
+            ]
+        },
+        {
+            "id": "839eef4c-294c-4ac1-b1e2-317229ddb093",
+            "name": "Nexus",
+            "description": "Bartol ainda está à espera de quem possa explicar o fenômeno Nexus. Nas últimas décadas, incidentes envolvendo outros planos têm transformado pessoas comuns em seres extraordinários. Elas parecem voltar do pós-vida com habilidades que desafiam a realidade, distorcendo o tempo, alterando o espaço e manipulando a matéria. Nexus não costumam ter rivalidades por estarem muito ocupados tentando entender e aceitar a si mesmos.",
+            "mainAttribute": "INTELLIGENCE",
+            "physicalPoints": 6,
+            "mentalPoints": 7,
+            "skills": [
+                {
+                    "id": "bcc3401a-ab60-4f9e-9d59-6cb78a71d3fc",
+                    "name": "Reprogramar",
+                    "description": "O Nexus pode gastar 1 ponto de Energia Mental para trocar uma de suas Aptidões até o fim da cena. Uma Aptidão trocada não pode ser reprogramada novamente até o efeito acabar.",
+                    "cost": 1,
+                    "energyType": "MENTAL",
+                    "skillType": "INTERPRETATION",
+                    "range": null
+                },
+                {
+                    "id": "1e6e1215-b3f5-438a-9688-8dbac3471cfb",
+                    "name": "Ataque Básico",
+                    "description": null,
+                    "cost": 2,
+                    "energyType": "PHYSICAL",
+                    "skillType": "BASIC",
+                    "range": 1
+                },
+                {
+                    "id": "4f3cc16a-7178-4463-bc24-90a4ba98ee5f",
+                    "name": "Distorcer Espaço",
+                    "description": "O Nexus pode gastar 1 Ponto de Energia Mental adicional, independente do acerto, para realizar um teste de Intelecto e distorcer o espaço ao seu redor. Em caso de sucesso, todas as criaturas dentro de uma circunferência com 5m de raio, ficam aprisionadas e podem mover-se apenas em direção ao centro da área, que é o próprio Nexus.",
+                    "cost": 1,
+                    "energyType": "MENTAL",
+                    "skillType": "COMBAT",
+                    "range": null
+                }
+            ],
+            "aptitudes": [
+                {
+                    "id": "48c00298-5e21-4e56-b5c2-5db4d4d37d6e",
+                    "name": "Atenção",
+                    "description": "Expressa um estado de constante vigilância do mundo ao seu redor, bem como a capacidade de se concentrar em um objeto/tópico específico\\nUso em interpretação: Fechar os olhos para escutar qual engrenagem daquela buginganga está causando seu mal funcionamento; encontrar uma pista na cena do crime.\\nUso em combate: Procurar as falhas na armadura de um oponente, enquanto ele dispara contra você; ouvir seu companheiro sendo nocauteado no andar de baixo, enquanto você luta contra os seus oponentes."
+                },
+                {
+                    "id": "eaf00e61-c5f2-46e3-b3e9-cfd91b5ae582",
+                    "name": "Fortitude",
+                    "description": "FORÇA INCOMPARÁVEL! PEITO DE AÇO! HEAVY METAL! Fortitude é sobre isso! Se você pretende arremessar postes de luz, barris ou Iuventis indefesos, Fortitude é pra você! Essa Aptidão representa a capacidade de concentrar todo o seu esforço de uma vez só, realizando feitos de grande força física ou mental!\\nUso em Interpretação: Suportar horríveis dores enquanto os vilões torturam você, buscando informações; carregar seus três amigos bêbados nos ombros, enquanto os donos do bar jogam garrafas em vocês.\\nUso em Combate: Agarrar o bugurso adversário, impedindo-o de sair do lugar; evitar que o teto da sala-armadilha esmague seus amigos, segurando-o com as mãos enquanto eles pensam no que fazer."
+                },
+                {
+                    "id": "da13f789-64f8-4728-8366-e8725c16a590",
+                    "name": "Impavidez",
+                    "description": "Se Fortitude é sobre peito de aço... Impavidez é sobre nervos de aço! Essa Aptidão envolve ações que representem um personagem que não pestaneja, responde prontamente a perigos e ameaças sem pensar duas vezes, com frieza e calculismo - ou, talvez, só muito pouco amor à vida! Isso vai de dar respostas rápidas e incisivas até sacar suas armas antes de todos os outros caubóis.\\nUso em Interpretação: Mentir com calma e tranquilidade diante do juiz, em rede nacional; sempre sair por cima em uma discussão ou debate.\\nUso em Combate: Iniciar o combate com uma vantagem, dando um chute na mesa para surpreender seus oponentes; disparar contra seus inimigos enquanto dirige um automóvel à beira de um penhasco."
+                },
+                {
+                    "id": "a51dbfc2-02a7-471f-8f80-29ace8158e91",
+                    "name": "Prestidigitação",
+                    "description": "A famosa \"mão leve\". Prestidigitação envolve habilidades manuais ágeis e precisas, bem como a capacidade acompanhar as \"mãos leves\" de outros espertinhos...\\nUso em Interpretação: Intimidar os mineiros com um malabarismo de dinamites; subtrair o relógio de bolso daquele cavalheiro distraído...\\nUso em Combate: Arremessar uma poção para o seu companheiro por entre as pernas do adversário; confundir um adversário com movimentos rápidos de sua alabarda."
+                },
+                {
+                    "id": "217b74f9-c95f-4185-a17c-8f9b546c41e7",
+                    "name": "Resistência",
+                    "description": "Essa aptidão envolve a capacidade de aguentar ofensas externas ao seu corpo, intempéries e grandes quantidades de dano. São os famosos peitos de aço!\\nUso em Interpretação: Tomar o vinho envenenado e pedir \"mais um copo, por favor\"; agarrar a caldeira do barco a vapor e não deixá-la se desmantelar - nem tá tão quente assim!\\nUso em Combate: Pular na frente do disparo, para impedir que ele atinja seu amigo; ignorar a doença que o vilão tentou inocular em você."
+                },
+                {
+                    "id": "4d7aec1a-b884-4d6f-adfa-85283c1d1df7",
+                    "name": "Misticismo",
+                    "description": "Essa aptidão relaciona-se não ao conhecimento do oculto, mas também a uma certa disposição a compreender ou manipular objetos e criaturas místicas; você não precisa ser um grande estudioso para isso, entretanto - nunca ouviu falar daquele bárbaro médium na Rua 3?\\nUso em Interpretação: Avaliar a força de um feitiço, ou a melhor maneira de desfazê-lo; deduzir o efeito de uma poção mágica provando apenas uma gota dela.\\nUso em Combate: Adaptar as palavras mágicas de um feitiço, para conjurá-lo mesmo amordaçado; utilizar com sucesso o cajado que você acabou de roubar do necromante."
+                }
+            ]
+        },
+        {
+            "id": "47117c6c-27a4-42db-88f2-a0972a93eadf",
+            "name": "Sacerdote",
+            "description": "O divino em Bartol é misterioso e incerto. Desde a Queda dos Elfos, religiões deixaram de existir e crenças passaram a ter seus limites cada vez mais incertos e indefinidos. Cada habitante do continente tem seu próprio conjunto de entidades protetoras e guias energéticos. Alguns dizem poder sentir sua influência na vida mundana. Os Sacerdotes sabem usá-la a seu favor. Não têm rivalidades específicas.",
+            "mainAttribute": "CUNNING",
+            "physicalPoints": 6,
+            "mentalPoints": 7,
+            "skills": [
+                {
+                    "id": "f8163993-6a30-44bb-968e-b64b11bb80a6",
+                    "name": "Súplica",
+                    "description": "Um Sacerdote pode gastar 1 ponto de Energia Mental para curar um alvo em 2 pontos de qualquer Energia.",
+                    "cost": 1,
+                    "energyType": "MENTAL",
+                    "skillType": "COMBAT",
+                    "range": null
+                },
+                {
+                    "id": "e272a158-348b-4e3a-90d9-22fe02ed3582",
+                    "name": "Ataque Básico",
+                    "description": null,
+                    "cost": 2,
+                    "energyType": "PHYSICAL",
+                    "skillType": "BASIC",
+                    "range": 1
+                },
+                {
+                    "id": "c01d0689-7fd6-4fda-b6a5-41ca1b5afb70",
+                    "name": "Indulgência",
+                    "description": "Ao fazer um teste de Astúcia com um custo adicional de 1 ponto de Energia Mental, independente do acerto, um Sacerdote pode identificar até três emoções que um alvo possa estar sentindo no momento e alterar uma.",
+                    "cost": 1,
+                    "energyType": "PHYSICAL",
+                    "skillType": "INTERPRETATION",
+                    "range": null
+                }
+            ],
+            "aptitudes": [
+                {
+                    "id": "c8f5b55a-c2fa-4b32-95c1-d44ee9236bea",
+                    "name": "Amestração",
+                    "description": "Representa o talento para lidar com criaturas estranhas, selvagens ou alienígenas, o que pode incluir domesticá-las ou se comunicar com elas.\\nUso em interpretação: Comunicar para o gorilefante, por meio de gestos, que você e seu grupo vieram em paz; pilotar duas carroças, com três cavalos cada, ao mesmo tempo, fazendo uma abertura de pernas entre elas, a 50km/h.\\nUso em combate: Desviar o curso da manada de gorilefantes, quando eles se irritam com seus companheiros e decidem pisoteá-lo; convencer o familiar do mago maligno de que o opressor, na verdade, é o mago."
+                },
+                {
+                    "id": "30a19cf8-bb64-4dd2-b3f7-29b9364eb0e9",
+                    "name": "Empatia",
+                    "description": "Olhos que enxergam as emoções além da superfície... Esses são os olhos de alguém com Empatia. Perceber intenções, detectar mentiras, compreender o propósito de obras de arte, julgar motivações - todas essas competências são capacidades da Aptidão Empatia.\\nUso em Interpretação: Olhar para uma plateia de aristocratas e saber que tipo de discurso eles estão esperando ouvir; perceber se esse guarda em específico é propenso ou não a aceitar propina.\\nUso em Combate: Ter certeza de para que lado o criminoso parece querer fugir; descobrir, pelos urros no combate, quem é o inimigo por trás daquela maldita máscara!"
+                },
+                {
+                    "id": "ca749272-1570-4136-955e-aa8d22d8870c",
+                    "name": "Sobrevivência",
+                    "description": "Identificar os becos mais perigosos da cidade, conhecer as partes mais inóspitas do pântano... Sobrevivência é a aptidão daqueles que já tiveram muitas adversidades nessa vida e sabem exatamente em que calo cada sapato dói. É a habilidade de reconher e contornar perigos relacionados ao ambiente, seja ele qual for.\\nUso em Interpretação: Dar uma olhada na cidade nova e já identificar o símbolo da principal gangue local; observar as pegadas na lama e associá-las ao urso-coruja que as fez.\\nUso em Combate: Saber quanto tempo seu grupo tem antes que o prédio desabe pelo incêndio; reconhecer uma erva nas redondezas para salvar seu amigo envenenado."
+                },
+                {
+                    "id": "3f855b9b-d352-4c23-9cf2-e5e4d8657916",
+                    "name": "Arguição",
+                    "description": "Denota a habilidade questionar, argumentar e pesquisar opiniões ou conhecimentos.\\nUso em interpretação: Acessar seus contatos do submundo do crime para descobrir onde vai ser o próximo embate do Clube da Luta; fornecer argumentos para que o policial deixe você ir dessa vez - a placa com o limite de velocidade estava quase invisível, com a grama crescendo ao redor...\\nUso em combate: Interrogar um inimigo com perguntas rápidas e incisivas, fazendo ele dar com a língua nos dentes por não ter tempo de pensar nas respostas; encerrar um combate provando para o inimigo que não há necessidade de lutar."
+                },
+                {
+                    "id": "4d7aec1a-b884-4d6f-adfa-85283c1d1df7",
+                    "name": "Misticismo",
+                    "description": "Essa aptidão relaciona-se não ao conhecimento do oculto, mas também a uma certa disposição a compreender ou manipular objetos e criaturas místicas; você não precisa ser um grande estudioso para isso, entretanto - nunca ouviu falar daquele bárbaro médium na Rua 3?\\nUso em Interpretação: Avaliar a força de um feitiço, ou a melhor maneira de desfazê-lo; deduzir o efeito de uma poção mágica provando apenas uma gota dela.\\nUso em Combate: Adaptar as palavras mágicas de um feitiço, para conjurá-lo mesmo amordaçado; utilizar com sucesso o cajado que você acabou de roubar do necromante."
+                },
+                {
+                    "id": "da13f789-64f8-4728-8366-e8725c16a590",
+                    "name": "Impavidez",
+                    "description": "Se Fortitude é sobre peito de aço... Impavidez é sobre nervos de aço! Essa Aptidão envolve ações que representem um personagem que não pestaneja, responde prontamente a perigos e ameaças sem pensar duas vezes, com frieza e calculismo - ou, talvez, só muito pouco amor à vida! Isso vai de dar respostas rápidas e incisivas até sacar suas armas antes de todos os outros caubóis.\\nUso em Interpretação: Mentir com calma e tranquilidade diante do juiz, em rede nacional; sempre sair por cima em uma discussão ou debate.\\nUso em Combate: Iniciar o combate com uma vantagem, dando um chute na mesa para surpreender seus oponentes; disparar contra seus inimigos enquanto dirige um automóvel à beira de um penhasco."
+                }
+            ]
+        },
+        {
+            "id": "3d14cb08-3391-418e-bd74-37d7737be28b",
+            "name": "Sentinela",
+            "description": "A Grande Guerra Bartoloriana deixou boa parte do continente devastada, separou famílias e feriu, mesmo que indiretamente, todos os seres vivos de Bartol. Com a missão de garantir que nenhuma pessoa precisasse passar por tamanho sofrimento novamente, uma Ordem foi estabelecida através de um código de honra. Não há instituição, liderança, treinamento ou iniciação para fazer parte dela. Basta juramentar o código para si e carregá-lo junto ao desejo de proteger e fazer o bem para tornar-se um Sentinela.",
+            "mainAttribute": "CELERITY",
+            "physicalPoints": 7,
+            "mentalPoints": 6,
+            "skills": [
+                {
+                    "id": "2d6983f8-6590-40c9-a349-ca76f2be2f26",
+                    "name": "Vínculo",
+                    "description": "O Sentinela pode criar um vínculo com uma criatura voluntária, gastando 1 Ponto de Energia Física para fazê-lo. Sempre que seu vínculo gastar Energia Física, desde que fora de combate, o Sentinela pode escolher gastar sua própria no lugar. Além disso, o Sentinela sempre sabe como encontrar seu vínculo ou pressentir quando ele está em perigo, desde que estejam a no máximo 1km de distância um do outro, Toda vez que trocar o alvo do vínculo, um novo Ponto é gasto.",
+                    "cost": 1,
+                    "energyType": "PHYSICAL",
+                    "skillType": "INTERPRETATION",
+                    "range": null
+                },
+                {
+                    "id": "b82c0233-06c8-43e1-bb99-d328112ce1e3",
+                    "name": "Ataque Básico",
+                    "description": null,
+                    "cost": 3,
+                    "energyType": "PHYSICAL",
+                    "skillType": "BASIC",
+                    "range": 1
+                },
+                {
+                    "id": "939f3d16-d6c1-4471-b394-f81752824a97",
+                    "name": "Proteção",
+                    "description": "Quando um aliado recebe um ataque, o Sentinela pode, fora de seu turno, gastar 1 Ponto adicional de Energia Física, independente do acerto, para realizar um teste de Celeridade. Em caso de sucesso, o Sentinela se move rapidamente até o aliado e absorve o dano do ataque para si.",
+                    "cost": 1,
+                    "energyType": "PHYSICAL",
+                    "skillType": "COMBAT",
+                    "range": null
+                }
+            ],
+            "aptitudes": [
+                {
+                    "id": "ca749272-1570-4136-955e-aa8d22d8870c",
+                    "name": "Sobrevivência",
+                    "description": "Identificar os becos mais perigosos da cidade, conhecer as partes mais inóspitas do pântano... Sobrevivência é a aptidão daqueles que já tiveram muitas adversidades nessa vida e sabem exatamente em que calo cada sapato dói. É a habilidade de reconher e contornar perigos relacionados ao ambiente, seja ele qual for.\\nUso em Interpretação: Dar uma olhada na cidade nova e já identificar o símbolo da principal gangue local; observar as pegadas na lama e associá-las ao urso-coruja que as fez.\\nUso em Combate: Saber quanto tempo seu grupo tem antes que o prédio desabe pelo incêndio; reconhecer uma erva nas redondezas para salvar seu amigo envenenado."
+                },
+                {
+                    "id": "f4bfa384-93d4-415e-bd49-52d027e30335",
+                    "name": "Pilotagem",
+                    "description": "Algumas pessoas simplesmente nascem com o dom de pilotar, não é? Sejam automóveis, navios mercantes ou a bicicleta enferrujada do seu tio, você sempre consegue deduzir pra que serve essa alavanca ou aquele botão.\\nUso em Interpretação: Pousar um zepelin no meio de uma tempestade de raios cósmicos; encontrar o furo por onde o óleo do automóvel está vazando.\\nUso em Combate: Fugir dos bandidos no automóvel usando a bicicleta enferrujada do seu tio; acertar um ponto fraco no robô que o artífice maligno está pilotando."
+                },
+                {
+                    "id": "217b74f9-c95f-4185-a17c-8f9b546c41e7",
+                    "name": "Resistência",
+                    "description": "Essa aptidão envolve a capacidade de aguentar ofensas externas ao seu corpo, intempéries e grandes quantidades de dano. São os famosos peitos de aço!\\nUso em Interpretação: Tomar o vinho envenenado e pedir \"mais um copo, por favor\"; agarrar a caldeira do barco a vapor e não deixá-la se desmantelar - nem tá tão quente assim!\\nUso em Combate: Pular na frente do disparo, para impedir que ele atinja seu amigo; ignorar a doença que o vilão tentou inocular em você."
+                },
+                {
+                    "id": "30a19cf8-bb64-4dd2-b3f7-29b9364eb0e9",
+                    "name": "Empatia",
+                    "description": "Olhos que enxergam as emoções além da superfície... Esses são os olhos de alguém com Empatia. Perceber intenções, detectar mentiras, compreender o propósito de obras de arte, julgar motivações - todas essas competências são capacidades da Aptidão Empatia.\\nUso em Interpretação: Olhar para uma plateia de aristocratas e saber que tipo de discurso eles estão esperando ouvir; perceber se esse guarda em específico é propenso ou não a aceitar propina.\\nUso em Combate: Ter certeza de para que lado o criminoso parece querer fugir; descobrir, pelos urros no combate, quem é o inimigo por trás daquela maldita máscara!"
+                },
+                {
+                    "id": "eaf00e61-c5f2-46e3-b3e9-cfd91b5ae582",
+                    "name": "Fortitude",
+                    "description": "FORÇA INCOMPARÁVEL! PEITO DE AÇO! HEAVY METAL! Fortitude é sobre isso! Se você pretende arremessar postes de luz, barris ou Iuventis indefesos, Fortitude é pra você! Essa Aptidão representa a capacidade de concentrar todo o seu esforço de uma vez só, realizando feitos de grande força física ou mental!\\nUso em Interpretação: Suportar horríveis dores enquanto os vilões torturam você, buscando informações; carregar seus três amigos bêbados nos ombros, enquanto os donos do bar jogam garrafas em vocês.\\nUso em Combate: Agarrar o bugurso adversário, impedindo-o de sair do lugar; evitar que o teto da sala-armadilha esmague seus amigos, segurando-o com as mãos enquanto eles pensam no que fazer."
+                },
+                {
+                    "id": "da13f789-64f8-4728-8366-e8725c16a590",
+                    "name": "Impavidez",
+                    "description": "Se Fortitude é sobre peito de aço... Impavidez é sobre nervos de aço! Essa Aptidão envolve ações que representem um personagem que não pestaneja, responde prontamente a perigos e ameaças sem pensar duas vezes, com frieza e calculismo - ou, talvez, só muito pouco amor à vida! Isso vai de dar respostas rápidas e incisivas até sacar suas armas antes de todos os outros caubóis.\\nUso em Interpretação: Mentir com calma e tranquilidade diante do juiz, em rede nacional; sempre sair por cima em uma discussão ou debate.\\nUso em Combate: Iniciar o combate com uma vantagem, dando um chute na mesa para surpreender seus oponentes; disparar contra seus inimigos enquanto dirige um automóvel à beira de um penhasco."
+                }
+            ]
+        }
+    ]
+}

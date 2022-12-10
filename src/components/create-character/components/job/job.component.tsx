@@ -79,8 +79,10 @@ export function JobComponent({
       getDetailedJob(id)
         .then((r) => {
           const { data } = r;
-          dispatch(addDetailedJob(data));
-          setSelectedJob(data);
+          if (data) {
+            dispatch(addDetailedJob(data));
+            setSelectedJob(data);
+          }
         })
         .catch((ex) => {
           console.error(ex);
