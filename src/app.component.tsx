@@ -5,12 +5,15 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import "./app.component.css";
 import { CharacterDetailsComponent } from "./components/character-details/character-details.component";
 import { CreateCharacterComponent } from "./components/create-character/create-character.component";
-import { HomeComponent } from "./components/home/home.component";
+import { CharacterListComponent } from "./components/character-list/character-list.component";
 import { SignUpComponent } from "./components/sign-up/sign-up.component";
 import { SignInComponent } from "./components/signin/sign-in.component";
 import { hasRoles, isUserAuthenticated } from "./utils/auth-utils";
 import { RolesEnum } from "./enum/roles.enum";
 import { messageError } from "./shared/messages";
+import { HomeComponent } from "./components/home/home.component";
+import { CampaignListComponent } from "./components/campaign-list/campaign-list.component";
+import { CreateCampaignComponent } from "./components/create-campaign/create-campaign.component";
 
 const { Content } = Layout;
 
@@ -49,6 +52,14 @@ function AppComponent() {
             }
           />
           <Route
+            path="/character/list"
+            element={
+              <ProtectedRoute>
+                <CharacterListComponent />
+              </ProtectedRoute>
+            }
+          />
+          <Route
             path="/character/create"
             element={
               <ProtectedRoute>
@@ -61,6 +72,22 @@ function AppComponent() {
             element={
               <ProtectedRoute>
                 <CharacterDetailsComponent />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/campaign/list"
+            element={
+              <ProtectedRoute roles={[RolesEnum.ROLE_GM, RolesEnum.ROLE_ADMIN]}>
+                <CampaignListComponent />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/campaign/create"
+            element={
+              <ProtectedRoute roles={[RolesEnum.ROLE_GM, RolesEnum.ROLE_ADMIN]}>
+                <CreateCampaignComponent />
               </ProtectedRoute>
             }
           />

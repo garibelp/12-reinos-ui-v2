@@ -65,3 +65,11 @@ export function hasRoles(requiredRoles: RolesEnum[] = []): boolean {
   }
   return true;
 }
+
+export function isAdminUser(): boolean {
+  return hasRoles([RolesEnum.ROLE_ADMIN]);
+}
+
+export function isGmUser(): boolean {
+  return hasRoles([RolesEnum.ROLE_GM]);
+}

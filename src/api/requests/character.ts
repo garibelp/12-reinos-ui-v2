@@ -8,6 +8,7 @@ import {
 import api from "../api";
 
 export function getCharactersPaginated(
+  usePlayerProfile: boolean,
   pageSize?: number,
   currentPage?: number
 ): Promise<AxiosResponse<CharacterPaginated>> {
@@ -15,6 +16,7 @@ export function getCharactersPaginated(
     params: {
       pageSize,
       currentPage,
+      usePlayerProfile,
     },
     headers: {
       authorization: "Bearer " + localStorage.getItem("jwt"),

@@ -1,0 +1,33 @@
+.base-wrapper {
+  margin: auto;
+  max-height: 100%;
+  overflow: auto;
+}
+
+.base-card {
+  max-width: 600px;
+  min-width: 320px;
+  margin: auto;
+}
+
+.base-card > .ant-card-head {
+  text-align: center;
+}
+
+.base-card > .ant-card-body {
+  text-align: center;
+}
+
+.base-card > .ant-card-actions {
+  margin-top: auto;
+  position: sticky;
+  bottom: 0;
+}
+
+.base-card-logo {
+  width: 100px;
+}
+
+.base-header-button {
+  align-self: center;
+}

@@ -22,6 +22,7 @@ import { messageError, messageSuccess } from "../../shared/messages";
 import "./character-details.component.css";
 import { GeneralComponent } from "./components/general/general.component";
 import { SkillsComponent } from "./components/skills/skills.component";
+import { HttpStatusEnum } from "../../enum/http-status.enum";
 
 enum StepsEnum {
   GENERAL,
@@ -41,7 +42,7 @@ export function CharacterDetailsComponent() {
 
   useEffect(() => {
     if (typeof id !== "string") {
-      navigate("/home");
+      navigate("/character/list");
     }
     setLoading(true);
     const storeChar = list.find((c) => c.id === id);
@@ -56,9 +57,16 @@ export function CharacterDetailsComponent() {
           setCharacter(data);
           dispatch(addCharacterDetails(data));
         })
-        .catch(() => {
-          messageError("ID inválido! Redirecionando para página inicial");
-          navigate("/home");
+        .catch((ex) => {
+          const {
+            response: { status },
+          } = ex;
+          if (status === HttpStatusEnum.FORBIDDEN) {
+            messageError("Operação não autorizada!");
+          } else {
+            messageError("ID inválido!");
+          }
+          navigate("/character/list");
         })
         .finally(() => setLoading(false));
     }
@@ -70,7 +78,7 @@ export function CharacterDetailsComponent() {
       deleteCharacter(id)
         .then(() => {
           messageSuccess("Personagem deletado com sucesso!");
-          navigate("/home");
+          navigate("/character/list");
         })
         .catch((ex) => {
           console.error(ex);
@@ -89,7 +97,7 @@ export function CharacterDetailsComponent() {
             type="text"
             icon={<LeftOutlined />}
             style={{ color: ColorsEnum.DARK_GRAY }}
-            onClick={() => navigate("/home")}
+            onClick={() => navigate("/character/list")}
           >
             Voltar
           </Button>

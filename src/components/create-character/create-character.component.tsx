@@ -43,7 +43,7 @@ function CreateCharacterHeader(props: Props) {
           disabled={disableCancel}
           icon={<LeftOutlined />}
           onClick={() => {
-            navigate("/home");
+            navigate("/character/list");
           }}
         >
           Cancelar
@@ -67,7 +67,7 @@ export function CreateCharacterComponent() {
     setLoading(true);
     createCharacter(values)
       .then(() => {
-        navigate("/home");
+        navigate("/character/list");
       })
       .catch((ex) => {
         const {
@@ -75,7 +75,7 @@ export function CreateCharacterComponent() {
         } = ex;
         if (status === HttpStatusEnum.UNAUTHORIZED) {
           messageError("Sessão expirada, favor logar novamente");
-          navigate("/home");
+          navigate("/character/list");
         } else {
           messageError("Falha ao criar personagem. Tente novamente mais tarde");
         }
