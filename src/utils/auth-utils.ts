@@ -1,3 +1,4 @@
+import { RolesEnum } from "../enum/roles.enum";
 import { User } from "../interfaces/user.interface";
 
 function parseJwt(token: string) {
@@ -54,4 +55,13 @@ export function retrieveExpire() {
   } catch (e) {
     return 0;
   }
+}
+
+export function hasRoles(requiredRoles: RolesEnum[] = []): boolean {
+  const user = retrieveUser();
+  if (!user) return false;
+  if (requiredRoles.length > 0) {
+    return user.roles.some((r) => requiredRoles.includes(r));
+  }
+  return true;
 }

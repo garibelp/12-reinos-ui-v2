@@ -8,15 +8,27 @@ import { CreateCharacterComponent } from "./components/create-character/create-c
 import { HomeComponent } from "./components/home/home.component";
 import { SignUpComponent } from "./components/sign-up/sign-up.component";
 import { SignInComponent } from "./components/signin/sign-in.component";
-import { isUserAuthenticated } from "./utils/auth-utils";
+import { hasRoles, isUserAuthenticated } from "./utils/auth-utils";
+import { RolesEnum } from "./enum/roles.enum";
+import { messageError } from "./shared/messages";
 
 const { Content } = Layout;
 
 // @ts-ignore
-export const ProtectedRoute = ({ children }): ReactElement => {
+export const ProtectedRoute = ({
+  children,
+  roles,
+}: {
+  children: ReactElement;
+  roles?: RolesEnum[];
+}): ReactElement => {
   if (!isUserAuthenticated()) {
     // user is not authenticated
     return <Navigate to="/signin" />;
+  }
+  if (!hasRoles(roles)) {
+    messageError("Permissao inválida! Redirecionando para página inicial");
+    return <Navigate to="/home" />;
   }
   return children;
 };

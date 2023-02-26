@@ -1,8 +1,8 @@
-export type Role = "ROLE_USER" | "ROLE_ADMIN";
+import { RolesEnum } from "../enum/roles.enum";
 
 export interface User {
   id: string | null;
   username: string | null;
   email: string | null;
-  roles: Role[];
+  roles: RolesEnum[];
 }
