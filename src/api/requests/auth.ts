@@ -30,5 +30,5 @@ export function signUp(
 export function logout(): void {
   localStorage.removeItem("jwt");
   localStorage.removeItem("user");
-  document.location.href = "/sign-in";
+  document.location.href = "/signin";
 }

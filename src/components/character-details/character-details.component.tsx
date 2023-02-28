@@ -18,11 +18,11 @@ import { useAppSelector } from "../../redux/hooks";
 import { addCharacterDetails } from "../../redux/slices/character.slice";
 import { RootState } from "../../redux/store";
 import { messageError, messageSuccess } from "../../shared/messages";
-
-import "./character-details.component.css";
 import { GeneralComponent } from "./components/general/general.component";
 import { SkillsComponent } from "./components/skills/skills.component";
 import { HttpStatusEnum } from "../../enum/http-status.enum";
+
+import "./character-details.component.css";
 
 enum StepsEnum {
   GENERAL,

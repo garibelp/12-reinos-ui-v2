@@ -1,0 +1,12 @@
+.dark-grey h3,
+.dark-grey div {
+  color: #47525e;
+}
+
+.dark-grey h3 {
+  font-weight: bold;
+}
+
+.campaign-char-attr-icon {
+  width: 36px;
+}

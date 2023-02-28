@@ -51,9 +51,6 @@ export function SignUpComponent() {
             <LogoComponent className="sign-up-card-header-icon" />
           </Col>
           <Col span={24}>
-            <b style={{ color: "#47525E" }}>12 Reinos</b>
-          </Col>
-          <Col span={24}>
             <small style={{ color: "#8190A5" }}>
               O sistema de RPG oficial do Sindicato do RPG.
             </small>
@@ -76,7 +73,7 @@ export function SignUpComponent() {
               type="primary"
               htmlType="submit"
             >
-              Login
+              Criar
             </Button>
           </Item>,
         ]}

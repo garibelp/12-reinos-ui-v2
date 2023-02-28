@@ -1,33 +1,29 @@
 .create-character-wrapper {
-    margin: auto;
-    max-height: 100%;
-    width: 100%;
-    max-width: 600px;
-    overflow: auto;
+  margin: auto;
+  max-height: 100%;
+  width: 100%;
+  max-width: 600px;
+  overflow: auto;
 }
 
 .create-character-card {
-    min-width: 320px;
-    width: 100%;
-    margin: auto;
+  min-width: 320px;
+  width: 100%;
+  margin: auto;
 }
 
 .create-character-card > .ant-card-actions {
-    position: sticky;
-    bottom: 0;
+  position: sticky;
+  bottom: 0;
 }
 
 .return-button {
-    color: #8190A5 !important;
-    padding: 0 !important;
+  color: #8190a5 !important;
+  padding: 0 !important;
 }
 
 .create-character-step {
-    color: #8190A5;
-    text-align: end;
-    align-self: center;
+  color: #8190a5;
+  text-align: end;
+  align-self: center;
 }
-
-.create-character-card-header {
-}
-

@@ -14,6 +14,7 @@ import { messageError } from "./shared/messages";
 import { HomeComponent } from "./components/home/home.component";
 import { CampaignListComponent } from "./components/campaign-list/campaign-list.component";
 import { CreateCampaignComponent } from "./components/create-campaign/create-campaign.component";
+import { CampaignDetailsComponent } from "./components/campaign-details/campaign-details.component";
 
 const { Content } = Layout;
 
@@ -88,6 +89,14 @@ function AppComponent() {
             element={
               <ProtectedRoute roles={[RolesEnum.ROLE_GM, RolesEnum.ROLE_ADMIN]}>
                 <CreateCampaignComponent />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/campaign/:id"
+            element={
+              <ProtectedRoute>
+                <CampaignDetailsComponent />
               </ProtectedRoute>
             }
           />

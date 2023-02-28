@@ -1,6 +1,9 @@
 import { Col, Modal, Row } from "antd";
 import { useEffect, useState } from "react";
+
 import { retrieveExpire, retrieveUser } from "../../../../utils/auth-utils";
+import packageInfo from "../../../../../package.json";
+
 import "./settings.componen.css";
 
 interface Props {
@@ -53,6 +56,12 @@ export function SettingsComponent(props: Props) {
               <b>Expires:</b>
             </Col>
             <Col span={12}>{expire}</Col>
+          </Row>
+          <Row>
+            <Col span={12}>
+              <b>Versão:</b>
+            </Col>
+            <Col span={12}>{packageInfo.version}</Col>
           </Row>
         </>
       )}

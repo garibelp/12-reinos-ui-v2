@@ -3,6 +3,7 @@ import { ArrowLeftOutlined, FileAddOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 
 import { BaseCardComponent } from "../../shared/components/base-card/base-card.component";
+import { CampaignTableComponent } from "./components/campaign-table/campaign-table.component";
 
 import "./campaign-list.component.css";
 
@@ -10,6 +11,7 @@ export function CampaignListComponent() {
   const navigate = useNavigate();
   return (
     <BaseCardComponent
+      className="campaign-list"
       leftButton={
         <Tooltip placement="bottom" title="Voltar">
           <Button
@@ -34,6 +36,7 @@ export function CampaignListComponent() {
           />
         </Tooltip>
       }
+      cardBody={<CampaignTableComponent />}
     />
   );
 }

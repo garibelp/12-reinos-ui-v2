@@ -1,5 +1,8 @@
 import { Form } from "antd";
-import { TransitionalInputComponent } from "../transactional-input/transitional-input.component";
+import {
+  TransactionalInputType,
+  TransitionalInputComponent,
+} from "../transactional-input/transitional-input.component";
 
 const { Item } = Form;
 
@@ -51,7 +54,10 @@ export function PasswordInputComponent({
       rules={[...rules, ...extraRules]}
       dependencies={dependencies}
     >
-      <TransitionalInputComponent placeholder={placeholder} type="password" />
+      <TransitionalInputComponent
+        placeholder={placeholder}
+        type={TransactionalInputType.PASSWORD}
+      />
     </Item>
   );
 }

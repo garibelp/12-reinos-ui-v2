@@ -1,0 +1,13 @@
+.create-campaign-wrapper {
+  margin: auto;
+  max-height: 100%;
+  width: 100%;
+  max-width: 600px;
+  overflow: auto;
+}
+
+.create-campaign-title {
+  color: #8190a5;
+  text-align: center;
+  align-self: center;
+}

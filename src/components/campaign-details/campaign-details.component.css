@@ -1,0 +1,27 @@
+.campaign-details-body > .ant-card > .ant-card-body {
+  padding: 0;
+}
+
+.campaign-details-spacer,
+.campaign-details-spacer > .ant-space-item {
+  width: 100%;
+}
+
+.campaign-details-title {
+  background: #e5e9f2;
+  padding: 12px;
+  margin-bottom: 6px;
+}
+
+.campaign-details-title h1 {
+  color: #47525e;
+  margin: 0;
+}
+
+.campaign-details-divider {
+  margin: 12px 0 !important;
+}
+
+.last-element {
+  margin-bottom: 12px;
+}

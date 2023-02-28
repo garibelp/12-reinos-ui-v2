@@ -57,3 +57,13 @@ export interface UpdateAttributePayload {
   physicalCurrent: number;
   heroismCurrent: number;
 }
+
+export interface CampaignCharacter extends IdName {
+  level: number;
+  mentalCurrent: number;
+  mentalTotal: number;
+  physicalCurrent: number;
+  physicalTotal: number;
+  lineage: string;
+  background: string;
+}

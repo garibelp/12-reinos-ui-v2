@@ -10,11 +10,13 @@ import api from "../api";
 export function getCharactersPaginated(
   usePlayerProfile: boolean,
   pageSize?: number,
-  currentPage?: number
+  currentPage?: number,
+  nameFilter?: string
 ): Promise<AxiosResponse<CharacterPaginated>> {
   return api.get<CharacterPaginated>("/sheets/list", {
     params: {
       pageSize,
+      nameFilter,
       currentPage,
       usePlayerProfile,
     },
