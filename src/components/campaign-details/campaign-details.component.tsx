@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Button, Divider, Space, Tooltip } from "antd";
-import { ArrowLeftOutlined, ReloadOutlined } from "@ant-design/icons";
+import { Button, Divider, Popconfirm, Space, Tooltip } from "antd";
+import {
+  ArrowLeftOutlined,
+  DeleteOutlined,
+  ReloadOutlined,
+} from "@ant-design/icons";
 
-import { getCampaignDetails } from "../../api/requests/campaign";
+import {
+  deleteCampaign,
+  getCampaignDetails,
+} from "../../api/requests/campaign";
 import { HttpStatusEnum } from "../../enum/http-status.enum";
-import { messageError } from "../../shared/messages";
+import { messageError, messageSuccess } from "../../shared/messages";
 import { DetailedCampaign } from "../../interfaces/campaign.interface";
 import { BaseCardComponent } from "../../shared/components/base-card/base-card.component";
 import { CampaignCharacterComponent } from "./components/campaign-character/campaign-character.component";
@@ -16,6 +23,7 @@ export function CampaignDetailsComponent() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [campaign, setCampaign] = useState<DetailedCampaign | null>(null);
+  const [openDeleteConfirm, setOpenDeleteConfirm] = useState(false);
   const { id } = useParams<{ id: string | undefined }>();
 
   function fetchCampaignDetails() {
@@ -43,6 +51,23 @@ export function CampaignDetailsComponent() {
       .finally(() => setLoading(false));
   }
 
+  function handleDelete() {
+    setLoading(true);
+    // @ts-ignore
+    deleteCampaign(id)
+      .then(() => {
+        messageSuccess("Mesa deletada com sucesso!");
+        navigate("/campaign/list");
+      })
+      .catch(() => {
+        messageError("Falha ao tentar deletar mesa");
+      })
+      .finally(() => {
+        setOpenDeleteConfirm(false);
+        setLoading(false);
+      });
+  }
+
   useEffect(() => {
     fetchCampaignDetails();
   }, []);
@@ -64,17 +89,44 @@ export function CampaignDetailsComponent() {
         </Tooltip>
       }
       rightButton={
-        <Tooltip placement="bottom" title="Atualizar">
-          <Button
-            type="primary"
-            shape="circle"
-            loading={loading}
-            onClick={() => {
-              fetchCampaignDetails();
-            }}
-            icon={<ReloadOutlined />}
-          />
-        </Tooltip>
+        <Space size="small" direction="vertical">
+          <Tooltip placement="bottom" title="Deletar">
+            <Popconfirm
+              title="Deletar mesa?"
+              open={openDeleteConfirm}
+              okText="Confirmar"
+              cancelText="Cancelar"
+              cancelButtonProps={{ color: "red" }}
+              okButtonProps={{ loading: loading }}
+              onConfirm={handleDelete}
+              onCancel={() => {
+                setOpenDeleteConfirm(false);
+              }}
+            >
+              <Button
+                type="primary"
+                danger
+                shape="circle"
+                loading={loading}
+                onClick={() => {
+                  setOpenDeleteConfirm(true);
+                }}
+                icon={<DeleteOutlined />}
+              />
+            </Popconfirm>
+          </Tooltip>
+          <Tooltip placement="bottom" title="Atualizar">
+            <Button
+              type="primary"
+              shape="circle"
+              loading={loading}
+              onClick={() => {
+                fetchCampaignDetails();
+              }}
+              icon={<ReloadOutlined />}
+            />
+          </Tooltip>
+        </Space>
       }
       cardBody={
         <Space

@@ -41,3 +41,13 @@ export function getCampaignDetails(
     },
   });
 }
+
+export function deleteCampaign(
+  id: string
+): Promise<AxiosResponse<{ message: string }>> {
+  return api.delete<{ message: string }>(`/campaigns/${id}`, {
+    headers: {
+      authorization: "Bearer " + localStorage.getItem("jwt"),
+    },
+  });
+}
