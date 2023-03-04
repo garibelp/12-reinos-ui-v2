@@ -7,4 +7,7 @@ export enum ColorsEnum {
   CELERITY = "#FFC82C",
   TENACITY = "#F95F62",
   BASIC_ATTACK = "#A54BFF",
+  RED = "red",
+  YELLOW = "yellow",
+  GREEN = "green",
 }

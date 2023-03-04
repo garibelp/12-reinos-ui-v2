@@ -24,3 +24,7 @@
   border-bottom-left-radius: 15px !important;
   border-bottom-right-radius: 15px !important;
 }
+
+.ant-divider-horizontal {
+  margin: 12px 0 !important;
+}

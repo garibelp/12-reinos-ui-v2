@@ -67,3 +67,9 @@ export interface CampaignCharacter extends IdName {
   lineage: string;
   background: string;
 }
+
+export interface CampaignCharacterEdit extends CampaignCharacter {
+  initial: boolean;
+  addedChar: boolean;
+  removedChar: boolean;
+}

@@ -16,6 +16,7 @@ import { CreateCampaignComponent } from "./components/campaign/create-campaign/c
 import { CampaignDetailsComponent } from "./components/campaign/campaign-details/campaign-details.component";
 
 import "./app.component.css";
+import { EditCampaignComponent } from "./components/campaign/edit-campaign/edit-campaign.component";
 
 const { Content } = Layout;
 
@@ -96,8 +97,16 @@ function AppComponent() {
           <Route
             path="/campaign/:id"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute roles={[RolesEnum.ROLE_GM, RolesEnum.ROLE_ADMIN]}>
                 <CampaignDetailsComponent />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/campaign/edit/:id"
+            element={
+              <ProtectedRoute roles={[RolesEnum.ROLE_GM, RolesEnum.ROLE_ADMIN]}>
+                <EditCampaignComponent />
               </ProtectedRoute>
             }
           />

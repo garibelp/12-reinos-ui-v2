@@ -1,0 +1,17 @@
+.edit-campaign-body > .ant-card > .ant-card-body {
+  padding: 0;
+}
+
+.last-element {
+  margin-bottom: 12px;
+}
+
+.disabled {
+  background-color: lightgray;
+}
+
+.edit-campaign-add {
+  height: 56px;
+  background: #e5e9f2;
+  margin-bottom: 12px;
+}

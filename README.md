@@ -1,54 +1,57 @@
-# Getting Started with Create React AppComponent
+# Twelve Kingdoms UI
 
-This project was bootstrapped with [Create React AppComponent](https://github.com/facebook/create-react-app), using
-the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+Frontend Application for RPG System 12 Kingdoms V2
 
-## Available Scripts
+## Requirements
 
-In the project directory, you can run:
+For building and running the application you need:
 
-### `yarn start`
+- [Nodejs + npm](https://nodejs.org/)
+- [Yarn](https://yarnpkg.com/)
+- Backend application running
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Executing the project
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+In the project's directory, install the dependencies with `yarn`
 
-### `yarn test`
+```shell
+$ yarn install
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more
-information.
+When running locally, it's necessary to specify the local backend's URL.\
+First, create a `.env` file at the root directory:
 
-### `yarn build`
+```shell
+$ touch .env
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Inside the `.env` file, set the variable with the local backend's endpoint:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```shell
+# Add the base url of the backend (if executed locally without any changes to the port, use the info bellow)
+REACT_APP_BACKEND_URL=http://localhost:8080
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Then, run the project in development mode. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### `yarn eject`
+```shell
+$ yarn start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+The page will reload if you make edits. You will also see any lint errors in the console.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will
-remove the single build dependency from your project.
+## Versions changelog
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right
-into your project so you have full control over them. All of the commands except `eject` will still work, but they will
-point to the copied scripts so you can tweak them. At this point you’re on your own.
+### - Release 1.1.0
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you
-shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t
-customize it when you are ready for it.
+- Added dungeon master role
+- Added campaign CRUD support
 
-## Learn More
+### - Release 1.0.0
 
-You can learn more in
-the [Create React AppComponent documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- User signin/signup
+- Added the character CRUD
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Trello Board
+
+- [12 Kingdoms](https://trello.com/b/wKoZUTPq/12-reinos-v2)

@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Button, Divider, Popconfirm, Space, Tooltip } from "antd";
+import { Button, Col, Divider, Popconfirm, Row, Space, Tooltip } from "antd";
 import {
   ArrowLeftOutlined,
   DeleteOutlined,
+  EditOutlined,
   ReloadOutlined,
 } from "@ant-design/icons";
 
@@ -15,7 +16,7 @@ import { HttpStatusEnum } from "../../../enum/http-status.enum";
 import { messageError, messageSuccess } from "../../../shared/messages";
 import { DetailedCampaign } from "../../../interfaces/campaign.interface";
 import { BaseCardComponent } from "../../../shared/components/base-card/base-card.component";
-import { CampaignCharacterComponent } from "./components/campaign-character/campaign-character.component";
+import { CampaignCharacterComponent } from "../shared/campaign-character/campaign-character.component";
 
 import "./campaign-details.component.css";
 
@@ -68,6 +69,10 @@ export function CampaignDetailsComponent() {
       });
   }
 
+  function handleEdit() {
+    navigate(`/campaign/edit/${id}`);
+  }
+
   useEffect(() => {
     fetchCampaignDetails();
   }, []);
@@ -89,44 +94,17 @@ export function CampaignDetailsComponent() {
         </Tooltip>
       }
       rightButton={
-        <Space size="small" direction="vertical">
-          <Tooltip placement="bottom" title="Deletar">
-            <Popconfirm
-              title="Deletar mesa?"
-              open={openDeleteConfirm}
-              okText="Confirmar"
-              cancelText="Cancelar"
-              cancelButtonProps={{ color: "red" }}
-              okButtonProps={{ loading: loading }}
-              onConfirm={handleDelete}
-              onCancel={() => {
-                setOpenDeleteConfirm(false);
-              }}
-            >
-              <Button
-                type="primary"
-                danger
-                shape="circle"
-                loading={loading}
-                onClick={() => {
-                  setOpenDeleteConfirm(true);
-                }}
-                icon={<DeleteOutlined />}
-              />
-            </Popconfirm>
-          </Tooltip>
-          <Tooltip placement="bottom" title="Atualizar">
-            <Button
-              type="primary"
-              shape="circle"
-              loading={loading}
-              onClick={() => {
-                fetchCampaignDetails();
-              }}
-              icon={<ReloadOutlined />}
-            />
-          </Tooltip>
-        </Space>
+        <Tooltip placement="bottom" title="Atualizar">
+          <Button
+            type="primary"
+            shape="circle"
+            loading={loading}
+            onClick={() => {
+              fetchCampaignDetails();
+            }}
+            icon={<ReloadOutlined />}
+          />
+        </Tooltip>
       }
       cardBody={
         <Space
@@ -134,9 +112,48 @@ export function CampaignDetailsComponent() {
           align="center"
           direction="vertical"
         >
-          <div className="campaign-details-title">
-            <h1>Mesa: {campaign?.name}</h1>
-          </div>
+          <Row justify="space-between" className="campaign-details-title">
+            <Col span={3}>
+              <Tooltip placement="bottom" title="Deletar">
+                <Popconfirm
+                  title="Deletar mesa?"
+                  open={openDeleteConfirm}
+                  okText="Confirmar"
+                  cancelText="Cancelar"
+                  cancelButtonProps={{ color: "red" }}
+                  okButtonProps={{ loading: loading }}
+                  onConfirm={handleDelete}
+                  onCancel={() => {
+                    setOpenDeleteConfirm(false);
+                  }}
+                >
+                  <Button
+                    type="primary"
+                    danger
+                    shape="circle"
+                    loading={loading}
+                    onClick={() => {
+                      setOpenDeleteConfirm(true);
+                    }}
+                    icon={<DeleteOutlined />}
+                  />
+                </Popconfirm>
+              </Tooltip>
+            </Col>
+            <Col span={18}>
+              <h1>Mesa: {campaign?.name}</h1>
+            </Col>
+            <Col span={3}>
+              <Tooltip placement="bottom" title="Editar">
+                <Button
+                  type="primary"
+                  shape="circle"
+                  icon={<EditOutlined />}
+                  onClick={handleEdit}
+                />
+              </Tooltip>
+            </Col>
+          </Row>
           <div>
             {campaign?.sheets.map((s, i) => (
               <div
@@ -146,9 +163,7 @@ export function CampaignDetailsComponent() {
                 }`}
               >
                 <CampaignCharacterComponent character={s} />
-                {i !== campaign?.sheets.length - 1 && (
-                  <Divider className="campaign-details-divider" />
-                )}
+                {i !== campaign?.sheets.length - 1 && <Divider />}
               </div>
             ))}
           </div>
