@@ -2,19 +2,20 @@ import { Layout } from "antd";
 import { ReactElement } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import "./app.component.css";
-import { CharacterDetailsComponent } from "./components/character-details/character-details.component";
-import { CreateCharacterComponent } from "./components/create-character/create-character.component";
-import { CharacterListComponent } from "./components/character-list/character-list.component";
-import { SignUpComponent } from "./components/sign-up/sign-up.component";
+import { CharacterDetailsComponent } from "./components/character/character-details/character-details.component";
+import { CreateCharacterComponent } from "./components/character/create-character/create-character.component";
+import { CharacterListComponent } from "./components/character/character-list/character-list.component";
+import { SignUpComponent } from "./components/signup/sign-up.component";
 import { SignInComponent } from "./components/signin/sign-in.component";
 import { hasRoles, isUserAuthenticated } from "./utils/auth-utils";
 import { RolesEnum } from "./enum/roles.enum";
 import { messageError } from "./shared/messages";
 import { HomeComponent } from "./components/home/home.component";
-import { CampaignListComponent } from "./components/campaign-list/campaign-list.component";
-import { CreateCampaignComponent } from "./components/create-campaign/create-campaign.component";
-import { CampaignDetailsComponent } from "./components/campaign-details/campaign-details.component";
+import { CampaignListComponent } from "./components/campaign/campaign-list/campaign-list.component";
+import { CreateCampaignComponent } from "./components/campaign/create-campaign/create-campaign.component";
+import { CampaignDetailsComponent } from "./components/campaign/campaign-details/campaign-details.component";
+
+import "./app.component.css";
 
 const { Content } = Layout;
 
