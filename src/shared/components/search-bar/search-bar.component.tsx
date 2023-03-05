@@ -48,7 +48,7 @@ export function SearchBarComponent({
         showSearch
         value={null}
         style={{ width: "100%" }}
-        placeholder="Buscar nome de personagem (Case-Sensitive)"
+        placeholder="Buscar nome de personagem"
         defaultActiveFirstOption={false}
         showArrow={false}
         filterOption={false}
