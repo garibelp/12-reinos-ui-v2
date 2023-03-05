@@ -58,6 +58,12 @@ export interface UpdateAttributePayload {
   heroismCurrent: number;
 }
 
+export interface CampaignCharacterEdit extends IdName {
+  lineage: string;
+  initial: boolean;
+  removedChar: boolean;
+}
+
 export interface CampaignCharacter extends IdName {
   level: number;
   mentalCurrent: number;
@@ -66,10 +72,4 @@ export interface CampaignCharacter extends IdName {
   physicalTotal: number;
   lineage: string;
   background: string;
-}
-
-export interface CampaignCharacterEdit extends CampaignCharacter {
-  initial: boolean;
-  addedChar: boolean;
-  removedChar: boolean;
 }

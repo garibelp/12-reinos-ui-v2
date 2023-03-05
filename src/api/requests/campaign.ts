@@ -51,3 +51,33 @@ export function deleteCampaign(
     },
   });
 }
+
+export function removeSheets(
+  id: string,
+  sheetsIds: string[]
+): Promise<AxiosResponse<{ message: string }>> {
+  return api.patch<{ message: string }>(
+    `/campaigns/removeSheets/${id}`,
+    { idList: sheetsIds },
+    {
+      headers: {
+        authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
+    }
+  );
+}
+
+export function addSheets(
+  id: string,
+  sheetsIds: string[]
+): Promise<AxiosResponse<{ message: string }>> {
+  return api.patch<{ message: string }>(
+    `/campaigns/addSheets/${id}`,
+    { idList: sheetsIds },
+    {
+      headers: {
+        authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
+    }
+  );
+}

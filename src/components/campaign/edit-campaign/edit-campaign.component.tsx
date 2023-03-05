@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Button, Col, Divider, Row, Tooltip } from "antd";
+import { Button, Col, Divider, Popconfirm, Row, Tooltip } from "antd";
 import {
   CloseOutlined,
   DeleteOutlined,
@@ -9,20 +9,40 @@ import {
   UndoOutlined,
 } from "@ant-design/icons";
 
-import { messageError, messageWarning } from "../../../shared/messages";
+import {
+  messageError,
+  messageSuccess,
+  messageWarning,
+} from "../../../shared/messages";
 import { HttpStatusEnum } from "../../../enum/http-status.enum";
-import { CampaignCharacterEdit } from "../../../interfaces/character.interface";
-import { getCampaignDetails } from "../../../api/requests/campaign";
+import {
+  BasicCharacter,
+  CampaignCharacterEdit,
+} from "../../../interfaces/character.interface";
+import {
+  addSheets,
+  getCampaignDetails,
+  removeSheets,
+} from "../../../api/requests/campaign";
 import { BaseCardComponent } from "../../../shared/components/base-card/base-card.component";
-import { CampaignCharacterComponent } from "../shared/campaign-character/campaign-character.component";
 
 import "./edit-campaign.component.css";
+import { SearchBarComponent } from "../../../shared/components/search-bar/search-bar.component";
+import { getCharactersPaginated } from "../../../api/requests/character";
 
 export function EditCampaignComponent() {
   const navigate = useNavigate();
+  const [isSearchBarVisible, setSearchBarVisible] = useState(false);
+  const [isSaveConfirmVisible, setSaveConfirmVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const [characters, setCharacters] = useState<CampaignCharacterEdit[]>([]);
+  const [searchList, setSearchList] = useState<BasicCharacter[]>([]);
   const { id } = useParams<{ id: string | undefined }>();
+
+  const hasChanges =
+    characters.filter(
+      (c) => (c.removedChar && c.initial) || (!c.initial && !c.removedChar)
+    ).length > 0;
 
   function fetchCampaignDetails() {
     if (typeof id !== "string") {
@@ -38,7 +58,6 @@ export function EditCampaignComponent() {
         setCharacters(
           sheets.map((s) => ({
             ...s,
-            addedChar: false,
             removedChar: false,
             initial: true,
           }))
@@ -67,31 +86,55 @@ export function EditCampaignComponent() {
   }
 
   function handleSave() {
-    messageWarning("Função ainda não implementada.");
+    const charsToRemove = characters
+      .filter((c) => c.removedChar && c.initial)
+      .map((c) => c.id);
+    const charsToAdd = characters
+      .filter((c) => !c.removedChar && !c.initial)
+      .map((c) => c.id);
+
+    Promise.all([
+      id && charsToAdd.length > 0 && addSheets(id, charsToAdd),
+      id && charsToRemove.length > 0 && removeSheets(id, charsToRemove),
+    ])
+      .then(() => {
+        messageSuccess("Mesa atualizada com sucesso!");
+        handleRedirect();
+      })
+      .catch((ex) => {
+        messageError("Ocorreu um erro durante atualização de mesa: " + ex);
+      });
   }
 
-  function handleAdd() {
-    messageWarning("Função ainda não implementada.");
-  }
-
-  function handleRemove(id: string) {
-    const char = characters.find((c) => c.id === id);
-
-    if (char?.addedChar) {
-      setCharacters(characters.filter((c) => c.id !== id));
-    } else {
+  function handleAddSelect(value: string) {
+    const char = searchList.find((s) => s.id === value);
+    if (char) {
       setCharacters(
-        characters.map((c) => {
-          if (c.id === id) {
-            c.removedChar = true;
-          }
-          return c;
+        characters.concat({
+          id: char.id,
+          name: char.name,
+          lineage: char.lineage,
+          initial: false,
+          removedChar: false,
         })
       );
     }
+    setSearchBarVisible(false);
+    setSearchList([]);
   }
 
-  function handleCancelRemove(id: string) {
+  function handleRemove(id: string) {
+    setCharacters(
+      characters.map((c) => {
+        if (c.id === id) {
+          c.removedChar = true;
+        }
+        return c;
+      })
+    );
+  }
+
+  function handleUndoRemove(id: string) {
     setCharacters(
       characters.map((c) => {
         if (c.id === id) {
@@ -100,6 +143,22 @@ export function EditCampaignComponent() {
         return c;
       })
     );
+  }
+
+  function onSearch(value: string) {
+    if (value.length < 4) {
+      messageWarning("Necessário mínimo de 4 caracteres para busca");
+    } else {
+      setLoading(true);
+      getCharactersPaginated(false, 10, 0, value)
+        .then((res) => {
+          const {
+            data: { list },
+          } = res;
+          setSearchList(list);
+        })
+        .finally(() => setLoading(false));
+    }
   }
 
   function EditCampaignBody() {
@@ -111,7 +170,7 @@ export function EditCampaignComponent() {
           className={`${c.removedChar && "disabled"}`}
         >
           <Col span={20}>
-            <CampaignCharacterComponent character={c} />
+            {c.name} - {c.lineage}
           </Col>
           <Col span={4}>
             {!c.removedChar ? (
@@ -130,7 +189,7 @@ export function EditCampaignComponent() {
                 shape="circle"
                 icon={<UndoOutlined />}
                 onClick={() => {
-                  handleCancelRemove(c.id);
+                  handleUndoRemove(c.id);
                 }}
               />
             )}
@@ -142,8 +201,19 @@ export function EditCampaignComponent() {
 
     return (
       <>
-        <Row align="middle" justify="center" className="edit-campaign-add">
-          <Button type="primary" icon={<PlusOutlined />} onClick={handleAdd}>
+        <Row
+          align="middle"
+          key="edit-campaign-add"
+          justify="center"
+          className="edit-campaign-add"
+        >
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={() => {
+              setSearchBarVisible(true);
+            }}
+          >
             Adicionar
           </Button>
         </Row>
@@ -153,32 +223,62 @@ export function EditCampaignComponent() {
   }
 
   return (
-    <BaseCardComponent
-      className="edit-campaign-body"
-      leftButton={
-        <Tooltip placement="bottom" title="Cancelar">
-          <Button
-            type="primary"
-            shape="circle"
-            danger
-            onClick={handleRedirect}
-            loading={loading}
-            icon={<CloseOutlined />}
-          />
-        </Tooltip>
-      }
-      rightButton={
-        <Tooltip placement="bottom" title="Salvar">
-          <Button
-            type="primary"
-            shape="circle"
-            onClick={handleSave}
-            loading={loading}
-            icon={<SaveOutlined />}
-          />
-        </Tooltip>
-      }
-      cardBody={<EditCampaignBody />}
-    />
+    <>
+      <SearchBarComponent
+        key="edit-campaign-search"
+        setModalVisible={setSearchBarVisible}
+        isModalVisible={isSearchBarVisible}
+        loading={loading}
+        onSearch={onSearch}
+        selectedList={characters}
+        handleSelect={handleAddSelect}
+        searchList={searchList}
+        setSearchList={setSearchList}
+      />
+      <BaseCardComponent
+        className="edit-campaign-body"
+        key="edit-campaign-body"
+        leftButton={
+          <Tooltip placement="bottom" title="Cancelar">
+            <Button
+              type="primary"
+              shape="circle"
+              danger
+              onClick={handleRedirect}
+              loading={loading}
+              icon={<CloseOutlined />}
+            />
+          </Tooltip>
+        }
+        rightButton={
+          <Tooltip placement="bottom" title="Salvar">
+            <Popconfirm
+              title="Salvar alterações?"
+              open={isSaveConfirmVisible}
+              okText="Confirmar"
+              cancelText="Cancelar"
+              cancelButtonProps={{ color: "red" }}
+              okButtonProps={{ loading: loading }}
+              onConfirm={handleSave}
+              onCancel={() => {
+                setSaveConfirmVisible(false);
+              }}
+            >
+              <Button
+                type="primary"
+                shape="circle"
+                onClick={() => {
+                  setSaveConfirmVisible(true);
+                }}
+                loading={loading}
+                disabled={!hasChanges}
+                icon={<SaveOutlined />}
+              />
+            </Popconfirm>
+          </Tooltip>
+        }
+        cardBody={<EditCampaignBody />}
+      />
+    </>
   );
 }
