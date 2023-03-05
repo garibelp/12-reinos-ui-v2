@@ -19,7 +19,11 @@ import { UpdateAttributePayload } from "../../../../../interfaces/character.inte
 import { Skill } from "../../../../../interfaces/skill.interface";
 import { updateCurrentPoints } from "../../../../../redux/slices/character.slice";
 import { CircleButtonComponent } from "../../../../../shared/components/circle-button/circle-button.component";
-import { messageError } from "../../../../../shared/messages";
+import {
+  messageError,
+  messageSuccess,
+  messageWarning,
+} from "../../../../../shared/messages";
 import { getEnumKey } from "../../../../../utils/enum-utils";
 
 import "./general.component.css";
@@ -90,54 +94,65 @@ export function GeneralComponent(props: Props) {
     setHeroismCurrent(initHeroismCurrent);
   }, []);
 
-  // Hook to autosave current attributes
   useEffect(() => {
-    const interval = setInterval(() => {
+    const updateData = setTimeout(() => {
       if (id) {
-        console.info("Triggering auto save");
         const data: UpdateAttributePayload = {
           mentalCurrent,
           physicalCurrent,
           heroismCurrent,
         };
+        messageWarning("Salvando atualizações de personagem...");
         updateAttributes(id, data)
           .then(() => {
             dispatch(updateCurrentPoints({ id, data }));
+            messageSuccess("Atualizações salvas com sucesso!");
           })
           .catch((ex) => {
             console.error(ex);
             messageError(
-              "Ocorreu um erro durante salvamento automático. Favor atualizar a página"
+              "Ocorreu um erro durante salvamento automático. Favor atualizar a página!"
             );
           });
       }
-    }, 900000); // 600000 -> 10min
-    return () => clearInterval(interval);
-  }, [id, mentalCurrent, physicalCurrent, heroismCurrent]);
+    }, 5000);
+    return () => clearTimeout(updateData);
+  }, [mentalCurrent, physicalCurrent, heroismCurrent]);
 
   function reduceMental() {
-    if (mentalCurrent > 0) setMentalCurrent(mentalCurrent - 1);
+    if (mentalCurrent > 0) {
+      setMentalCurrent(mentalCurrent - 1);
+    }
   }
 
   function increaseMental() {
-    if (mentalCurrent < mentalTotal) setMentalCurrent(mentalCurrent + 1);
+    if (mentalCurrent < mentalTotal) {
+      setMentalCurrent(mentalCurrent + 1);
+    }
   }
 
   function reducePhysical() {
-    if (physicalCurrent > 0) setPhysicalCurrent(physicalCurrent - 1);
+    if (physicalCurrent > 0) {
+      setPhysicalCurrent(physicalCurrent - 1);
+    }
   }
 
   function increasePhysical() {
-    if (physicalCurrent < physicalTotal)
+    if (physicalCurrent < physicalTotal) {
       setPhysicalCurrent(physicalCurrent + 1);
+    }
   }
 
   function reduceHeroism() {
-    if (heroismCurrent > 0) setHeroismCurrent(heroismCurrent - 1);
+    if (heroismCurrent > 0) {
+      setHeroismCurrent(heroismCurrent - 1);
+    }
   }
 
   function increaseHeroism() {
-    if (heroismCurrent < heroismTotal) setHeroismCurrent(heroismCurrent + 1);
+    if (heroismCurrent < heroismTotal) {
+      setHeroismCurrent(heroismCurrent + 1);
+    }
   }
 
   function renderAttributeChangeButton(icon: any, callback = () => {}) {
