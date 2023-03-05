@@ -8,10 +8,7 @@ export interface CreateCampaign {
   sheetList: string[];
 }
 
-export interface BasicCampaign {
-  id: string;
-  name: string;
-}
+export interface BasicCampaign extends IdName {}
 
 export interface CampaignPaginated extends PaginatedSearch {
   list: BasicCampaign[];

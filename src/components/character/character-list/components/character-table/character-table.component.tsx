@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Table } from "antd";
+import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 
 import {
   BasicCharacter,
@@ -26,6 +27,29 @@ const columns = [
     title: "Linhagem",
     dataIndex: "lineage",
     key: "lineage",
+  },
+];
+
+const adminColumns = [
+  ...columns,
+  {
+    title: "Usuário",
+    dataIndex: "userName",
+    key: "userName",
+  },
+  {
+    title: "Ativo",
+    dataIndex: "active",
+    key: "active",
+    render: (v: boolean) => (
+      <div>
+        {v ? (
+          <CheckCircleOutlined style={{ color: "green" }} />
+        ) : (
+          <CloseCircleOutlined style={{ color: "red" }} />
+        )}
+      </div>
+    ),
   },
 ];
 
@@ -71,7 +95,7 @@ export function CharacterTableComponent() {
     <Table
       className="character-table"
       loading={loading}
-      columns={columns}
+      columns={isAdminUser() ? adminColumns : columns}
       dataSource={list}
       rowKey="id"
       pagination={{
