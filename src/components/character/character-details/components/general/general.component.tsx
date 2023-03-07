@@ -72,6 +72,7 @@ export function GeneralComponent(props: Props) {
   const [mentalCurrent, setMentalCurrent] = useState(0);
   const [physicalCurrent, setPhysicalCurrent] = useState(0);
   const [heroismCurrent, setHeroismCurrent] = useState(0);
+  const [firstTrigger, setFirstTrigger] = useState(true);
 
   const {
     intelligence,
@@ -96,7 +97,9 @@ export function GeneralComponent(props: Props) {
 
   useEffect(() => {
     const updateData = setTimeout(() => {
-      if (id) {
+      if (firstTrigger) {
+        setFirstTrigger(false);
+      } else if (id) {
         const data: UpdateAttributePayload = {
           mentalCurrent,
           physicalCurrent,
@@ -186,11 +189,13 @@ export function GeneralComponent(props: Props) {
           icon={getDice(intelligence)}
           name={AttributeEnum.INTELLIGENCE}
           backgroundColor={ColorsEnum.INTELLIGENCE}
+          value={<b>INT</b>}
         />
         <CircleButtonComponent
           icon={getDice(cunning)}
           name={AttributeEnum.CUNNING}
           backgroundColor={ColorsEnum.CUNNING}
+          value={<b>AST</b>}
         />
       </Row>
       <Divider />
@@ -199,11 +204,13 @@ export function GeneralComponent(props: Props) {
           icon={getDice(tenacity)}
           name={AttributeEnum.TENACITY}
           backgroundColor={ColorsEnum.TENACITY}
+          value={<b>TEN</b>}
         />
         <CircleButtonComponent
           icon={getDice(celerity)}
           name={AttributeEnum.CELERITY}
           backgroundColor={ColorsEnum.CELERITY}
+          value={<b>CEL</b>}
         />
       </Row>
       <Row justify="space-evenly">

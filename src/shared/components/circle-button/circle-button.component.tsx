@@ -1,5 +1,5 @@
 import { Button, Modal } from "antd";
-import { useState } from "react";
+import { ReactElement, useState } from "react";
 import { ColorsEnum } from "../../../enum/colors.enum";
 import { TextWithBreaklineComponent } from "../text-with-breakline/text-with-breakline.component";
 
@@ -7,7 +7,7 @@ import "./circle-button-component.css";
 
 interface CircleButtonProps {
   icon: string;
-  value?: string | number;
+  value?: ReactElement | string | number;
   name: string;
   description?: string;
   backgroundColor: ColorsEnum;
