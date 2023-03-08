@@ -96,30 +96,35 @@ export function GeneralComponent(props: Props) {
   }, []);
 
   useEffect(() => {
-    const updateData = setTimeout(() => {
-      if (firstTrigger) {
+    if (firstTrigger) {
+      const initialLoad = setTimeout(() => {
         setFirstTrigger(false);
-      } else if (id) {
-        const data: UpdateAttributePayload = {
-          mentalCurrent,
-          physicalCurrent,
-          heroismCurrent,
-        };
-        messageWarning("Salvando atualizações de personagem...");
-        updateAttributes(id, data)
-          .then(() => {
-            dispatch(updateCurrentPoints({ id, data }));
-            messageSuccess("Atualizações salvas com sucesso!");
-          })
-          .catch((ex) => {
-            console.error(ex);
-            messageError(
-              "Ocorreu um erro durante salvamento automático. Favor atualizar a página!"
-            );
-          });
-      }
-    }, 5000);
-    return () => clearTimeout(updateData);
+      }, 1000);
+      return () => clearTimeout(initialLoad);
+    } else {
+      const updateData = setTimeout(() => {
+        if (id) {
+          const data: UpdateAttributePayload = {
+            mentalCurrent,
+            physicalCurrent,
+            heroismCurrent,
+          };
+          messageWarning("Salvando atualizações de personagem...");
+          updateAttributes(id, data)
+            .then(() => {
+              dispatch(updateCurrentPoints({ id, data }));
+              messageSuccess("Atualizações salvas com sucesso!");
+            })
+            .catch((ex) => {
+              console.error(ex);
+              messageError(
+                "Ocorreu um erro durante salvamento automático. Favor atualizar a página!"
+              );
+            });
+        }
+      }, 5000);
+      return () => clearTimeout(updateData);
+    }
   }, [mentalCurrent, physicalCurrent, heroismCurrent]);
 
   function reduceMental() {
