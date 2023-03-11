@@ -1,13 +1,17 @@
-import { Form, Select } from "antd";
+import { Button, Checkbox, Col, Divider, Form, Modal, Row, Space } from "antd";
 
 import { useAppSelector } from "../../../../../redux/hooks";
 import { RootState } from "../../../../../redux/store";
 import { TransitionalInputComponent } from "../../../../../shared/components/transactional-input/transitional-input.component";
 
 import "./aptitudes.component.css";
+import { EyeOutlined } from "@ant-design/icons";
+import { useState } from "react";
+import { Aptitude } from "../../../../../interfaces/aptitude.interface";
+import { TextWithBreaklineComponent } from "../../../../../shared/components/text-with-breakline/text-with-breakline.component";
 
 const { Item } = Form;
-const { Option } = Select;
+const { Group: CheckboxGroup } = Checkbox;
 
 export function AptitudesComponent({
   hidden,
@@ -16,6 +20,10 @@ export function AptitudesComponent({
   hidden: boolean;
   jobId: string | undefined;
 }) {
+  const [showDescription, setShowDescription] = useState(false);
+  const [detailedAptitude, setDetailedAptitude] = useState<
+    Aptitude | undefined
+  >();
   const detailedJobList = useAppSelector(
     (state: RootState) => state.job.detailedList
   );
@@ -23,11 +31,26 @@ export function AptitudesComponent({
   function retrieveOptions() {
     const selectedJob = detailedJobList.find((j) => j.id === jobId);
     if (!selectedJob) return null;
+    function handleDescriptionDisplay(a: Aptitude) {
+      setDetailedAptitude(a);
+      setShowDescription(true);
+    }
+
     return selectedJob.aptitudes.map((a) => (
-      <Option key={a.id} value={a.id}>
-        {" "}
-        {a.name}
-      </Option>
+      <Row justify="space-between" align="middle">
+        <Col>
+          <Checkbox key={a.id} value={a.id}>
+            {a.name}
+          </Checkbox>
+        </Col>
+        <Col>
+          <EyeOutlined
+            onClick={() => {
+              handleDescriptionDisplay(a);
+            }}
+          />
+        </Col>
+      </Row>
     ));
   }
 
@@ -36,7 +59,21 @@ export function AptitudesComponent({
   }
 
   return (
-    <>
+    <div>
+      <Modal
+        title={detailedAptitude?.name}
+        open={showDescription}
+        closable={false}
+        footer={null}
+        onOk={() => {
+          setShowDescription(false);
+        }}
+        onCancel={() => {
+          setShowDescription(false);
+        }}
+      >
+        <TextWithBreaklineComponent text={detailedAptitude?.description} />
+      </Modal>
       <Item
         name="name"
         hidden={hidden}
@@ -50,8 +87,9 @@ export function AptitudesComponent({
           },
         ]}
       >
-        <TransitionalInputComponent placeholder="Nome" />
+        <TransitionalInputComponent placeholder="Nome de Personagem" />
       </Item>
+      {!hidden && <Divider plain> Selecionar Aptidões </Divider>}
       <Item
         hidden={hidden}
         name="aptitudeList"
@@ -60,16 +98,19 @@ export function AptitudesComponent({
             required: true,
             min: 3,
             max: 3,
-            message: "Necessário selecionar 3 aptidões!",
+            message: "Necessário selecionar exatamente 3 aptidões!",
             type: "array",
           },
         ]}
+        style={{ marginBottom: 0 }}
       >
-        <Select mode="multiple" placeholder="Selecionar 3 aptidões">
-          {retrieveOptions()}
-        </Select>
+        <CheckboxGroup style={{ width: "100%" }}>
+          <Space direction="vertical" size="small" style={{ width: "100%" }}>
+            {retrieveOptions()}
+          </Space>
+        </CheckboxGroup>
       </Item>
       {renderDetails()}
-    </>
+    </div>
   );
 }
