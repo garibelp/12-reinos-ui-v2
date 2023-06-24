@@ -204,6 +204,7 @@ export function CharacterDetailsComponent() {
               physicalTotal={character.physicalTotal}
               heroismCurrent={character.heroismCurrent}
               heroismTotal={character.heroismTotal}
+              mainAttribute={character.job.mainAttribute}
               basicAttack={character.job.skills.find(
                 (s) => s.skillType === SkillTypeEnum.BASIC
               )}

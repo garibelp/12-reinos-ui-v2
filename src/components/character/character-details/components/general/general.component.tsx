@@ -10,6 +10,7 @@ import D4Icon from "../../../../../assets/images/D4.png";
 import D6Icon from "../../../../../assets/images/D6.png";
 import D8Icon from "../../../../../assets/images/D8.png";
 import PersonIcon from "../../../../../assets/images/Person.png";
+import ShieldIcon from "../../../../../assets/images/Shield.png";
 import SwordIcon from "../../../../../assets/images/Sword.png";
 import { AttributeEnum } from "../../../../../enum/attribute.enum";
 import { ColorsEnum } from "../../../../../enum/colors.enum";
@@ -25,8 +26,10 @@ import {
   messageWarning,
 } from "../../../../../shared/messages";
 import { getEnumKey } from "../../../../../utils/enum-utils";
+import { BattleDiceRollComponent } from "./components/battle-dice-roll/battle-dice-roll.component";
 
 import "./general.component.css";
+import { AttributeRollComponent } from "./components/attribute-roll-component/attribute-roll-component";
 
 interface Props {
   intelligence?: string;
@@ -40,6 +43,7 @@ interface Props {
   heroismCurrent: number;
   heroismTotal: number;
   basicAttack: Skill;
+  mainAttribute: AttributeEnum;
   hidden: boolean;
 }
 
@@ -86,6 +90,7 @@ export function GeneralComponent(props: Props) {
     heroismCurrent: initHeroismCurrent,
     heroismTotal,
     basicAttack,
+    mainAttribute,
     hidden,
   } = props;
 
@@ -195,12 +200,14 @@ export function GeneralComponent(props: Props) {
           name={AttributeEnum.INTELLIGENCE}
           backgroundColor={ColorsEnum.INTELLIGENCE}
           value={<b>INT</b>}
+          customBody={<AttributeRollComponent dice={intelligence} />}
         />
         <CircleButtonComponent
           icon={getDice(cunning)}
           name={AttributeEnum.CUNNING}
           backgroundColor={ColorsEnum.CUNNING}
           value={<b>AST</b>}
+          customBody={<AttributeRollComponent dice={cunning} />}
         />
       </Row>
       <Divider />
@@ -210,12 +217,14 @@ export function GeneralComponent(props: Props) {
           name={AttributeEnum.TENACITY}
           backgroundColor={ColorsEnum.TENACITY}
           value={<b>TEN</b>}
+          customBody={<AttributeRollComponent dice={tenacity} />}
         />
         <CircleButtonComponent
           icon={getDice(celerity)}
           name={AttributeEnum.CELERITY}
           backgroundColor={ColorsEnum.CELERITY}
           value={<b>CEL</b>}
+          customBody={<AttributeRollComponent dice={celerity} />}
         />
       </Row>
       <Row justify="space-evenly">
@@ -237,7 +246,32 @@ export function GeneralComponent(props: Props) {
           name="Ataque Básico"
           backgroundColor={ColorsEnum.BASIC_ATTACK}
           size="small"
-          description={`Custo: ${basicAttack.cost}\\nAlcance: ${basicAttack.range}`}
+          customBody={
+            <BattleDiceRollComponent
+              celerity={celerity}
+              cunning={cunning}
+              intelligence={intelligence}
+              tenacity={tenacity}
+              attackRoll={true}
+              baseDamage={basicAttack.cost}
+              mainAttribute={mainAttribute}
+            />
+          }
+        />
+        <CircleButtonComponent
+          icon={ShieldIcon}
+          name="Defesa"
+          backgroundColor={ColorsEnum.DEFENSE}
+          size="small"
+          customBody={
+            <BattleDiceRollComponent
+              celerity={celerity}
+              cunning={cunning}
+              intelligence={intelligence}
+              tenacity={tenacity}
+              attackRoll={false}
+            />
+          }
         />
       </Row>
       <Row justify="space-evenly">

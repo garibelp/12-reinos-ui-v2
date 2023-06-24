@@ -12,6 +12,8 @@
 
 # testing
 /coverage
+eslint-report.json
+/.scannerwork
 
 # production
 /build

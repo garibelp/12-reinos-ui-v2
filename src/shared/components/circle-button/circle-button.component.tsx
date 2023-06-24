@@ -13,6 +13,7 @@ interface CircleButtonProps {
   backgroundColor: ColorsEnum;
   textColor?: ColorsEnum;
   size?: "normal" | "small";
+  customBody?: ReactElement;
 }
 
 const defaultProps = {
@@ -21,7 +22,8 @@ const defaultProps = {
 
 export function CircleButtonComponent(props: CircleButtonProps) {
   const [showDetails, setShowDetails] = useState(false);
-  const { icon, value, name, backgroundColor, description, size } = props;
+  const { icon, value, name, backgroundColor, description, size, customBody } =
+    props;
   const extraProps = { style: { background: backgroundColor } };
 
   const bodyStyle = description ? "" : " hide-modal-body";
@@ -61,7 +63,7 @@ export function CircleButtonComponent(props: CircleButtonProps) {
         footer={null}
       >
         {/*@ts-ignore*/}
-        <TextWithBreaklineComponent text={description} />
+        {customBody || <TextWithBreaklineComponent text={description} />}
       </Modal>
     </>
   );
