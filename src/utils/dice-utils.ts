@@ -24,7 +24,7 @@ export function isCriticalHit(rollValue: number, dice: number): boolean {
 }
 
 export function isFailure(rollValue: number): boolean {
-  return rollValue <= 2;
+  return rollValue <= 3;
 }
 
 export function isCriticalFailure(rollValue: number): boolean {
