@@ -24,21 +24,29 @@ export function AttributeRollComponent(props: Props) {
 
     let notificationType = "warning";
     let message = "Sucesso de rolagem";
+
+    let description = `${value} (dado) + ${aptitudeBonus} (aptidão) = ${
+      value + aptitudeBonus
+    }`;
+
     if (criticalHit) {
       notificationType = "success";
       message = "SUCESSO ABSOLUTO!";
     }
     if (isFailure(value + aptitudeBonus) || criticalFailure) {
       notificationType = "error";
-      message = criticalFailure ? "FALHA CRÍTICA!!!" : "Falha de rolagem";
+      if (criticalFailure) {
+        message = "FALHA CRÍTICA!!!";
+        description = "O famoso 1 natural";
+      } else {
+        message = "Falha de rolagem";
+      }
     }
 
     // @ts-ignore
     notification[notificationType]({
       message,
-      description: `${value} (dado) + ${aptitudeBonus} (aptidão) = ${
-        value + aptitudeBonus
-      }`,
+      description,
       placement: "bottomRight",
     });
   }
