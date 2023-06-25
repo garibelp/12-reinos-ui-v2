@@ -27,9 +27,9 @@ import {
 } from "../../../../../shared/messages";
 import { getEnumKey } from "../../../../../utils/enum-utils";
 import { BattleDiceRollComponent } from "./components/battle-dice-roll/battle-dice-roll.component";
+import { AttributeRollComponent } from "./components/attribute-roll-component/attribute-roll-component";
 
 import "./general.component.css";
-import { AttributeRollComponent } from "./components/attribute-roll-component/attribute-roll-component";
 
 interface Props {
   intelligence?: string;
@@ -44,6 +44,7 @@ interface Props {
   heroismTotal: number;
   basicAttack: Skill;
   mainAttribute: AttributeEnum;
+  lineage?: string;
   hidden: boolean;
 }
 
@@ -91,6 +92,7 @@ export function GeneralComponent(props: Props) {
     heroismTotal,
     basicAttack,
     mainAttribute,
+    lineage,
     hidden,
   } = props;
 
@@ -200,14 +202,24 @@ export function GeneralComponent(props: Props) {
           name={AttributeEnum.INTELLIGENCE}
           backgroundColor={ColorsEnum.INTELLIGENCE}
           value={<b>INT</b>}
-          customBody={<AttributeRollComponent dice={intelligence} />}
+          customBody={
+            <AttributeRollComponent
+              dice={intelligence}
+              invertRoll={lineage === "Anão"}
+            />
+          }
         />
         <CircleButtonComponent
           icon={getDice(cunning)}
           name={AttributeEnum.CUNNING}
           backgroundColor={ColorsEnum.CUNNING}
           value={<b>AST</b>}
-          customBody={<AttributeRollComponent dice={cunning} />}
+          customBody={
+            <AttributeRollComponent
+              dice={cunning}
+              invertRoll={lineage === "Anão"}
+            />
+          }
         />
       </Row>
       <Divider />
@@ -217,14 +229,24 @@ export function GeneralComponent(props: Props) {
           name={AttributeEnum.TENACITY}
           backgroundColor={ColorsEnum.TENACITY}
           value={<b>TEN</b>}
-          customBody={<AttributeRollComponent dice={tenacity} />}
+          customBody={
+            <AttributeRollComponent
+              dice={tenacity}
+              invertRoll={lineage === "Anão"}
+            />
+          }
         />
         <CircleButtonComponent
           icon={getDice(celerity)}
           name={AttributeEnum.CELERITY}
           backgroundColor={ColorsEnum.CELERITY}
           value={<b>CEL</b>}
-          customBody={<AttributeRollComponent dice={celerity} />}
+          customBody={
+            <AttributeRollComponent
+              dice={celerity}
+              invertRoll={lineage === "Anão"}
+            />
+          }
         />
       </Row>
       <Row justify="space-evenly">

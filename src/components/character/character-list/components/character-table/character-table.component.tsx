@@ -19,7 +19,7 @@ const columns = [
     key: "name",
   },
   {
-    title: "Nível",
+    title: "Capítulo",
     dataIndex: "level",
     key: "level",
   },

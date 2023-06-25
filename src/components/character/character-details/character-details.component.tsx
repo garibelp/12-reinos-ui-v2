@@ -205,6 +205,7 @@ export function CharacterDetailsComponent() {
               heroismCurrent={character.heroismCurrent}
               heroismTotal={character.heroismTotal}
               mainAttribute={character.job.mainAttribute}
+              lineage={character.lineage.name}
               basicAttack={character.job.skills.find(
                 (s) => s.skillType === SkillTypeEnum.BASIC
               )}

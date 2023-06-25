@@ -1,25 +1,26 @@
 import { Button, Card, Divider, Space, Switch, notification } from "antd";
-import "./attribute-roll-component.css";
 import { useState } from "react";
-import {
-  getDiceValue,
-  isFailure,
-  rollDice,
-} from "../../../../../../../utils/dice-utils";
+
+import { getDiceValue, rollDice } from "../../../../../../../utils/dice-utils";
+
+import "./attribute-roll-component.css";
 
 interface Props {
   dice?: string;
+  invertRoll: boolean;
 }
 
 export function AttributeRollComponent(props: Props) {
   const [switchToggled, setSwitchToggled] = useState(false);
-  const { dice } = props;
+  const { dice, invertRoll } = props;
 
   function onDiceRoll() {
     const aptitudeBonus = switchToggled ? 1 : 0;
 
-    const { value, criticalHit, criticalFailure } = rollDice(
-      getDiceValue(dice)
+    const { value, criticalHit, criticalFailure, failure } = rollDice(
+      getDiceValue(dice),
+      aptitudeBonus,
+      invertRoll
     );
 
     let notificationType = "warning";
@@ -33,11 +34,11 @@ export function AttributeRollComponent(props: Props) {
       notificationType = "success";
       message = "SUCESSO ABSOLUTO!";
     }
-    if (isFailure(value + aptitudeBonus) || criticalFailure) {
+    if (failure || criticalFailure) {
       notificationType = "error";
       if (criticalFailure) {
         message = "FALHA CRÍTICA!!!";
-        description = "O famoso 1 natural";
+        description = `O famoso ${invertRoll ? "valor máximo" : "1 natural"}`;
       } else {
         message = "Falha de rolagem";
       }
