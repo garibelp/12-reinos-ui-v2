@@ -1,5 +1,6 @@
 export interface DiceResult {
   value: number;
+  bonus: number;
   failure: boolean;
   criticalHit: boolean;
   criticalFailure: boolean;
@@ -13,7 +14,8 @@ export function rollDice(
   const value = Math.floor(Math.random() * dice) + 1;
   const valueWithBonus = invertRoll ? value - bonus : value + bonus;
   return {
-    value: valueWithBonus < 1 ? 1 : valueWithBonus,
+    value,
+    bonus,
     failure: isFailure(valueWithBonus, dice, invertRoll),
     criticalHit: isCriticalHit(valueWithBonus, dice, invertRoll),
     criticalFailure: isCriticalFailure(value, dice, invertRoll),

@@ -17,7 +17,7 @@ export function AttributeRollComponent(props: Props) {
   function onDiceRoll() {
     const aptitudeBonus = switchToggled ? 1 : 0;
 
-    const { value, criticalHit, criticalFailure, failure } = rollDice(
+    const { value, bonus, criticalHit, criticalFailure, failure } = rollDice(
       getDiceValue(dice),
       aptitudeBonus,
       invertRoll
@@ -26,9 +26,7 @@ export function AttributeRollComponent(props: Props) {
     let notificationType = "warning";
     let message = "Sucesso de rolagem";
 
-    let description = `${value} (dado) + ${aptitudeBonus} (aptidão) = ${
-      value + aptitudeBonus
-    }`;
+    let description = `${value} (dado) + ${bonus} (aptidão) = ${value + bonus}`;
 
     if (criticalHit) {
       notificationType = "success";
