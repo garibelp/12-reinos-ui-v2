@@ -71,3 +71,13 @@ export function deleteCharacter(
     },
   });
 }
+
+export function levelUp(
+  id: string
+): Promise<AxiosResponse<{ message: string }>> {
+  return api.patch<{ message: string }>(`/sheets/${id}/levelUp`, null, {
+    headers: {
+      authorization: "Bearer " + localStorage.getItem("jwt"),
+    },
+  });
+}

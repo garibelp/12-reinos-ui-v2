@@ -7,7 +7,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import {
   deleteCharacter,
   getCharacterDetails,
+  levelUp,
 } from "../../../api/requests/character";
+import LevelUpIcon from "../../../assets/images/Levelup.png";
 import PersonIcon from "../../../assets/images/Face.png";
 import PotionIcon from "../../../assets/images/Potion.png";
 import WandIcon from "../../../assets/images/Wand.png";
@@ -36,6 +38,7 @@ export function CharacterDetailsComponent() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [showLevelUpConfirm, setShowLevelUpConfirm] = useState(false);
   const [currentStep, setCurrentStep] = useState<StepsEnum>(StepsEnum.GENERAL);
   const [character, setCharacter] = useState<DetailedCharacter | null>(null);
   const { list } = useAppSelector((state: RootState) => state.character);
@@ -85,12 +88,40 @@ export function CharacterDetailsComponent() {
           console.error(ex);
           messageError("Erro ao tentar deletar personagem.");
         })
-        .finally(() => setLoading(false));
+        .finally(() => {
+          setShowDeleteConfirm(false);
+          setLoading(false);
+        });
+    }
+  }
+
+  function handleLevelUp(): void {
+    if (id) {
+      setLoading(true);
+      levelUp(id)
+        .then(() => {
+          messageSuccess(
+            "Personagem subiu de nível com sucesso! Atualizando ficha."
+          );
+          setTimeout(() => {
+            window.location.reload();
+            setLoading(false);
+          }, 2000);
+        })
+        .catch((ex) => {
+          console.error(ex);
+          messageError("Erro ao tentar subir personagem de nível.");
+          setLoading(false);
+        })
+        .finally(() => {
+          setShowLevelUpConfirm(false);
+        });
     }
   }
 
   function renderHeader() {
     if (!character) return null;
+
     return (
       <Space direction="vertical" size="middle" style={{ width: "100%" }}>
         <Row justify="space-between">
@@ -113,9 +144,19 @@ export function CharacterDetailsComponent() {
         </Row>
         <Row>
           <div className="character-details-card-header">
-            <h1>{character.name}</h1>
-            <div>{`${character.job.name}, Capítulo ${character.level}`}</div>
-            <div>{`${character.lineage.name} ${character.background.name}`}</div>
+            <div>
+              <h1>{character.name}</h1>
+              <div>{`${character.job.name}, Capítulo ${character.level}`}</div>
+              <div>{`${character.lineage.name} ${character.background.name}`}</div>
+            </div>
+            <div className="character-details-levelup">
+              <Button
+                hidden={character.level > 2}
+                onClick={() => setShowLevelUpConfirm(true)}
+              >
+                <img src={LevelUpIcon} alt="" />
+              </Button>
+            </div>
           </div>
         </Row>
       </Space>
@@ -169,16 +210,41 @@ export function CharacterDetailsComponent() {
     );
   }
 
-  function renderDeleteConfirmation() {
+  function renderConfirmationModal(
+    title: string,
+    open: boolean,
+    callbackConfirm: (e: any) => void,
+    callbackDelete: (e: any) => void
+  ) {
     return (
       <Modal
-        title="Deletar Personagem?"
-        open={showDeleteConfirm}
+        title={title}
+        open={open}
         style={{ textAlignLast: "center" }}
         bodyStyle={{ margin: 0, padding: 0 }}
-        onCancel={() => setShowDeleteConfirm(false)}
-        onOk={() => handleDelete()}
+        onCancel={callbackDelete}
+        onOk={callbackConfirm}
+        cancelText="Cancelar"
+        okText="Confirmar"
       />
+    );
+  }
+
+  function renderDeleteConfirmation() {
+    return renderConfirmationModal(
+      "Deletar Personagem?",
+      showDeleteConfirm,
+      () => handleDelete(),
+      () => setShowDeleteConfirm(false)
+    );
+  }
+
+  function renderLevelUpConfirmation() {
+    return renderConfirmationModal(
+      "Subir de capítulo?",
+      showLevelUpConfirm,
+      () => handleLevelUp(),
+      () => setShowLevelUpConfirm(false)
     );
   }
 
@@ -217,12 +283,14 @@ export function CharacterDetailsComponent() {
               job={character.job}
               aptitudes={character.aptitudes}
               hidden={currentStep !== StepsEnum.SKILLS}
+              level={character.level}
             />
             <ItemsComponent hidden={currentStep !== StepsEnum.ITEMS} />
           </>
         )}
       </Card>
       {renderDeleteConfirmation()}
+      {renderLevelUpConfirmation()}
     </div>
   );
 }

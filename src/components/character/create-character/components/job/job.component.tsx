@@ -81,6 +81,7 @@ export function JobComponent({
       getDetailedJob(id)
         .then((r) => {
           const { data } = r;
+          data.skills = data.skills.sort((x, y) => x.skillLevel - y.skillLevel);
           dispatch(addDetailedJob(data));
           setSelectedJob(data);
         })

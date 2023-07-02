@@ -45,6 +45,7 @@ The page will reload if you make edits. You will also see any lint errors in the
 ### - Release 1.2.0
 
 - Added dice roll support
+- Added level up support
 
 ### - Release 1.1.0
 

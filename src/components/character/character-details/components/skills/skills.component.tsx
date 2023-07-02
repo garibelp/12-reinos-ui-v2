@@ -12,11 +12,12 @@ interface Props {
   background?: Background;
   job?: DetailedJob;
   aptitudes?: Aptitude[];
+  level: number;
   hidden: boolean;
 }
 
 export function SkillsComponent(props: Props) {
-  const { lineage, background, job, aptitudes, hidden } = props;
+  const { lineage, background, job, aptitudes, level, hidden } = props;
 
   if (hidden) return null;
 
@@ -34,11 +35,14 @@ export function SkillsComponent(props: Props) {
     if (!job || !job?.skills) return null;
     const { skills } = job;
     return skills
-      .filter((s) => s.skillType !== SkillTypeEnum.BASIC)
+      .filter(
+        (s) => s.skillType !== SkillTypeEnum.BASIC && s.skillLevel <= level
+      )
+      .sort((x, y) => x.skillLevel - y.skillLevel)
       .map((s) => (
         <Row key={s.id}>
           <ExpandableDetailsComponent
-            title={s.name}
+            title={`${s.name}`}
             description={s.description}
           />
         </Row>

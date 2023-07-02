@@ -7,5 +7,6 @@ export interface Skill extends IdName {
   cost: number;
   energyType: EnergyTypeEnum;
   skillType: SkillTypeEnum;
+  skillLevel: number;
   range?: number;
 }
