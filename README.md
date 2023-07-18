@@ -45,6 +45,7 @@ The page will reload if you make edits. You will also see any lint errors in the
 ### - Release 1.3.0
 
 - Added sheet wounds support
+- Added dice roll history
 
 ### - Release 1.2.0
 

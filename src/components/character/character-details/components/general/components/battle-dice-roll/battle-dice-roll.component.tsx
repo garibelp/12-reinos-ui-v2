@@ -26,6 +26,7 @@ interface Props {
   attackRoll: boolean;
   baseDamage?: number;
   mainAttribute?: any;
+  callback?: Function;
 }
 
 const SELECTION = {
@@ -38,7 +39,8 @@ const SELECTION = {
 function rollAttackDice(
   value: number,
   baseDamage: number,
-  isAptitudeRoll: boolean
+  isAptitudeRoll: boolean,
+  callback?: Function
 ) {
   const diceRolls: number[] = [];
 
@@ -58,23 +60,35 @@ function rollAttackDice(
     baseDamage +
     aptitudeBonus;
 
-  notification.success({
+  const data = {
     message: `Rolagem de Ataque (D${value})`,
     description: `[${diceRolls}] + ${baseDamage} (base)${
       isAptitudeRoll ? " + " + aptitudeBonus + " (aptidão)" : ""
     } = ${result}`,
+  };
+  if (callback) callback(data);
+  notification.success({
+    ...data,
     placement: "bottomRight",
   });
 }
 
-function rollDefenseDice(value: number, isGuardUp: boolean) {
+function rollDefenseDice(
+  value: number,
+  isGuardUp: boolean,
+  callback?: Function
+) {
   const baseRoll = rollDice(value).value;
   const guardRoll = isGuardUp ? rollDice(value).value : 0;
-  notification.success({
+  const data = {
     message: `Rolagem de Defesa (D${value})`,
     description: `${baseRoll} + ${guardRoll} (guarda) = ${
       baseRoll + guardRoll
     }`,
+  };
+  if (callback) callback(data);
+  notification.success({
+    ...data,
     placement: "bottomRight",
   });
 }
@@ -88,6 +102,7 @@ export function BattleDiceRollComponent(props: Props) {
     attackRoll,
     baseDamage,
     mainAttribute,
+    callback,
   } = props;
   const [currentDice, setCurrentAttribute] = useState(SELECTION.INT);
   const [switchToggled, setSwitchToggled] = useState(false);
@@ -119,9 +134,9 @@ export function BattleDiceRollComponent(props: Props) {
 
   function onDiceRoll() {
     if (attackRoll) {
-      rollAttackDice(getAttackDice(), baseDamage || 0, switchToggled);
+      rollAttackDice(getAttackDice(), baseDamage || 0, switchToggled, callback);
     } else {
-      rollDefenseDice(getCurrentDice(), switchToggled);
+      rollDefenseDice(getCurrentDice(), switchToggled, callback);
     }
   }
 

@@ -8,11 +8,12 @@ import "./attribute-roll-component.css";
 interface Props {
   dice?: string;
   invertRoll: boolean;
+  callback?: Function;
 }
 
 export function AttributeRollComponent(props: Props) {
   const [switchToggled, setSwitchToggled] = useState(false);
-  const { dice, invertRoll } = props;
+  const { dice, invertRoll, callback } = props;
 
   function onDiceRoll() {
     const aptitudeBonus = switchToggled ? 1 : 0;
@@ -41,6 +42,8 @@ export function AttributeRollComponent(props: Props) {
         message = "Falha de rolagem";
       }
     }
+
+    if (callback) callback({ message, description });
 
     // @ts-ignore
     notification[notificationType]({

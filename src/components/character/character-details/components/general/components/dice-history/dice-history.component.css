@@ -1,0 +1,8 @@
+.w-100 {
+  width: 100%;
+}
+
+.roll-list {
+  max-height: 60vh;
+  overflow-y: auto;
+}

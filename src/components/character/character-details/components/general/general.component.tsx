@@ -12,6 +12,7 @@ import D8Icon from "../../../../../assets/images/D8.png";
 import PersonIcon from "../../../../../assets/images/Person.png";
 import ShieldIcon from "../../../../../assets/images/Shield.png";
 import SwordIcon from "../../../../../assets/images/Sword.png";
+import DicesIcon from "../../../../../assets/images/Dices.png";
 import { AttributeEnum } from "../../../../../enum/attribute.enum";
 import { ColorsEnum } from "../../../../../enum/colors.enum";
 import { DiceEnum } from "../../../../../enum/dice.enum";
@@ -28,6 +29,7 @@ import {
 import { getEnumKey } from "../../../../../utils/enum-utils";
 import { BattleDiceRollComponent } from "./components/battle-dice-roll/battle-dice-roll.component";
 import { AttributeRollComponent } from "./components/attribute-roll-component/attribute-roll-component";
+import { DiceHistoryComponent } from "./components/dice-history/dice-history.component";
 
 import "./general.component.css";
 
@@ -78,6 +80,9 @@ export function GeneralComponent(props: Props) {
   const [physicalCurrent, setPhysicalCurrent] = useState(0);
   const [heroismCurrent, setHeroismCurrent] = useState(0);
   const [firstTrigger, setFirstTrigger] = useState(true);
+  const [diceRollHistory, setDiceRollHistory] = useState<
+    { type: string; message: string; description: string }[]
+  >([]);
 
   const {
     intelligence,
@@ -170,6 +175,13 @@ export function GeneralComponent(props: Props) {
     }
   }
 
+  function handleRoll(
+    type: string,
+    value: { message: string; description: string }
+  ) {
+    setDiceRollHistory([{ type, ...value }, ...diceRollHistory]);
+  }
+
   function renderAttributeChangeButton(icon: any, callback = () => {}) {
     return (
       <Button
@@ -206,6 +218,7 @@ export function GeneralComponent(props: Props) {
             <AttributeRollComponent
               dice={intelligence}
               invertRoll={lineage === "Anão"}
+              callback={(v: any) => handleRoll("INT", v)}
             />
           }
         />
@@ -218,6 +231,7 @@ export function GeneralComponent(props: Props) {
             <AttributeRollComponent
               dice={cunning}
               invertRoll={lineage === "Anão"}
+              callback={(v: any) => handleRoll("AST", v)}
             />
           }
         />
@@ -233,6 +247,7 @@ export function GeneralComponent(props: Props) {
             <AttributeRollComponent
               dice={tenacity}
               invertRoll={lineage === "Anão"}
+              callback={(v: any) => handleRoll("TEN", v)}
             />
           }
         />
@@ -245,6 +260,7 @@ export function GeneralComponent(props: Props) {
             <AttributeRollComponent
               dice={celerity}
               invertRoll={lineage === "Anão"}
+              callback={(v: any) => handleRoll("CEL", v)}
             />
           }
         />
@@ -277,6 +293,7 @@ export function GeneralComponent(props: Props) {
               attackRoll={true}
               baseDamage={basicAttack.cost}
               mainAttribute={mainAttribute}
+              callback={(v: any) => handleRoll("ATK", v)}
             />
           }
         />
@@ -292,7 +309,17 @@ export function GeneralComponent(props: Props) {
               intelligence={intelligence}
               tenacity={tenacity}
               attackRoll={false}
+              callback={(v: any) => handleRoll("DEF", v)}
             />
+          }
+        />
+        <CircleButtonComponent
+          icon={DicesIcon}
+          name="Rolagens"
+          backgroundColor={ColorsEnum.BASE_GRAY}
+          size="small"
+          customBody={
+            <DiceHistoryComponent diceRollHistory={diceRollHistory} />
           }
         />
       </Row>
