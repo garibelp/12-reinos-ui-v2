@@ -1,0 +1,8 @@
+.wound-details {
+  padding-top: 10px;
+}
+
+.wound-button {
+  display: flex !important;
+  flex-direction: row-reverse;
+}

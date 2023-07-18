@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { Card, Collapse } from "antd";
 import { TextWithBreaklineComponent } from "../text-with-breakline/text-with-breakline.component";
 
@@ -10,15 +11,16 @@ export function ExpandableDetailsComponent({
   description,
 }: {
   title?: string;
-  description: string;
+  description: string | ReactNode;
 }) {
-  if (!title) {
-    return (
-      <Card className="details-card">
-        {/*@ts-ignore*/}
-        <TextWithBreaklineComponent text={description} />
-      </Card>
+  const body =
+    typeof description === "string" ? (
+      <TextWithBreaklineComponent text={description} />
+    ) : (
+      description
     );
+  if (!title) {
+    return <Card className="details-card">{body}</Card>;
   }
   return (
     <Collapse
@@ -27,8 +29,7 @@ export function ExpandableDetailsComponent({
       className="details-card"
     >
       <Panel key="1" header={title}>
-        {/*@ts-ignore*/}
-        <TextWithBreaklineComponent text={description} />
+        {body}
       </Panel>
     </Collapse>
   );

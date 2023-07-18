@@ -5,6 +5,7 @@ import { IdName } from "./id-name.interface";
 import { DetailedJob } from "./job.interface";
 import { DetailedLineage } from "./lineage.interface";
 import { PaginatedSearch } from "./paginated-search.interface";
+import { Wound } from "./wound.interface";
 
 export interface CreateCharacter {
   name: string;
@@ -49,6 +50,7 @@ export interface DetailedCharacter extends IdName {
   background: Background;
   job: DetailedJob;
   aptitudes: Aptitude[];
+  wound?: Wound;
   active: boolean;
 }
 
