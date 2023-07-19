@@ -1,21 +1,21 @@
 import { ReactNode, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Button, Col, Divider, Row } from "antd";
 import {
   CheckCircleFilled,
   CloseCircleFilled,
   MinusCircleFilled,
 } from "@ant-design/icons";
-import { useDispatch } from "react-redux";
 
 import {
   messageError,
   messageSuccess,
 } from "../../../../../../../shared/messages";
 import { updateDeathRoll } from "../../../../../../../api/requests/character";
-
-import "./death-test.component.css";
 import { updateDeathRolls } from "../../../../../../../redux/slices/character.slice";
 import { DeathRollEnum } from "../../../../../../../enum/death-roll.enum";
+
+import "./death-test.component.css";
 
 interface Props {
   deathRollBody: DeathRollEnum;
@@ -104,11 +104,17 @@ export function DeathTestComponent({
   return (
     <Row className="death-row-details">
       <Col span={12}>Teste do corpo:</Col>
-      <Col span={12}>{renderIcon(body, setBody)}</Col>
+      <Col span={12} className="death-col-details">
+        {renderIcon(body, setBody)}
+      </Col>
       <Col span={12}>Teste da mente:</Col>
-      <Col span={12}>{renderIcon(mind, setMind)}</Col>
+      <Col span={12} className="death-col-details">
+        {renderIcon(mind, setMind)}
+      </Col>
       <Col span={12}>Teste do espírito:</Col>
-      <Col span={12}>{renderIcon(spirit, setSpirit)}</Col>
+      <Col span={12} className="death-col-details">
+        {renderIcon(spirit, setSpirit)}
+      </Col>
       <Divider />
       <Col span={12}>
         <Button

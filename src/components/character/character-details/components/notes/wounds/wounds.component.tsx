@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Button, Col, Row, Space } from "antd";
 import { useDispatch } from "react-redux";
+import { Button, Col, Row, Space } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 
 import { Wound } from "../../../../../../interfaces/wound.interface";
 import { ExpandableDetailsComponent } from "../../../../../../shared/components/expandable-details/expandable-details.component";
@@ -91,8 +92,13 @@ export function WoundsComponent({ currentWound, sheetId }: Props) {
       </Col>
       <Col className="wound-button" span={12}>
         {!currentWound && (
-          <Button type="primary" loading={loading} onClick={handleAdd}>
-            Adicionar ferimento
+          <Button
+            type="primary"
+            loading={loading}
+            onClick={handleAdd}
+            icon={<PlusOutlined />}
+          >
+            Ferimento aleatório
           </Button>
         )}
       </Col>

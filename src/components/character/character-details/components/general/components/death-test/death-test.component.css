@@ -5,6 +5,8 @@
 .death-row-button {
   width: 120px;
 }
-.death-row-details > .ant-col {
+
+.death-row-details > .ant-divider,
+.death-col-details {
   padding-bottom: 10px;
 }
