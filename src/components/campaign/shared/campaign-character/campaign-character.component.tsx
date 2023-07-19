@@ -42,8 +42,8 @@ export function CampaignCharacterComponent({
       <div className="dark-grey">
         <h3>{name}</h3>
         <div>Capítulo {level}</div>
-        <div>
-          {lineage} {background}
+        <div style={{ paddingBottom: "5px" }}>
+          {lineage} - {background}
         </div>
       </div>
       <div className="campaign-char-attr">

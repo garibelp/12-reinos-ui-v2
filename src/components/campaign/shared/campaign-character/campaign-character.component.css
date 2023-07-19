@@ -1,5 +1,5 @@
 .dark-grey {
-  width: 140px;
+  width: 165px;
 }
 
 .dark-grey h3,
@@ -16,13 +16,13 @@
 }
 
 .campaign-char-attr {
-  width: 50px;
+  width: 45px;
 }
 
 .campaign-char-space {
-  padding: 0 5px;
   justify-content: space-around;
   border-radius: 10px;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.09);
-  border-right: 2px solid rgba(0, 0, 0, 0.09);
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  border-right: 2px solid rgba(0, 0, 0, 0.1);
 }
