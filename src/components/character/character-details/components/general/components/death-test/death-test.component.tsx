@@ -75,6 +75,14 @@ export function DeathTestComponent({
     setStoreData();
   }
 
+  function disableSave(): boolean {
+    return (
+      body === deathRollBody &&
+      mind === deathRollMind &&
+      spirit === deathRollSpirit
+    );
+  }
+
   function renderIcon(roll: DeathRollEnum, updateRoll: Function): ReactNode {
     switch (roll) {
       case DeathRollEnum.FAILURE:
@@ -133,6 +141,7 @@ export function DeathTestComponent({
           type="primary"
           className="death-row-button"
           loading={loading}
+          disabled={disableSave()}
         >
           Salvar
         </Button>
