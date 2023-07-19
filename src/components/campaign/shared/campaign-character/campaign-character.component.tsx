@@ -41,7 +41,7 @@ export function CampaignCharacterComponent({
     <Space className="campaign-char-space" key={id}>
       <div className="dark-grey">
         <h3>{name}</h3>
-        <div>{level}</div>
+        <div>Capítulo {level}</div>
         <div>
           {lineage} {background}
         </div>
