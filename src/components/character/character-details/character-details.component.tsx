@@ -297,6 +297,7 @@ export function CharacterDetailsComponent() {
               heroismTotal={storeChar.heroismTotal}
               mainAttribute={storeChar.job.mainAttribute}
               lineage={storeChar.lineage.name}
+              deathRolls={storeChar.deathRolls}
               basicAttack={storeChar.job.skills.find(
                 (s) => s.skillType === SkillTypeEnum.BASIC
               )}

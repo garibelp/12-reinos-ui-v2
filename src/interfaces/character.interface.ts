@@ -51,6 +51,7 @@ export interface DetailedCharacter extends IdName {
   job: DetailedJob;
   aptitudes: Aptitude[];
   wound?: Wound;
+  deathRolls: number;
   active: boolean;
 }
 

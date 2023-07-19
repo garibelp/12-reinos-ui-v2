@@ -13,6 +13,7 @@ import PersonIcon from "../../../../../assets/images/Person.png";
 import ShieldIcon from "../../../../../assets/images/Shield.png";
 import SwordIcon from "../../../../../assets/images/Sword.png";
 import DicesIcon from "../../../../../assets/images/Dices.png";
+import DeathIcon from "../../../../../assets/images/Death.png";
 import { AttributeEnum } from "../../../../../enum/attribute.enum";
 import { ColorsEnum } from "../../../../../enum/colors.enum";
 import { DiceEnum } from "../../../../../enum/dice.enum";
@@ -28,8 +29,9 @@ import {
 } from "../../../../../shared/messages";
 import { getEnumKey } from "../../../../../utils/enum-utils";
 import { BattleDiceRollComponent } from "./components/battle-dice-roll/battle-dice-roll.component";
-import { AttributeRollComponent } from "./components/attribute-roll-component/attribute-roll-component";
+import { AttributeRollComponent } from "./components/attribute-roll/attribute-roll-component";
 import { DiceHistoryComponent } from "./components/dice-history/dice-history.component";
+import { DeathTestComponent } from "./components/death-test/death-test.component";
 
 import "./general.component.css";
 
@@ -47,6 +49,7 @@ interface Props {
   basicAttack: Skill;
   mainAttribute: AttributeEnum;
   lineage?: string;
+  deathRolls: number;
   hidden: boolean;
 }
 
@@ -98,6 +101,7 @@ export function GeneralComponent(props: Props) {
     basicAttack,
     mainAttribute,
     lineage,
+    deathRolls,
     hidden,
   } = props;
 
@@ -280,6 +284,15 @@ export function GeneralComponent(props: Props) {
       <Divider />
       <Row justify="space-evenly">
         <CircleButtonComponent
+          icon={DicesIcon}
+          name="Histórico de rolagens"
+          backgroundColor={ColorsEnum.BASE_GRAY}
+          size="small"
+          customBody={
+            <DiceHistoryComponent diceRollHistory={diceRollHistory} />
+          }
+        />
+        <CircleButtonComponent
           icon={SwordIcon}
           name="Ataque Básico"
           backgroundColor={ColorsEnum.BASIC_ATTACK}
@@ -314,12 +327,18 @@ export function GeneralComponent(props: Props) {
           }
         />
         <CircleButtonComponent
-          icon={DicesIcon}
-          name="Rolagens"
+          icon={DeathIcon}
+          name="Testes contra a morte"
           backgroundColor={ColorsEnum.BASE_GRAY}
           size="small"
           customBody={
-            <DiceHistoryComponent diceRollHistory={diceRollHistory} />
+            <DeathTestComponent
+              deathRolls={deathRolls}
+              cunning={cunning}
+              intelligence={intelligence}
+              tenacity={tenacity}
+              sheetId={`${id}`}
+            />
           }
         />
       </Row>

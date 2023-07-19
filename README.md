@@ -42,6 +42,10 @@ The page will reload if you make edits. You will also see any lint errors in the
 
 ## Versions changelog
 
+### - Release 1.4.0
+
+- Added death roll tests
+
 ### - Release 1.3.0
 
 - Added sheet wounds support

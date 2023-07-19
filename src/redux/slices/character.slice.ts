@@ -56,10 +56,31 @@ export const characterSlice = createSlice({
         };
       }
     },
+    updateDeathRolls: (
+      state,
+      action: PayloadAction<{ id: string; deathRolls: number }>
+    ) => {
+      const { list } = state;
+      const {
+        payload: { id, deathRolls },
+      } = action;
+
+      const charIndex = list.findIndex((c) => c.id === id);
+      if (charIndex >= 0) {
+        list[charIndex] = {
+          ...list[charIndex],
+          deathRolls,
+        };
+      }
+    },
   },
 });
 
-export const { addCharacterDetails, updateCurrentPoints, updateWound } =
-  characterSlice.actions;
+export const {
+  addCharacterDetails,
+  updateCurrentPoints,
+  updateWound,
+  updateDeathRolls,
+} = characterSlice.actions;
 
 export default characterSlice.reducer;

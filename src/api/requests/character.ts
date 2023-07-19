@@ -81,3 +81,23 @@ export function levelUp(
     },
   });
 }
+
+export function failDeathRoll(
+  id: string
+): Promise<AxiosResponse<{ message: string }>> {
+  return api.patch<{ message: string }>(`/sheets/${id}/failDeathRoll`, null, {
+    headers: {
+      authorization: "Bearer " + localStorage.getItem("jwt"),
+    },
+  });
+}
+
+export function resetDeathRoll(
+  id: string
+): Promise<AxiosResponse<{ message: string }>> {
+  return api.patch<{ message: string }>(`/sheets/${id}/resetDeathRoll`, null, {
+    headers: {
+      authorization: "Bearer " + localStorage.getItem("jwt"),
+    },
+  });
+}
