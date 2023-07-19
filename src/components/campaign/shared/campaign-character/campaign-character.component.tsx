@@ -1,4 +1,4 @@
-import { Col, Row, Space } from "antd";
+import { Space } from "antd";
 
 import { CampaignCharacter } from "../../../../interfaces/character.interface";
 import BrainIcon from "../../../../assets/images/Brain.png";
@@ -38,15 +38,15 @@ export function CampaignCharacterComponent({
   const colorPhysical = retrieveColor(physicalCurrent, physicalTotal);
 
   return (
-    <Row key={id} justify="space-around" align="middle">
-      <Col className="dark-grey" span={12}>
+    <Space className="campaign-char-space" key={id}>
+      <div className="dark-grey">
         <h3>{name}</h3>
         <div>{level}</div>
         <div>
           {lineage} {background}
         </div>
-      </Col>
-      <Col span={6}>
+      </div>
+      <div className="campaign-char-attr">
         <Space direction="vertical">
           <img
             src={BrainIcon}
@@ -56,8 +56,8 @@ export function CampaignCharacterComponent({
           />
           <>{`${mentalCurrent}/${mentalTotal}`}</>
         </Space>
-      </Col>
-      <Col span={6}>
+      </div>
+      <div className="campaign-char-attr">
         <Space direction="vertical" align="center">
           <img
             src={PersonIcon}
@@ -67,7 +67,7 @@ export function CampaignCharacterComponent({
           />
           <>{`${physicalCurrent}/${physicalTotal}`}</>
         </Space>
-      </Col>
-    </Row>
+      </div>
+    </Space>
   );
 }

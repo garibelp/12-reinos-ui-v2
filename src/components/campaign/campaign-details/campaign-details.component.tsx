@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Button, Col, Divider, Popconfirm, Row, Space, Tooltip } from "antd";
+import { Button, Col, Popconfirm, Row, Tooltip } from "antd";
 import {
   ArrowLeftOutlined,
   DeleteOutlined,
@@ -107,11 +107,7 @@ export function CampaignDetailsComponent() {
         </Tooltip>
       }
       cardBody={
-        <Space
-          className="campaign-details-spacer"
-          align="center"
-          direction="vertical"
-        >
+        <>
           <Row justify="space-between" className="campaign-details-title">
             <Col span={3}>
               <Tooltip placement="bottom" title="Deletar">
@@ -154,20 +150,14 @@ export function CampaignDetailsComponent() {
               </Tooltip>
             </Col>
           </Row>
-          <div>
+          <div className="campaign-char-container">
             {campaign?.sheets.map((s, i) => (
-              <div
-                key={`char-${i}-${s.id}`}
-                className={`${
-                  i === campaign?.sheets.length - 1 && "last-element"
-                }`}
-              >
+              <div key={`char-${i}-${s.id}`} className="campaign-char">
                 <CampaignCharacterComponent character={s} />
-                {i !== campaign?.sheets.length - 1 && <Divider />}
               </div>
             ))}
           </div>
-        </Space>
+        </>
       }
     />
   );

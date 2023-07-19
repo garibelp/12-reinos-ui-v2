@@ -1,3 +1,7 @@
+.dark-grey {
+  width: 140px;
+}
+
 .dark-grey h3,
 .dark-grey div {
   color: #47525e;
@@ -9,4 +13,16 @@
 
 .campaign-char-attr-icon {
   width: 36px;
+}
+
+.campaign-char-attr {
+  width: 40px;
+}
+
+.campaign-char-space {
+  padding: 0 5px;
+  justify-content: space-around;
+  border-radius: 10px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.09);
+  border-right: 2px solid rgba(0, 0, 0, 0.09);
 }

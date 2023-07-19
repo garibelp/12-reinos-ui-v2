@@ -1,16 +1,12 @@
 .campaign-details-body > .ant-card > .ant-card-body {
   padding: 0;
-}
-
-.campaign-details-spacer,
-.campaign-details-spacer > .ant-space-item {
-  width: 100%;
+  max-width: 520px;
 }
 
 .campaign-details-title {
   background: #e5e9f2;
   padding: 12px;
-  margin-bottom: 6px;
+  margin-bottom: 15px;
 }
 
 .campaign-details-title h1 {
@@ -18,6 +14,12 @@
   margin: 0;
 }
 
-.last-element {
-  margin-bottom: 12px;
+.campaign-char {
+  margin-bottom: 15px;
+}
+
+.campaign-char-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
 }

@@ -17,9 +17,7 @@ import DeathIcon from "../../../../../assets/images/Death.png";
 import { AttributeEnum } from "../../../../../enum/attribute.enum";
 import { ColorsEnum } from "../../../../../enum/colors.enum";
 import { DiceEnum } from "../../../../../enum/dice.enum";
-import { EnergyTypeEnum } from "../../../../../enum/energy-type.enum";
 import { UpdateAttributePayload } from "../../../../../interfaces/character.interface";
-import { Skill } from "../../../../../interfaces/skill.interface";
 import { updateCurrentPoints } from "../../../../../redux/slices/character.slice";
 import { CircleButtonComponent } from "../../../../../shared/components/circle-button/circle-button.component";
 import {

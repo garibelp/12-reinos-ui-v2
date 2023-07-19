@@ -42,6 +42,10 @@ The page will reload if you make edits. You will also see any lint errors in the
 
 ## Versions changelog
 
+### - Release 1.5.0
+
+- UX improvements for campaign display
+
 ### - Release 1.4.1
 
 - Fixes of death roll tests logic
