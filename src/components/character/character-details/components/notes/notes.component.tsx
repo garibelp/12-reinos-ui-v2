@@ -1,16 +1,21 @@
 import { WoundsComponent } from "./wounds/wounds.component";
-import { Wound } from "../../../../../interfaces/wound.interface";
+import { useAppSelector } from "../../../../../redux/hooks";
+import { RootState } from "../../../../../redux/store";
 
 import "./notes.component.css";
 
 interface Props {
   hidden: boolean;
-  currentWound?: Wound;
   sheetId: string;
 }
 
-export function NotesComponent({ hidden, currentWound, sheetId }: Props) {
-  if (hidden) return null;
+export function NotesComponent({ hidden, sheetId }: Props) {
+  const { list } = useAppSelector((state: RootState) => state.character);
+  const storeChar = list.find((c) => c.id === sheetId);
+
+  if (hidden || !storeChar) return null;
+
+  const { wound: currentWound } = storeChar;
 
   return (
     <>

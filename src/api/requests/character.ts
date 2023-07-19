@@ -6,6 +6,7 @@ import {
   UpdateAttributePayload,
 } from "../../interfaces/character.interface";
 import api from "../api";
+import { DeathRollEnum } from "../../enum/death-roll.enum";
 
 export function getCharactersPaginated(
   usePlayerProfile: boolean,
@@ -82,22 +83,21 @@ export function levelUp(
   });
 }
 
-export function failDeathRoll(
-  id: string
+export function updateDeathRoll(
+  id: string,
+  payload: {
+    deathRollBody: DeathRollEnum;
+    deathRollMind: DeathRollEnum;
+    deathRollSpirit: DeathRollEnum;
+  }
 ): Promise<AxiosResponse<{ message: string }>> {
-  return api.patch<{ message: string }>(`/sheets/${id}/failDeathRoll`, null, {
-    headers: {
-      authorization: "Bearer " + localStorage.getItem("jwt"),
-    },
-  });
-}
-
-export function resetDeathRoll(
-  id: string
-): Promise<AxiosResponse<{ message: string }>> {
-  return api.patch<{ message: string }>(`/sheets/${id}/resetDeathRoll`, null, {
-    headers: {
-      authorization: "Bearer " + localStorage.getItem("jwt"),
-    },
-  });
+  return api.patch<{ message: string }>(
+    `/sheets/${id}/updateDeathRolls`,
+    payload,
+    {
+      headers: {
+        authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
+    }
+  );
 }

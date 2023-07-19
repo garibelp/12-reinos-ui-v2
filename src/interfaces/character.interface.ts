@@ -1,3 +1,4 @@
+import { DeathRollEnum } from "../enum/death-roll.enum";
 import { DiceEnum } from "../enum/dice.enum";
 import { Aptitude } from "./aptitude.interface";
 import { Background } from "./background.interface";
@@ -51,7 +52,9 @@ export interface DetailedCharacter extends IdName {
   job: DetailedJob;
   aptitudes: Aptitude[];
   wound?: Wound;
-  deathRolls: number;
+  deathRollBody: DeathRollEnum;
+  deathRollMind: DeathRollEnum;
+  deathRollSpirit: DeathRollEnum;
   active: boolean;
 }
 

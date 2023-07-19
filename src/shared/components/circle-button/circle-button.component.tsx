@@ -14,6 +14,9 @@ interface CircleButtonProps {
   textColor?: ColorsEnum;
   size?: "normal" | "small";
   customBody?: ReactElement;
+  open?: boolean;
+  openCallback?: Function;
+  modalExtraProps?: any;
 }
 
 const defaultProps = {
@@ -22,8 +25,18 @@ const defaultProps = {
 
 export function CircleButtonComponent(props: CircleButtonProps) {
   const [showDetails, setShowDetails] = useState(false);
-  const { icon, value, name, backgroundColor, description, size, customBody } =
-    props;
+  const {
+    icon,
+    value,
+    name,
+    backgroundColor,
+    description,
+    size,
+    open,
+    openCallback,
+    customBody,
+    modalExtraProps,
+  } = props;
   const extraProps = { style: { background: backgroundColor } };
 
   const bodyStyle = description ? "" : " hide-modal-body";
@@ -38,7 +51,11 @@ export function CircleButtonComponent(props: CircleButtonProps) {
           icon={
             <img src={icon} alt="" className={`circle-button-icon-${size}`} />
           }
-          onClick={() => setShowDetails(true)}
+          onClick={() =>
+            openCallback !== undefined
+              ? openCallback(true)
+              : setShowDetails(true)
+          }
           {...extraProps}
         >
           {value}
@@ -52,17 +69,25 @@ export function CircleButtonComponent(props: CircleButtonProps) {
           icon={
             <img src={icon} alt="" className={`circle-button-icon-${size}`} />
           }
-          onClick={() => setShowDetails(true)}
+          onClick={() =>
+            openCallback !== undefined
+              ? openCallback(true)
+              : setShowDetails(true)
+          }
         />
       )}
       <Modal
         title={name}
-        open={showDetails}
+        open={open !== undefined ? open : showDetails}
         className={"details-modal" + bodyStyle}
-        onCancel={() => setShowDetails(false)}
+        onCancel={() =>
+          openCallback !== undefined
+            ? openCallback(false)
+            : setShowDetails(false)
+        }
         footer={null}
+        {...modalExtraProps}
       >
-        {/*@ts-ignore*/}
         {customBody || <TextWithBreaklineComponent text={description} />}
       </Modal>
     </>

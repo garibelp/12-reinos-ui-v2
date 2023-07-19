@@ -1,135 +1,134 @@
-import { useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { Button, Col, Divider, Row } from "antd";
-import { CloseCircleFilled, MinusCircleFilled } from "@ant-design/icons";
+import {
+  CheckCircleFilled,
+  CloseCircleFilled,
+  MinusCircleFilled,
+} from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 
 import {
   messageError,
   messageSuccess,
 } from "../../../../../../../shared/messages";
-import { getDiceValue, rollDice } from "../../../../../../../utils/dice-utils";
-import {
-  failDeathRoll,
-  resetDeathRoll,
-} from "../../../../../../../api/requests/character";
+import { updateDeathRoll } from "../../../../../../../api/requests/character";
 
 import "./death-test.component.css";
 import { updateDeathRolls } from "../../../../../../../redux/slices/character.slice";
+import { DeathRollEnum } from "../../../../../../../enum/death-roll.enum";
 
 interface Props {
-  deathRolls: number;
-  tenacity?: string;
-  intelligence?: string;
-  cunning?: string;
+  deathRollBody: DeathRollEnum;
+  deathRollMind: DeathRollEnum;
+  deathRollSpirit: DeathRollEnum;
   sheetId: string;
+  callback: Function;
 }
 
 export function DeathTestComponent({
-  deathRolls,
-  tenacity,
-  intelligence,
-  cunning,
+  deathRollBody,
+  deathRollMind,
+  deathRollSpirit,
+  callback,
   sheetId,
 }: Props) {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
+  const [body, setBody] = useState(DeathRollEnum.UNCHECKED);
+  const [mind, setMind] = useState(DeathRollEnum.UNCHECKED);
+  const [spirit, setSpirit] = useState(DeathRollEnum.UNCHECKED);
 
-  function renderStatus(step: number) {
-    return (
-      <>
-        {step <= deathRolls ? (
-          <CloseCircleFilled color="red" />
-        ) : (
-          <MinusCircleFilled />
-        )}
-      </>
-    );
+  useEffect(() => {
+    setStoreData();
+  }, []);
+
+  function setStoreData() {
+    setBody(deathRollBody);
+    setMind(deathRollMind);
+    setSpirit(deathRollSpirit);
   }
 
-  function rollDeathTest(type: string, dice?: string) {
-    const { failure } = rollDice(getDiceValue(dice));
-    if (failure) {
-      messageError(`Falha em teste de morte de ${type}!`);
-      setLoading(true);
-      failDeathRoll(sheetId)
-        .then(() => {
-          // TODO: Sync store
-          dispatch(
-            updateDeathRolls({ id: sheetId, deathRolls: deathRolls + 1 })
-          );
-        })
-        .catch(() => {
-          messageError(`Falha ao tentar salvar teste de morte de ${type}!`);
-        })
-        .finally(() => {
-          setLoading(false);
-        });
-    } else {
-      messageSuccess(`Sucesso em teste de morte de ${type}!`);
-      if (deathRolls > 0) {
-        onResetClicked();
-      }
-    }
-  }
-
-  function onRollClicked() {
-    switch (deathRolls) {
-      case 0:
-        rollDeathTest("Corpo", tenacity);
-        break;
-      case 1:
-        rollDeathTest("Mente", intelligence);
-        break;
-      case 2:
-        rollDeathTest("Espírito", cunning);
-        break;
-      default:
-        messageError("Personagem faleceu!");
-    }
-  }
-
-  function onResetClicked() {
+  function handleSave() {
+    const data = {
+      deathRollBody: body,
+      deathRollMind: mind,
+      deathRollSpirit: spirit,
+    };
     setLoading(true);
-    resetDeathRoll(sheetId)
+    updateDeathRoll(sheetId, data)
       .then(() => {
-        dispatch(updateDeathRolls({ id: sheetId, deathRolls: 0 }));
+        messageSuccess("Rolagens de morte salvas com sucesso!");
+        dispatch(updateDeathRolls({ id: sheetId, data }));
       })
       .catch(() => {
-        messageError(`Falha ao tentar resetar teste de morte!`);
+        messageError("Falha ao tentar salvar rolagens de morte!");
+        setStoreData();
       })
       .finally(() => {
         setLoading(false);
+        callback();
       });
+  }
+
+  function handleCancel() {
+    callback();
+    setStoreData();
+  }
+
+  function renderIcon(roll: DeathRollEnum, updateRoll: Function): ReactNode {
+    switch (roll) {
+      case DeathRollEnum.FAILURE:
+        return (
+          <CloseCircleFilled
+            style={{ color: "red", fontSize: "20px" }}
+            onClick={() => updateRoll(DeathRollEnum.SUCCESS)}
+          />
+        );
+      case DeathRollEnum.SUCCESS:
+        return (
+          <CheckCircleFilled
+            style={{ color: "green", fontSize: "20px" }}
+            onClick={() => updateRoll(DeathRollEnum.UNCHECKED)}
+          />
+        );
+      default:
+        return (
+          <MinusCircleFilled
+            style={{ fontSize: "20px" }}
+            onClick={() => updateRoll(DeathRollEnum.FAILURE)}
+          />
+        );
+    }
   }
 
   return (
     <Row className="death-row-details">
-      <Col span={12}>Teste do corpo</Col>
-      <Col span={12}>{renderStatus(1)}</Col>
-      <Col span={12}>Teste da mente</Col>
-      <Col span={12}>{renderStatus(2)}</Col>
-      <Col span={12}>Teste do espírito</Col>
-      <Col span={12}>{renderStatus(3)}</Col>
+      <Col span={12}>Teste do corpo:</Col>
+      <Col span={12}>{renderIcon(body, setBody)}</Col>
+      <Col span={12}>Teste da mente:</Col>
+      <Col span={12}>{renderIcon(mind, setMind)}</Col>
+      <Col span={12}>Teste do espírito:</Col>
+      <Col span={12}>{renderIcon(spirit, setSpirit)}</Col>
       <Divider />
       <Col span={12}>
         <Button
+          onClick={handleCancel}
           type="primary"
-          disabled={deathRolls === 0}
-          loading={loading}
           className="death-row-button"
-          onClick={onResetClicked}
+          loading={loading}
+          danger
         >
-          Resetar testes
+          Cancelar
         </Button>
       </Col>
       <Col span={12}>
         <Button
+          onClick={handleSave}
           type="primary"
-          loading={loading}
           className="death-row-button"
-          onClick={onRollClicked}
+          loading={loading}
         >
-          Rolar!
+          Salvar
         </Button>
       </Col>
     </Row>

@@ -1,25 +1,22 @@
 import { Divider, Row, Space } from "antd";
 
 import { SkillTypeEnum } from "../../../../../enum/skill-type.enum";
-import { Aptitude } from "../../../../../interfaces/aptitude.interface";
-import { Background } from "../../../../../interfaces/background.interface";
-import { DetailedJob } from "../../../../../interfaces/job.interface";
-import { DetailedLineage } from "../../../../../interfaces/lineage.interface";
 import { ExpandableDetailsComponent } from "../../../../../shared/components/expandable-details/expandable-details.component";
+import { useAppSelector } from "../../../../../redux/hooks";
+import { RootState } from "../../../../../redux/store";
 
 interface Props {
-  lineage?: DetailedLineage;
-  background?: Background;
-  job?: DetailedJob;
-  aptitudes?: Aptitude[];
-  level: number;
+  sheetId: string;
   hidden: boolean;
 }
 
-export function SkillsComponent(props: Props) {
-  const { lineage, background, job, aptitudes, level, hidden } = props;
+export function SkillsComponent({ sheetId, hidden }: Props) {
+  const { list } = useAppSelector((state: RootState) => state.character);
+  const storeChar = list.find((c) => c.id === sheetId);
 
-  if (hidden) return null;
+  if (hidden || !storeChar) return null;
+
+  const { lineage, background, job, aptitudes, level } = storeChar;
 
   function renderBackground() {
     if (!background?.advantage) return null;

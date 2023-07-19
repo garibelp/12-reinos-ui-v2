@@ -34,38 +34,13 @@ import { DiceHistoryComponent } from "./components/dice-history/dice-history.com
 import { DeathTestComponent } from "./components/death-test/death-test.component";
 
 import "./general.component.css";
+import { useAppSelector } from "../../../../../redux/hooks";
+import { RootState } from "../../../../../redux/store";
+import { SkillTypeEnum } from "../../../../../enum/skill-type.enum";
 
 interface Props {
-  intelligence?: string;
-  cunning?: string;
-  tenacity?: string;
-  celerity?: string;
-  mentalCurrent: number;
-  mentalTotal: number;
-  physicalCurrent: number;
-  physicalTotal: number;
-  heroismCurrent: number;
-  heroismTotal: number;
-  basicAttack: Skill;
-  mainAttribute: AttributeEnum;
-  lineage?: string;
-  deathRolls: number;
   hidden: boolean;
 }
-
-const defaultProps = {
-  mentalCurrent: 0,
-  mentalTotal: 0,
-  physicalCurrent: 0,
-  physicalTotal: 0,
-  heroismCurrent: 0,
-  heroismTotal: 0,
-  basicAttack: {
-    cost: 99,
-    range: 0,
-    energyType: EnergyTypeEnum.PHYSICAL,
-  },
-};
 
 function getDice(attribute?: string) {
   if (attribute) {
@@ -76,34 +51,19 @@ function getDice(attribute?: string) {
   return "";
 }
 
-export function GeneralComponent(props: Props) {
+export function GeneralComponent({ hidden }: Props) {
   const dispatch = useDispatch();
   const { id } = useParams<{ id: string | undefined }>();
+  const { list } = useAppSelector((state: RootState) => state.character);
   const [mentalCurrent, setMentalCurrent] = useState(0);
   const [physicalCurrent, setPhysicalCurrent] = useState(0);
   const [heroismCurrent, setHeroismCurrent] = useState(0);
   const [firstTrigger, setFirstTrigger] = useState(true);
+  const [deathRollVisible, setDeathRollVisible] = useState(false);
   const [diceRollHistory, setDiceRollHistory] = useState<
     { type: string; message: string; description: string }[]
   >([]);
-
-  const {
-    intelligence,
-    cunning,
-    tenacity,
-    celerity,
-    mentalCurrent: initMentalCurrent,
-    mentalTotal,
-    physicalCurrent: initPhysicalCurrent,
-    physicalTotal,
-    heroismCurrent: initHeroismCurrent,
-    heroismTotal,
-    basicAttack,
-    mainAttribute,
-    lineage,
-    deathRolls,
-    hidden,
-  } = props;
+  const storeChar = list.find((c) => c.id === id);
 
   useEffect(() => {
     setMentalCurrent(initMentalCurrent);
@@ -142,6 +102,28 @@ export function GeneralComponent(props: Props) {
       return () => clearTimeout(updateData);
     }
   }, [mentalCurrent, physicalCurrent, heroismCurrent]);
+
+  if (!storeChar) return null;
+
+  const {
+    intelligence,
+    cunning,
+    tenacity,
+    celerity,
+    mentalCurrent: initMentalCurrent,
+    mentalTotal,
+    physicalCurrent: initPhysicalCurrent,
+    physicalTotal,
+    heroismCurrent: initHeroismCurrent,
+    heroismTotal,
+    job: { skills, mainAttribute },
+    lineage,
+    deathRollBody,
+    deathRollMind,
+    deathRollSpirit,
+  } = storeChar;
+
+  const basicAttack = skills.find((s) => s.skillType === SkillTypeEnum.BASIC);
 
   function reduceMental() {
     if (mentalCurrent > 0) {
@@ -221,7 +203,7 @@ export function GeneralComponent(props: Props) {
           customBody={
             <AttributeRollComponent
               dice={intelligence}
-              invertRoll={lineage === "Anão"}
+              invertRoll={lineage.name === "Anão"}
               callback={(v: any) => handleRoll("INT", v)}
             />
           }
@@ -234,7 +216,7 @@ export function GeneralComponent(props: Props) {
           customBody={
             <AttributeRollComponent
               dice={cunning}
-              invertRoll={lineage === "Anão"}
+              invertRoll={lineage.name === "Anão"}
               callback={(v: any) => handleRoll("AST", v)}
             />
           }
@@ -250,7 +232,7 @@ export function GeneralComponent(props: Props) {
           customBody={
             <AttributeRollComponent
               dice={tenacity}
-              invertRoll={lineage === "Anão"}
+              invertRoll={lineage.name === "Anão"}
               callback={(v: any) => handleRoll("TEN", v)}
             />
           }
@@ -263,7 +245,7 @@ export function GeneralComponent(props: Props) {
           customBody={
             <AttributeRollComponent
               dice={celerity}
-              invertRoll={lineage === "Anão"}
+              invertRoll={lineage.name === "Anão"}
               callback={(v: any) => handleRoll("CEL", v)}
             />
           }
@@ -304,7 +286,7 @@ export function GeneralComponent(props: Props) {
               intelligence={intelligence}
               tenacity={tenacity}
               attackRoll={true}
-              baseDamage={basicAttack.cost}
+              baseDamage={basicAttack?.cost || 0}
               mainAttribute={mainAttribute}
               callback={(v: any) => handleRoll("ATK", v)}
             />
@@ -331,13 +313,21 @@ export function GeneralComponent(props: Props) {
           name="Testes contra a morte"
           backgroundColor={ColorsEnum.BASE_GRAY}
           size="small"
+          openCallback={setDeathRollVisible}
+          open={deathRollVisible}
+          modalExtraProps={{
+            maskClosable: false,
+            closable: false,
+          }}
           customBody={
             <DeathTestComponent
-              deathRolls={deathRolls}
-              cunning={cunning}
-              intelligence={intelligence}
-              tenacity={tenacity}
-              sheetId={`${id}`}
+              deathRollBody={deathRollBody}
+              deathRollMind={deathRollMind}
+              deathRollSpirit={deathRollSpirit}
+              sheetId={storeChar.id}
+              callback={() => {
+                setDeathRollVisible(false);
+              }}
             />
           }
         />
@@ -354,5 +344,3 @@ export function GeneralComponent(props: Props) {
     </Space>
   );
 }
-
-GeneralComponent.defaultProps = defaultProps;

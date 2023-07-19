@@ -4,6 +4,7 @@ import {
   UpdateAttributePayload,
 } from "../../interfaces/character.interface";
 import { Wound } from "../../interfaces/wound.interface";
+import { DeathRollEnum } from "../../enum/death-roll.enum";
 
 const initialState: { list: DetailedCharacter[] } = {
   list: [],
@@ -58,18 +59,25 @@ export const characterSlice = createSlice({
     },
     updateDeathRolls: (
       state,
-      action: PayloadAction<{ id: string; deathRolls: number }>
+      action: PayloadAction<{
+        id: string;
+        data: {
+          deathRollBody: DeathRollEnum;
+          deathRollMind: DeathRollEnum;
+          deathRollSpirit: DeathRollEnum;
+        };
+      }>
     ) => {
       const { list } = state;
       const {
-        payload: { id, deathRolls },
+        payload: { id, data },
       } = action;
 
       const charIndex = list.findIndex((c) => c.id === id);
       if (charIndex >= 0) {
         list[charIndex] = {
           ...list[charIndex],
-          deathRolls,
+          ...data,
         };
       }
     },

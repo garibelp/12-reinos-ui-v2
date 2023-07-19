@@ -15,7 +15,6 @@ import PotionIcon from "../../../assets/images/Potion.png";
 import WandIcon from "../../../assets/images/Wand.png";
 import NotesIcon from "../../../assets/images/Notes.png";
 import { ColorsEnum } from "../../../enum/colors.enum";
-import { SkillTypeEnum } from "../../../enum/skill-type.enum";
 import { useAppSelector } from "../../../redux/hooks";
 import { addCharacterDetails } from "../../../redux/slices/character.slice";
 import { RootState } from "../../../redux/store";
@@ -284,37 +283,14 @@ export function CharacterDetailsComponent() {
       >
         {storeChar && (
           <>
-            <GeneralComponent
-              intelligence={storeChar.intelligence}
-              cunning={storeChar.cunning}
-              tenacity={storeChar.tenacity}
-              celerity={storeChar.celerity}
-              mentalCurrent={storeChar.mentalCurrent}
-              mentalTotal={storeChar.mentalTotal}
-              physicalCurrent={storeChar.physicalCurrent}
-              physicalTotal={storeChar.physicalTotal}
-              heroismCurrent={storeChar.heroismCurrent}
-              heroismTotal={storeChar.heroismTotal}
-              mainAttribute={storeChar.job.mainAttribute}
-              lineage={storeChar.lineage.name}
-              deathRolls={storeChar.deathRolls}
-              basicAttack={storeChar.job.skills.find(
-                (s) => s.skillType === SkillTypeEnum.BASIC
-              )}
-              hidden={currentStep !== StepsEnum.GENERAL}
-            />
+            <GeneralComponent hidden={currentStep !== StepsEnum.GENERAL} />
             <SkillsComponent
-              lineage={storeChar.lineage}
-              background={storeChar.background}
-              job={storeChar.job}
-              aptitudes={storeChar.aptitudes}
               hidden={currentStep !== StepsEnum.SKILLS}
-              level={storeChar.level}
+              sheetId={storeChar.id}
             />
             <ItemsComponent hidden={currentStep !== StepsEnum.ITEMS} />
             <NotesComponent
               hidden={currentStep !== StepsEnum.NOTES}
-              currentWound={storeChar.wound}
               sheetId={storeChar.id}
             />
           </>
