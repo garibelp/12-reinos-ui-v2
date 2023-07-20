@@ -17,10 +17,12 @@ interface CircleButtonProps {
   open?: boolean;
   openCallback?: Function;
   modalExtraProps?: any;
+  disabled: boolean;
 }
 
 const defaultProps = {
   size: "normal",
+  disabled: false,
 };
 
 export function CircleButtonComponent(props: CircleButtonProps) {
@@ -36,6 +38,7 @@ export function CircleButtonComponent(props: CircleButtonProps) {
     openCallback,
     customBody,
     modalExtraProps,
+    disabled,
   } = props;
   const extraProps = { style: { background: backgroundColor } };
 
@@ -48,6 +51,7 @@ export function CircleButtonComponent(props: CircleButtonProps) {
           className={`button-size-${size}`}
           shape="circle"
           type="text"
+          disabled={disabled}
           icon={
             <img src={icon} alt="" className={`circle-button-icon-${size}`} />
           }
@@ -65,6 +69,7 @@ export function CircleButtonComponent(props: CircleButtonProps) {
           className={`button-size-${size}`}
           shape="circle"
           type="text"
+          disabled={disabled}
           style={{ background: backgroundColor }}
           icon={
             <img src={icon} alt="" className={`circle-button-icon-${size}`} />

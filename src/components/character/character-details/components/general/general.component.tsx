@@ -1,10 +1,13 @@
 import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
-import { Button, Divider, Row, Space } from "antd";
+import { Button, Col, Divider, Row, Space } from "antd";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
-import { updateAttributes } from "../../../../../api/requests/character";
+import {
+  levelUp,
+  updateAttributes,
+} from "../../../../../api/requests/character";
 import BrainIcon from "../../../../../assets/images/Brain.png";
 import D4Icon from "../../../../../assets/images/D4.png";
 import D6Icon from "../../../../../assets/images/D6.png";
@@ -12,8 +15,10 @@ import D8Icon from "../../../../../assets/images/D8.png";
 import PersonIcon from "../../../../../assets/images/Person.png";
 import ShieldIcon from "../../../../../assets/images/Shield.png";
 import SwordIcon from "../../../../../assets/images/Sword.png";
-import DicesIcon from "../../../../../assets/images/Dices.png";
 import DeathIcon from "../../../../../assets/images/Death.png";
+import LampIcon from "../../../../../assets/images/Lamp.png";
+import BookIcon from "../../../../../assets/images/Book.png";
+import NightIcon from "../../../../../assets/images/Night.png";
 import { AttributeEnum } from "../../../../../enum/attribute.enum";
 import { ColorsEnum } from "../../../../../enum/colors.enum";
 import { DiceEnum } from "../../../../../enum/dice.enum";
@@ -28,7 +33,6 @@ import {
 import { getEnumKey } from "../../../../../utils/enum-utils";
 import { BattleDiceRollComponent } from "./components/battle-dice-roll/battle-dice-roll.component";
 import { AttributeRollComponent } from "./components/attribute-roll/attribute-roll-component";
-import { DiceHistoryComponent } from "./components/dice-history/dice-history.component";
 import { DeathTestComponent } from "./components/death-test/death-test.component";
 
 import "./general.component.css";
@@ -38,6 +42,7 @@ import { SkillTypeEnum } from "../../../../../enum/skill-type.enum";
 
 interface Props {
   hidden: boolean;
+  updateDiceHistory: Function;
 }
 
 function getDice(attribute?: string) {
@@ -49,7 +54,7 @@ function getDice(attribute?: string) {
   return "";
 }
 
-export function GeneralComponent({ hidden }: Props) {
+export function GeneralComponent({ hidden, updateDiceHistory }: Props) {
   const dispatch = useDispatch();
   const { id } = useParams<{ id: string | undefined }>();
   const { list } = useAppSelector((state: RootState) => state.character);
@@ -58,9 +63,10 @@ export function GeneralComponent({ hidden }: Props) {
   const [heroismCurrent, setHeroismCurrent] = useState(0);
   const [firstTrigger, setFirstTrigger] = useState(true);
   const [deathRollVisible, setDeathRollVisible] = useState(false);
-  const [diceRollHistory, setDiceRollHistory] = useState<
-    { type: string; message: string; description: string }[]
-  >([]);
+  const [levelUpVisible, setLevelUpVisible] = useState(false);
+  const [restVisible, setRestVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   const storeChar = list.find((c) => c.id === id);
 
   useEffect(() => {
@@ -163,7 +169,36 @@ export function GeneralComponent({ hidden }: Props) {
     type: string,
     value: { message: string; description: string }
   ) {
-    setDiceRollHistory([{ type, ...value }, ...diceRollHistory]);
+    updateDiceHistory({ type, ...value });
+  }
+
+  function handleLevelUp(): void {
+    if (id) {
+      setLoading(true);
+      levelUp(id)
+        .then(() => {
+          messageSuccess(
+            "Personagem subiu de nível com sucesso! Atualizando ficha."
+          );
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+        })
+        .catch((ex) => {
+          console.error(ex);
+          messageError("Erro ao tentar subir personagem de nível.");
+        })
+        .finally(() => {
+          setLoading(false);
+          setLevelUpVisible(false);
+        });
+    }
+  }
+
+  function handleRest() {
+    setMentalCurrent(mentalTotal);
+    setPhysicalCurrent(physicalTotal);
+    setRestVisible(false);
   }
 
   function renderAttributeChangeButton(icon: any, callback = () => {}) {
@@ -178,8 +213,73 @@ export function GeneralComponent({ hidden }: Props) {
     );
   }
 
+  function renderConfirmationModal(
+    onClose: (e: any) => void,
+    onConfirm: (e: any) => void
+  ) {
+    return (
+      <Row justify="space-evenly" style={{ padding: "24px 0" }}>
+        <Col span={12}>
+          <Button loading={loading} type="primary" danger onClick={onClose}>
+            Cancelar
+          </Button>
+        </Col>
+        <Col span={12}>
+          <Button loading={loading} type="primary" onClick={onConfirm}>
+            Confirmar
+          </Button>
+        </Col>
+      </Row>
+    );
+  }
+
   return (
     <Space hidden={hidden} style={{ width: "100%" }} direction="vertical">
+      <Row justify="space-evenly">
+        <CircleButtonComponent
+          icon={LampIcon}
+          name="Heroísmo"
+          backgroundColor={ColorsEnum.BASE_GRAY}
+          size="small"
+          customBody={
+            <Space size="large">
+              {renderAttributeChangeButton(<MinusOutlined />, reduceHeroism)}
+              {heroismCurrent} / {heroismTotal}
+              {renderAttributeChangeButton(<PlusOutlined />, increaseHeroism)}
+            </Space>
+          }
+        />
+        <CircleButtonComponent
+          icon={BookIcon}
+          name="Subir de capítulo?"
+          backgroundColor={ColorsEnum.BASE_GRAY}
+          size="small"
+          openCallback={setLevelUpVisible}
+          disabled={storeChar.level > 2}
+          open={levelUpVisible}
+          modalExtraProps={{
+            maskClosable: false,
+            closable: false,
+          }}
+          customBody={renderConfirmationModal(
+            () => setLevelUpVisible(false),
+            handleLevelUp
+          )}
+        />
+        <CircleButtonComponent
+          icon={NightIcon}
+          name="Descansar?"
+          backgroundColor={ColorsEnum.BASE_GRAY}
+          size="small"
+          openCallback={setRestVisible}
+          open={restVisible}
+          customBody={renderConfirmationModal(
+            () => setRestVisible(false),
+            handleRest
+          )}
+        />
+      </Row>
+      <Divider />
       <Row justify="center" style={{ alignItems: "center" }}>
         <Space size="large">
           {renderAttributeChangeButton(<MinusOutlined />, reduceMental)}
@@ -264,18 +364,9 @@ export function GeneralComponent({ hidden }: Props) {
       <Divider />
       <Row justify="space-evenly">
         <CircleButtonComponent
-          icon={DicesIcon}
-          name="Histórico de rolagens"
-          backgroundColor={ColorsEnum.BASE_GRAY}
-          size="small"
-          customBody={
-            <DiceHistoryComponent diceRollHistory={diceRollHistory} />
-          }
-        />
-        <CircleButtonComponent
           icon={SwordIcon}
           name="Ataque Básico"
-          backgroundColor={ColorsEnum.BASIC_ATTACK}
+          backgroundColor={ColorsEnum.BASE_GRAY}
           size="small"
           customBody={
             <BattleDiceRollComponent
@@ -293,7 +384,7 @@ export function GeneralComponent({ hidden }: Props) {
         <CircleButtonComponent
           icon={ShieldIcon}
           name="Defesa"
-          backgroundColor={ColorsEnum.DEFENSE}
+          backgroundColor={ColorsEnum.BASE_GRAY}
           size="small"
           customBody={
             <BattleDiceRollComponent
@@ -329,15 +420,6 @@ export function GeneralComponent({ hidden }: Props) {
             />
           }
         />
-      </Row>
-      <Row justify="space-evenly">
-        <Space size="large">
-          {renderAttributeChangeButton(<MinusOutlined />, reduceHeroism)}
-          <div>
-            Heroismo {heroismCurrent}/{heroismTotal}
-          </div>
-          {renderAttributeChangeButton(<PlusOutlined />, increaseHeroism)}
-        </Space>
       </Row>
     </Space>
   );

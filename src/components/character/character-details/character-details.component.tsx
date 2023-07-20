@@ -7,13 +7,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import {
   deleteCharacter,
   getCharacterDetails,
-  levelUp,
 } from "../../../api/requests/character";
-import LevelUpIcon from "../../../assets/images/Levelup.png";
 import PersonIcon from "../../../assets/images/Face.png";
 import PotionIcon from "../../../assets/images/Potion.png";
 import WandIcon from "../../../assets/images/Wand.png";
 import NotesIcon from "../../../assets/images/Notes.png";
+import DicesIcon from "../../../assets/images/Dices.png";
 import { ColorsEnum } from "../../../enum/colors.enum";
 import { useAppSelector } from "../../../redux/hooks";
 import { addCharacterDetails } from "../../../redux/slices/character.slice";
@@ -28,6 +27,8 @@ import { getWoundList } from "../../../api/requests/wounds";
 import { setWoundList } from "../../../redux/slices/wound.slice";
 
 import "./character-details.component.css";
+import { CircleButtonComponent } from "../../../shared/components/circle-button/circle-button.component";
+import { DiceHistoryComponent } from "./components/general/components/dice-history/dice-history.component";
 
 enum StepsEnum {
   GENERAL,
@@ -41,11 +42,13 @@ export function CharacterDetailsComponent() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-  const [showLevelUpConfirm, setShowLevelUpConfirm] = useState(false);
   const [currentStep, setCurrentStep] = useState<StepsEnum>(StepsEnum.GENERAL);
   const { list } = useAppSelector((state: RootState) => state.character);
   const { list: woundList } = useAppSelector((state: RootState) => state.wound);
   const { id } = useParams<{ id: string | undefined }>();
+  const [diceRollHistory, setDiceRollHistory] = useState<
+    { type: string; message: string; description: string }[]
+  >([]);
 
   const storeChar = list.find((c) => c.id === id);
 
@@ -109,28 +112,12 @@ export function CharacterDetailsComponent() {
     }
   }
 
-  function handleLevelUp(): void {
-    if (id) {
-      setLoading(true);
-      levelUp(id)
-        .then(() => {
-          messageSuccess(
-            "Personagem subiu de nível com sucesso! Atualizando ficha."
-          );
-          setTimeout(() => {
-            window.location.reload();
-            setLoading(false);
-          }, 2000);
-        })
-        .catch((ex) => {
-          console.error(ex);
-          messageError("Erro ao tentar subir personagem de nível.");
-          setLoading(false);
-        })
-        .finally(() => {
-          setShowLevelUpConfirm(false);
-        });
-    }
+  function handleRollUpdate(roll: {
+    type: string;
+    message: string;
+    description: string;
+  }) {
+    setDiceRollHistory([roll, ...diceRollHistory]);
   }
 
   function renderHeader() {
@@ -163,13 +150,16 @@ export function CharacterDetailsComponent() {
               <div>{`${storeChar.job.name}, Capítulo ${storeChar.level}`}</div>
               <div>{`${storeChar.lineage.name} ${storeChar.background.name}`}</div>
             </div>
-            <div className="character-details-levelup">
-              <Button
-                hidden={storeChar.level > 2}
-                onClick={() => setShowLevelUpConfirm(true)}
-              >
-                <img src={LevelUpIcon} alt="" />
-              </Button>
+            <div style={{ alignSelf: "center" }}>
+              <CircleButtonComponent
+                icon={DicesIcon}
+                name="Histórico de rolagens"
+                backgroundColor={ColorsEnum.WHITE}
+                size="small"
+                customBody={
+                  <DiceHistoryComponent diceRollHistory={diceRollHistory} />
+                }
+              />
             </div>
           </div>
         </Row>
@@ -263,15 +253,6 @@ export function CharacterDetailsComponent() {
     );
   }
 
-  function renderLevelUpConfirmation() {
-    return renderConfirmationModal(
-      "Subir de capítulo?",
-      showLevelUpConfirm,
-      () => handleLevelUp(),
-      () => setShowLevelUpConfirm(false)
-    );
-  }
-
   return (
     <div className="character-details-wrapper">
       <Card
@@ -283,7 +264,10 @@ export function CharacterDetailsComponent() {
       >
         {storeChar && (
           <>
-            <GeneralComponent hidden={currentStep !== StepsEnum.GENERAL} />
+            <GeneralComponent
+              updateDiceHistory={handleRollUpdate}
+              hidden={currentStep !== StepsEnum.GENERAL}
+            />
             <SkillsComponent
               hidden={currentStep !== StepsEnum.SKILLS}
               sheetId={storeChar.id}
@@ -297,7 +281,6 @@ export function CharacterDetailsComponent() {
         )}
       </Card>
       {renderDeleteConfirmation()}
-      {renderLevelUpConfirmation()}
     </div>
   );
 }

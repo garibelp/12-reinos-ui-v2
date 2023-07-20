@@ -55,20 +55,3 @@
   > .ant-card-head-title {
   padding-bottom: 0;
 }
-
-.character-details-levelup {
-  align-self: center;
-}
-
-.character-details-levelup > .ant-btn {
-  border: 0;
-  height: 70px;
-  width: 70px;
-  border-radius: 10px;
-  border-color: white;
-  padding: 0;
-}
-
-.character-details-levelup img {
-  height: 50px;
-}

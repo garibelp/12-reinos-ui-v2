@@ -1,33 +1,33 @@
 .button-size-normal {
-    width: 100px !important;;
-    height: 100px !important;;
-    display: flex !important;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 100px !important;
+  height: 100px !important;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .button-size-small {
-    width: 50px !important;
-    height: 50px !important;
-    display: flex !important;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  width: 50px !important;
+  height: 50px !important;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .circle-button-icon-normal {
-    width: 70px;
+  width: 70px;
 }
 
 .circle-button-icon-small {
-    width: 35px;
+  width: 35px;
 }
 
 .details-modal {
-    text-align: center;
+  text-align: center;
 }
 
 .hide-modal-body > .ant-modal-content > .ant-modal-body {
-    padding: 0;
+  padding: 0;
 }

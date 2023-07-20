@@ -6,8 +6,6 @@ export enum ColorsEnum {
   CUNNING = "#77D353",
   CELERITY = "#FFC82C",
   TENACITY = "#F95F62",
-  BASIC_ATTACK = "#A54BFF",
-  DEFENSE = "#FF7F00",
   RED = "red",
   YELLOW = "yellow",
   GREEN = "green",

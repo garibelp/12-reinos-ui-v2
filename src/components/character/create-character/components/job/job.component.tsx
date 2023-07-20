@@ -160,7 +160,7 @@ export function JobComponent({
             name="Ataque Básico"
             description="Dano / Distância em metros"
             textColor={ColorsEnum.WHITE}
-            backgroundColor={ColorsEnum.BASIC_ATTACK}
+            backgroundColor={ColorsEnum.BASE_GRAY}
           />
           <CircleButtonComponent
             icon={D8Icon}
