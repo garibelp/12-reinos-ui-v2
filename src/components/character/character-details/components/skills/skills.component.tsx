@@ -4,6 +4,7 @@ import { SkillTypeEnum } from "../../../../../enum/skill-type.enum";
 import { ExpandableDetailsComponent } from "../../../../../shared/components/expandable-details/expandable-details.component";
 import { useAppSelector } from "../../../../../redux/hooks";
 import { RootState } from "../../../../../redux/store";
+import { groupBy } from "../../../../../utils/array-utils";
 
 interface Props {
   sheetId: string;
@@ -31,19 +32,31 @@ export function SkillsComponent({ sheetId, hidden }: Props) {
   function renderJobSkills() {
     if (!job || !job?.skills) return null;
     const { skills } = job;
-    return skills
-      .filter(
+    const groupedSkills = groupBy(
+      skills.filter(
         (s) => s.skillType !== SkillTypeEnum.BASIC && s.skillLevel <= level
-      )
-      .sort((x, y) => x.skillLevel - y.skillLevel)
-      .map((s) => (
-        <Row key={s.id}>
-          <ExpandableDetailsComponent
-            title={`${s.name}`}
-            description={s.description}
-          />
-        </Row>
-      ));
+      ),
+      "skillLevel"
+    );
+
+    return Object.entries(groupedSkills).map(([key, value]) => {
+      return (
+        <>
+          <div style={{ fontStyle: "italic", paddingLeft: "15px" }}>
+            Capítulo {key}
+          </div>
+          {/* @ts-ignore */}
+          {value.map((s) => (
+            <Row key={s.id}>
+              <ExpandableDetailsComponent
+                title={`${s.name}`}
+                description={s.description}
+              />
+            </Row>
+          ))}
+        </>
+      );
+    });
   }
 
   function renderAptitudeList() {
