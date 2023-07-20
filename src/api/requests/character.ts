@@ -20,6 +20,8 @@ export function getCharactersPaginated(
       nameFilter,
       currentPage,
       usePlayerProfile,
+      sortDirection: "ASC",
+      sortField: "NAME",
     },
     headers: {
       authorization: "Bearer " + localStorage.getItem("jwt"),
