@@ -81,6 +81,26 @@ export const characterSlice = createSlice({
         };
       }
     },
+    updateStoreNotes: (
+      state,
+      action: PayloadAction<{
+        id: string;
+        notes?: string;
+      }>
+    ) => {
+      const { list } = state;
+      const {
+        payload: { id, notes },
+      } = action;
+
+      const charIndex = list.findIndex((c) => c.id === id);
+      if (charIndex >= 0) {
+        list[charIndex] = {
+          ...list[charIndex],
+          notes,
+        };
+      }
+    },
   },
 });
 
@@ -89,6 +109,7 @@ export const {
   updateCurrentPoints,
   updateWound,
   updateDeathRolls,
+  updateStoreNotes,
 } = characterSlice.actions;
 
 export default characterSlice.reducer;

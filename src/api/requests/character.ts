@@ -101,3 +101,18 @@ export function updateDeathRoll(
     }
   );
 }
+
+export function updateNotes(
+  id: string,
+  notes: string
+): Promise<AxiosResponse<{ message: string }>> {
+  return api.patch<{ message: string }>(
+    `/sheets/${id}/updateNotes`,
+    { notes },
+    {
+      headers: {
+        authorization: "Bearer " + localStorage.getItem("jwt"),
+      },
+    }
+  );
+}

@@ -2,7 +2,10 @@ import { Button, Checkbox, Col, Divider, Form, Modal, Row, Space } from "antd";
 
 import { useAppSelector } from "../../../../../redux/hooks";
 import { RootState } from "../../../../../redux/store";
-import { TransitionalInputComponent } from "../../../../../shared/components/transactional-input/transitional-input.component";
+import {
+  TransactionalInputType,
+  TransitionalInputComponent,
+} from "../../../../../shared/components/transactional-input/transitional-input.component";
 
 import "./aptitudes.component.css";
 import { EyeOutlined } from "@ant-design/icons";
@@ -88,6 +91,42 @@ export function AptitudesComponent({
         ]}
       >
         <TransitionalInputComponent placeholder="Nome de Personagem" />
+      </Item>
+      <Item
+        name="bond"
+        hidden={hidden}
+        rules={[
+          {
+            required: true,
+            whitespace: true,
+            max: 200,
+            message: "Necessário preencher vínculo (Max. 200)!",
+            type: "string",
+          },
+        ]}
+      >
+        <TransitionalInputComponent
+          placeholder="Vínculo"
+          type={TransactionalInputType.TEXT_AREA}
+        />
+      </Item>
+      <Item
+        name="motivation"
+        hidden={hidden}
+        rules={[
+          {
+            required: true,
+            whitespace: true,
+            max: 200,
+            message: "Necessário preencher motivação (Max. 200)!",
+            type: "string",
+          },
+        ]}
+      >
+        <TransitionalInputComponent
+          placeholder="Motivação"
+          type={TransactionalInputType.TEXT_AREA}
+        />
       </Item>
       {!hidden && <Divider plain> Selecionar Aptidões </Divider>}
       <Item
